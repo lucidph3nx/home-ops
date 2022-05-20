@@ -1,0 +1,19 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "${SECRET_PUBLIC_DOMAIN/./-}"
+  namespace: networking
+spec:
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "default"
+  secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  commonName: "${SECRET_PUBLIC_DOMAIN}"
+  dnsNames:
+    - "${SECRET_PUBLIC_DOMAIN}"
+    - "*.${SECRET_PUBLIC_DOMAIN}"

@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: flux-system
+  name: cluster-settings
+data:
+  NAS0_IP: "10.87.200.0"
+  TIMEZONE: "Pacific/Auckland"
+  #

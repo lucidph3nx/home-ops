@@ -1,0 +1,7 @@
+# See https://toolkit.fluxcd.io/components/source/gitrepositories/#excluding-files
+.github/
+.vscode/
+.gitattributes
+.gitignore
+.sops.yaml
+README.md
