@@ -45,6 +45,7 @@ spec:
         dn: ou=people,dc=tinfoilforest,dc=nz
         objectClass: organizationalUnit
         ou: people
+
         dn: ou=groups,dc=tinfoilforest,dc=nz
         objectClass: organizationalUnit
         ou: groups
@@ -54,6 +55,7 @@ spec:
         gidNumber: 8742
         objectclass: top
         objectclass: posixGroup
+
         dn: uid=ben,ou=people,dc=tinfoilforest,dc=nz
         cn: ben
         givenName: Ben
@@ -75,6 +77,7 @@ spec:
         gidNumber: 8742
         objectclass: top
         objectclass: posixGroup
+
         dn: uid=ness,ou=people,dc=tinfoilforest,dc=nz
         cn: ness
         givenName: ness
