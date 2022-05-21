@@ -1,0 +1,21 @@
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: lidarr-ingress
+  namespace: networking
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`lidarr.tinfoilforest.nz`)
+      kind: Rule
+      middlewares:
+      - name: chain-authelia-auth
+        namespace: auth-system
+      services:
+        - name: lidarr
+          namespace: default
+          port: 8686
+  tls:
+    secretName: tinfoilforest.nz-tls
