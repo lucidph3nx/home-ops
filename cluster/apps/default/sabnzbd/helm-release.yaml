@@ -1,0 +1,42 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: sabnzbd
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: sabnzbd
+      version: 9.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/sabnzbd
+      tag: v3.5.3
+    env:
+      TZ: "${TIMEZONE}"
+    persistence:
+      config:
+        enabled: true
+        storageClass: longhorn
+        existingClaim: pvc-sabnzbd
+        mountPath: /config
+        retain: true
+      downloads:
+        enabled: true
+        type: nfs
+        server: "${NAS0_IP}"
+        path: /volume1/downloads
+        mountPath: /downloads
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000

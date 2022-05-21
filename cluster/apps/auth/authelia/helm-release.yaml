@@ -32,7 +32,7 @@ spec:
     remediation:
       retries: 3
   values:
-    domain: tinfoilforest.nz
+    domain: "${SECRET_PUBLIC_DOMAIN}"
     ingress:
       enabled: true
       subdomain: auth
@@ -45,7 +45,7 @@ spec:
     pod:
       env:
       - name: TZ
-        value: Pacific/Auckland
+        value: "${TIMEZONE}"
     configMap:
       enabled: true
       log:
@@ -53,16 +53,16 @@ spec:
         level: debug
       theme: dark
       totp:
-        issuer: "tinfoilforest.nz"
+        issuer: "${SECRET_PUBLIC_DOMAIN}"
       authentication_backend:
         ldap:
           enabled: true
           implementation: custom
           url: ldap://openldap.auth.svc.cluster.local:389
-          base_dn: dc=tinfoilforest,dc=nz
+          base_dn: "${SECRET_LDAP_BASE_DN}"
           username_attribute: uid
           additional_users_dn: ou=people
-          user: cn=admin,dc=tinfoilforest,dc=nz
+          user: "cn=admin,${SECRET_LDAP_BASE_DN}"
           users_filter: (&({username_attribute}={input})(objectClass=posixAccount))
           groups_filter: (&(member={dn})(objectclass=posixGroup))
           group_name_attribute: cn
@@ -71,9 +71,9 @@ spec:
         # networks:
         #   - name: all
         #     networks:
-        #     - "*.tinfoilforest.nz"
+        #     - "*.${SECRET_PUBLIC_DOMAIN}"
       session:
-        name: tinfoilforest_auth_session
+        name: "${SECRET_PUBLIC_DOMAIN}_auth_session"
         redis:
           enabled: true
           enabledSecret: true
@@ -93,10 +93,10 @@ spec:
           enabledSecret: true
           host: smtp.mailbox.org
           port: 465
-          username: ben@tinfoilforest.nz
-          sender: notifications@tinfoilforest.nz
-          subject: "[Tinfoilforest Auth] {title}"
-          startup_check_address: test@tinfoilforest.nz
+          username: "${SECRET_ADMIN_EMAIL}"
+          sender: "${SECRET_NOTIFICATION_EMAIL}"
+          subject: "[${SECRET_PUBLIC_DOMAIN} auth] {title}"
+          startup_check_address: "${SECRET_TEST_EMAIL}"
     secret:
       existingSecret: authelia-secrets
       jwt:

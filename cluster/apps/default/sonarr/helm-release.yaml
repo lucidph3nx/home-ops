@@ -2,14 +2,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: lidarr
+  name: sonarr
   namespace: default
 spec:
   interval: 15m
   chart:
     spec:
-      chart: lidarr
-      version: 14.1.3
+      chart: sonarr
+      version: 16.2.3
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -18,25 +18,28 @@ spec:
   install:
     createNamespace: true
   values:
+    image:
+      repository: ghcr.io/k8s-at-home/sonarr
+      tag: v3.0.8.1507
     env:
-      TZ: Pacific/Auckland
+      TZ: "${TIMEZONE}"
     persistence:
       config:
         enabled: true
         storageClass: longhorn
-        existingClaim: pvc-lidarr
+        existingClaim: pvc-sonarr
         mountPath: /config
         retain: true
       music:
         enabled: true
         type: nfs
-        server: 10.87.200.0
-        path: /volume1/Music
-        mountPath: /music
+        server: "${NAS0_IP}"
+        path: /volume1/TV-Series
+        mountPath: /tv
       downloads:
         enabled: true
         type: nfs
-        server: 10.87.200.0
+        server: "${NAS0_IP}"
         path: /volume1/downloads
         mountPath: /downloads
     # to avoid permissions issues on volume

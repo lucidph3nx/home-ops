@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`ldapadmin.tinfoilforest.nz`)
+    - match: "Host(`ldapadmin.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       middlewares:
         - name: chain-authelia-auth
@@ -19,4 +19,4 @@ spec:
           namespace: auth
           port: 80
   tls:
-    secretName: tinfoilforest-nz-tls
+    secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"

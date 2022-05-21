@@ -2,20 +2,20 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: lidarr-ingress
-  namespace: networking
+  name: changedetection-io-ingress
+  namespace: default
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: "Host(`lidarr.${SECRET_PUBLIC_DOMAIN}`)"
+    - match: "Host(`changedetection-io.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       middlewares:
       - name: chain-authelia-auth
         namespace: auth
       services:
-        - name: lidarr
+        - name: changedetection-io
           namespace: default
-          port: 8686
+          port: 5000
   tls:
     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"

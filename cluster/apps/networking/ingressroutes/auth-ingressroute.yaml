@@ -8,11 +8,11 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`auth.tinfoilforest.nz`)
+    - match: "Host(`auth.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       services:
         - name: authelia
           namespace: auth
           port: 80
   tls:
-    secretName: tinfoilforest-nz-tls
+    secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"

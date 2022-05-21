@@ -2,20 +2,21 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: longhorn-ingress
+  name: sabnzbd-ingress
   namespace: networking
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: "Host(`longhorn.${SECRET_PUBLIC_DOMAIN}`)"
+    - match: "Host(`sabnzbd.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       middlewares:
       - name: chain-authelia-auth
         namespace: auth
       services:
-        - name: longhorn-frontend
-          namespace: longhorn-system
-          port: 80
+        - name: sabnzbd
+          namespace: default
+          port: 8080
+          scheme: http
   tls:
     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"

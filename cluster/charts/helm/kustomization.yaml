@@ -8,3 +8,5 @@ resources:
   - authelia-charts.yaml
   - bitnami-charts.yaml
   - longhorn-charts.yaml
+  - prometheus-community-charts.yaml
+  - grafana-charts.yaml

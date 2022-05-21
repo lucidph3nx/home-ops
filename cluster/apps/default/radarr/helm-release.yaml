@@ -1,0 +1,49 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: radarr
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: radarr
+      version: 16.2.3
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/radarr
+      tag: v4.1.0.6175
+    env:
+      TZ: "${TIMEZONE}"
+    persistence:
+      config:
+        enabled: true
+        storageClass: longhorn
+        existingClaim: pvc-radarr
+        mountPath: /config
+        retain: true
+      movies:
+        enabled: true
+        type: nfs
+        server: "${NAS0_IP}"
+        path: /volume1/Films
+        mountPath: /movies
+      downloads:
+        enabled: true
+        type: nfs
+        server: "${NAS0_IP}"
+        path: /volume1/downloads
+        mountPath: /downloads
+    # to avoid permissions issues on volume
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000

@@ -1,21 +1,17 @@
-
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: longhorn-ingress
+  name: grafana-ingress
   namespace: networking
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: "Host(`longhorn.${SECRET_PUBLIC_DOMAIN}`)"
+    - match: "Host(`grafana.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
-      middlewares:
-      - name: chain-authelia-auth
-        namespace: auth
       services:
-        - name: longhorn-frontend
-          namespace: longhorn-system
+        - name: grafana
           port: 80
+          namespace: default
   tls:
     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"

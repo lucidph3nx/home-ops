@@ -5,3 +5,5 @@ resources:
   - cert-manager
   - namespaces
   - longhorn-system
+  - metric-system
+  - log-system
