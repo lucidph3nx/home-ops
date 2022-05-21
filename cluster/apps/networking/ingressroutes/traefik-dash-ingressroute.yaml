@@ -39,4 +39,4 @@ spec:
         - name: api@internal
           kind: TraefikService
   tls:
-    secretName: tinfoilforest-nz
+    secretName: tinfoilforest-nz-tls
