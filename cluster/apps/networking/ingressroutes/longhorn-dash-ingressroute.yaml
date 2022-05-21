@@ -12,7 +12,7 @@ spec:
       kind: Rule
       middlewares:
       - name: chain-authelia-auth
-        namespace: auth-system
+        namespace: auth
       services:
         - name: longhorn-frontend
           namespace: longhorn-system
