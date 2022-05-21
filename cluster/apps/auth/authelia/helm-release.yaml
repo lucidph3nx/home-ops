@@ -50,7 +50,7 @@ spec:
       enabled: true
       log:
         ## Level of verbosity for logs: info, debug, trace.
-        level: info
+        level: debug
       theme: dark
       totp:
         issuer: "tinfoilforest.nz"
