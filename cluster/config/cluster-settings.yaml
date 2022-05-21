@@ -6,5 +6,9 @@ metadata:
   name: cluster-settings
 data:
   NAS0_IP: "10.87.200.0"
+  PLEX_IP: "10.87.0.51"
+  HOST0_IP: "10.87.100.0"
+  HOST1_IP: "10.87.100.1"
+  HOST2_IP: "10.87.100.2"
+  UNIFI_IP: "192.168.1.219"
   TIMEZONE: "Pacific/Auckland"
-  #
