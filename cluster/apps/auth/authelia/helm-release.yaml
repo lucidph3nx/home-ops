@@ -82,7 +82,7 @@ spec:
       storage:
         postgres:
           enabled: true
-          host: postgresql-postgresql.auth.svc.cluster.local
+          host: postgresql.auth.svc.cluster.local
           port: 5432
           username: authelia
           database: authelia
