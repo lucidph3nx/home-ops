@@ -18,10 +18,10 @@ spec:
   install:
     createNamespace: true
   values:
-  grafana:
-    enabled: false
-  loki:
-    persistence:
-      enabled: true
-      storageClassName: longhorn
-      size: 5Gi
+    grafana:
+      enabled: false
+    loki:
+      persistence:
+        enabled: true
+        storageClassName: longhorn
+        size: 5Gi
