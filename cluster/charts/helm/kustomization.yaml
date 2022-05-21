@@ -6,4 +6,4 @@ resources:
   - traefik-charts.yaml
   - helm-openldap-charts.yaml
   - authelia-charts.yaml
-  - helm-openldap-charts.yaml
+  - bitnami-charts.yaml
