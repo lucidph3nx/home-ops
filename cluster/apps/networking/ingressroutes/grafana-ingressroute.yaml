@@ -9,6 +9,9 @@ spec:
   routes:
     - match: "Host(`grafana.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
+      middlewares:
+      - name: chain-authelia-auth
+        namespace: auth
       services:
         - name: grafana
           port: 80
