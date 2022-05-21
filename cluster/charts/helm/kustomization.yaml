@@ -7,3 +7,4 @@ resources:
   - helm-openldap-charts.yaml
   - authelia-charts.yaml
   - bitnami-charts.yaml
+  - longhorn-charts.yaml
