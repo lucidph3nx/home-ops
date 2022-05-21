@@ -1,0 +1,21 @@
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: longhorn-ingress
+  namespace: networking
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`longhorn.tinfoilforest.nz`)
+      kind: Rule
+      middlewares:
+      - name: chain-authelia-auth
+        namespace: auth-system
+      services:
+        - name: longhorn-frontend
+          namespace: longhorn-system
+          port: 80
+  tls:
+    secretName: tinfoilforest-nz-tls

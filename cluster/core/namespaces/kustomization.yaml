@@ -6,3 +6,4 @@ resources:
   - flux-system.yaml
   - networking.yaml
   - auth.yaml
+  - longhorn-system.yaml

@@ -25,7 +25,6 @@ spec:
           namespace: auth
         - name: traefik-dashboard-addprefix
           namespace: networking
-
       services:
         - name: api@internal
           kind: TraefikService
