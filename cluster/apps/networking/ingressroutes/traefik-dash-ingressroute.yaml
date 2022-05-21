@@ -13,6 +13,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: traefik-dash-ingress
+  namespace: networking
 spec:
   entryPoints:
     - websecure
