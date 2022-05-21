@@ -7,3 +7,5 @@ resources:
   - networking.yaml
   - auth.yaml
   - longhorn-system.yaml
+  - metric-system.yaml
+  - log-system.yaml
