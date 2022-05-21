@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: pvc-grafana
-  namespace: longhorn
+  namespace: default
 spec:
   accessModes:
     - ReadWriteOnce
