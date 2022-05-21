@@ -1,0 +1,41 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-dashboard-addprefix
+  namespace: networking
+spec:
+  addPrefix:
+    prefix: /dashboard
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dash-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: (Host(`traefik.tinfoilforest.nz`) && !PathPrefix(`/api`))
+      kind: Rule
+      middlewares:
+        - name: chain-authelia-auth
+          namespace: auth-system
+        - name: traefik-dashboard-addprefix
+          namespace: networking
+
+      services:
+        - name: api@internal
+          kind: TraefikService
+    # separate route for api without dash prefix removed
+    - match: (Host(`traefik.tinfoilforest.nz`) && PathPrefix(`/api`))
+      kind: Rule
+      middlewares:
+        - name: chain-authelia-auth
+          namespace: auth-system
+      services:
+        - name: api@internal
+          kind: TraefikService
+  tls:
+    secretName: tinfoilforest-nz-tls

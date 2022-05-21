@@ -1,8 +1,10 @@
+---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: podinfo
+  name: traefik-charts
   namespace: flux-system
 spec:
-  interval: 1m
-  url: https://stefanprodan.github.io/podinfo
+  interval: 30m
+  url: https://helm.traefik.io/traefik
+  timeout: 3m
