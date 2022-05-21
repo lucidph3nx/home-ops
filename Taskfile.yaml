@@ -1,0 +1,25 @@
+---
+version: "3"
+
+vars:
+  PROJECT_DIR:
+    sh: "git rev-parse --show-toplevel"
+  CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
+
+dotenv: [".config.env"]
+
+includes:
+  cluster: .taskfiles/ClusterTasks.yaml
+  precommit: .taskfiles/PrecommitTasks.yaml
+
+tasks:
+
+  verify:
+    desc: Verify env settings
+    cmds:
+      - ./configure --verify
+
+  configure:
+    desc: Configure repository from env settings
+    cmds:
+      - ./configure
