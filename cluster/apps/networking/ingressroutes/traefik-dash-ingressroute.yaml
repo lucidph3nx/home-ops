@@ -22,7 +22,7 @@ spec:
       kind: Rule
       middlewares:
         - name: chain-authelia-auth
-          namespace: auth-system
+          namespace: auth
         - name: traefik-dashboard-addprefix
           namespace: networking
 
@@ -34,7 +34,7 @@ spec:
       kind: Rule
       middlewares:
         - name: chain-authelia-auth
-          namespace: auth-system
+          namespace: auth
       services:
         - name: api@internal
           kind: TraefikService

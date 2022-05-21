@@ -2,20 +2,21 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: lidarr-ingress
+  name: ldapadmin-ingress
   namespace: networking
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`lidarr.tinfoilforest.nz`)
+    - match: Host(`ldapadmin.tinfoilforest.nz`)
       kind: Rule
       middlewares:
-      - name: chain-authelia-auth
-        namespace: auth
+        - name: chain-authelia-auth
+          namespace: auth
+
       services:
-        - name: lidarr
-          namespace: default
-          port: 8686
+        - name: openldap-phpldapadmin
+          namespace: auth
+          port: 80
   tls:
     secretName: tinfoilforest-nz-tls

@@ -1,0 +1,117 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authelia
+  namespace: auth
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: authelia
+      version: 10.19.5
+      sourceRef:
+        kind: HelmRepository
+        name: authelia-charts
+        namespace: flux-system
+      interval: 5m
+  dependsOn:
+    - name: openldap
+      namespace: auth
+    - name: redis
+      namespace: auth
+    - name: postgresql
+      namespace: auth
+    - name: traefik
+      namespace: networking
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    domain: tinfoilforest.nz
+    ingress:
+      enabled: true
+      subdomain: auth
+      tls:
+        enabled: false
+      traefikCRD:
+        enabled: true
+        entryPoints: 
+          - websecure
+    pod:
+      env:
+      - name: TZ
+        value: Pacific/Auckland
+    configMap:
+      enabled: true
+      log:
+        ## Level of verbosity for logs: info, debug, trace.
+        level: info
+      theme: dark
+      totp:
+        issuer: "tinfoilforest.nz"
+      authentication_backend:
+        ldap:
+          enabled: true
+          implementation: custom
+          url: ldap://openldap.auth.svc.cluster.local:389
+          base_dn: dc=tinfoilforest,dc=nz
+          username_attribute: uid
+          additional_users_dn: ou=people
+          user: cn=admin,dc=tinfoilforest,dc=nz
+          users_filter: (&({username_attribute}={input})(objectClass=posixAccount))
+          groups_filter: (&(member={dn})(objectclass=posixGroup))
+          group_name_attribute: cn
+      access_control:
+        default_policy: two_factor
+        # networks:
+        #   - name: all
+        #     networks:
+        #     - "*.tinfoilforest.nz"
+      session:
+        name: tinfoilforest_auth_session
+        redis:
+          enabled: true
+          enabledSecret: true
+          host: redis-master.auth.svc.cluster.local
+          port: 6379
+      storage:
+        postgres:
+          enabled: true
+          host: postgresql-postgresql.auth.svc.cluster.local
+          port: 5432
+          username: authelia
+          database: authelia
+          schema: public
+      notifier:
+        smtp:
+          enabled: true
+          enabledSecret: true
+          host: smtp.mailbox.org
+          port: 465
+          username: ben@tinfoilforest.nz
+          sender: notifications@tinfoilforest.nz
+          subject: "[Tinfoilforest Auth] {title}"
+          startup_check_address: test@tinfoilforest.nz
+    secret:
+      existingSecret: authelia-secrets
+      jwt:
+        key: authelia_jwt
+      ldap:
+        key: LDAP_ADMIN_PASSWORD
+      session:
+        key: session_encryption_key
+      redis:
+        key: redis_password
+      redisSentinel:
+        key: redis_password
+      storage:
+        key: postgresql_password # think this works? not clear from docs
+      storageEncryptionKey:
+        key: storage_encryption_key
+      smtp:
+        key: smtp_password

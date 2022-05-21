@@ -1,0 +1,92 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: openldap
+  namespace: auth
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: openldap-stack-ha
+      version: 3.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: helm-openldap-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    global:
+      ldapDomain: tinfoilforest.nz
+    existingSecret: auth-openldap-secrets
+    customTLS:
+      enabled: false
+    persistence:
+      enabled: true
+      storageClass: longhorn
+      size: 8Gi
+    phpldapadmin:
+      enabled: true
+      env:
+        PHPLDAPADMIN_LDAP_CLIENT_TLS_REQCERT: "never"
+      ingress:
+        enabled: false
+    ltb-passwd:
+      enabled : false
+    customLdifFiles:
+      01-root.ldif: |-
+        dn: ou=people,dc=tinfoilforest,dc=nz
+        objectClass: organizationalUnit
+        ou: people
+        dn: ou=groups,dc=tinfoilforest,dc=nz
+        objectClass: organizationalUnit
+        ou: groups
+      10-ben.ldif: |-
+        dn: cn=ben,ou=Groups,dc=tinfoilforest,dc=nz
+        cn: ben
+        gidNumber: 8742
+        objectclass: top
+        objectclass: posixGroup
+        dn: uid=ben,ou=people,dc=tinfoilforest,dc=nz
+        cn: ben
+        givenName: Ben
+        sn: ben
+        uid: ben
+        uidNumber: 8742
+        gidNumber: 8742
+        homeDirectory: /home/ben
+        loginShell: /bin/bash
+        mail: ben@tinfoilforest.nz
+        objectClass: top
+        objectClass: inetOrgPerson
+        objectClass: posixAccount
+        objectClass: shadowAccount
+        userPassword: {SSHA}x
+      11-ness.ldif: |-
+        dn: cn=ness,ou=Groups,dc=tinfoilforest,dc=nz
+        cn: ness
+        gidNumber: 8742
+        objectclass: top
+        objectclass: posixGroup
+        dn: uid=ness,ou=people,dc=tinfoilforest,dc=nz
+        cn: ness
+        givenName: ness
+        sn: ness
+        uid: ness
+        uidNumber: 8742
+        gidNumber: 8742
+        homeDirectory: /home/ness
+        loginShell: /bin/bash
+        mail: ness@tinfoilforest.nz
+        objectClass: top
+        objectClass: inetOrgPerson
+        objectClass: posixAccount
+        objectClass: shadowAccount
+        userPassword: {SSHA}x

@@ -4,3 +4,6 @@ resources:
   - jetstack-charts.yaml
   - k8s-at-home-charts.yaml
   - traefik-charts.yaml
+  - helm-openldap-charts.yaml
+  - authelia-charts.yaml
+  - helm-openldap-charts.yaml
