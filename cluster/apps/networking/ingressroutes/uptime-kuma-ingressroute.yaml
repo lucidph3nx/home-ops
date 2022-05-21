@@ -3,7 +3,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: uptime-kuma-ingress
-  namespace: default
+  namespace: networking
 spec:
   entryPoints:
     - websecure
