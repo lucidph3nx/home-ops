@@ -50,7 +50,7 @@ spec:
         objectClass: organizationalUnit
         ou: groups
       10-ben.ldif: |-
-        dn: cn=ben,ou=Groups,dc=tinfoilforest,dc=nz
+        dn: cn=ben,ou=groups,dc=tinfoilforest,dc=nz
         cn: ben
         gidNumber: 8742
         objectclass: top
@@ -72,7 +72,7 @@ spec:
         objectClass: shadowAccount
         userPassword: {SSHA}x
       11-ness.ldif: |-
-        dn: cn=ness,ou=Groups,dc=tinfoilforest,dc=nz
+        dn: cn=ness,ou=groups,dc=tinfoilforest,dc=nz
         cn: ness
         gidNumber: 8743
         objectclass: top
