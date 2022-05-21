@@ -19,4 +19,4 @@ spec:
           namespace: auth
           port: 80
   tls:
-    secretName: tinfoilforest-nz-tls
+    secretName: tinfoilforest-nz
