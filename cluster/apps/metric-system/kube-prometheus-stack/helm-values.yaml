@@ -18,11 +18,11 @@ spec:
   install:
     createNamespace: true
   values:
-  prometheus:
-    prometheusSpec:
-      podMonitorSelectorNilUsesHelmValues: false
-      serviceMonitorSelectorNilUsesHelmValues: false
-  grafana:
-    enabled: false
-  alertmanager:
-    enabled: false
+    prometheus:
+      prometheusSpec:
+        podMonitorSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+    grafana:
+      enabled: false
+    alertmanager:
+      enabled: false
