@@ -1,0 +1,33 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: pihole-dashboard-addprefix
+  namespace: networking
+spec:
+  addPrefix:
+    prefix: /admin
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pihole-web-ingress
+  namespace: networking
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: "Host(`pihole.${SECRET_PUBLIC_DOMAIN}`)"
+      kind: Rule
+      middlewares:
+      - name: chain-authelia-auth
+        namespace: auth
+      - name: pihole-dashboard-addprefix
+        namespace: pihole
+      services:
+        - name: pihole-web
+          namespace: pihole
+          port: 80
+  tls:
+    secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
