@@ -36,8 +36,6 @@ spec:
     - match: "Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       middlewares:
-      - name: chain-authelia-auth
-        namespace: auth
       - name: vaultwarden-headers
         namespace: networking
       services:
