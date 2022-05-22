@@ -1,0 +1,21 @@
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: vaultwarden-ui-ingress
+  namespace: networking
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: "Host(`uptime.${SECRET_PUBLIC_DOMAIN}`)"
+      kind: Rule
+      middlewares:
+      - name: chain-authelia-auth
+        namespace: auth
+      services:
+        - name: vaultwarden
+          namespace: default
+          port: 80
+  tls:
+    secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
