@@ -9,6 +9,18 @@ spec:
   headers:
     customRequestHeaders:
       X-Forwarded-Proto: "https"
+---
+
+# Redirect to https
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: vaultwarden-redirectscheme
+  namespace: networking
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
 
 ---
 
@@ -34,6 +46,9 @@ spec:
           port: 80
     - match: "(Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`))"
       kind: Rule
+      middlewares:
+        - name: vaultwarden-redirectscheme
+          namespace: networking
       services:
         - name: vaultwarden
           namespace: default
