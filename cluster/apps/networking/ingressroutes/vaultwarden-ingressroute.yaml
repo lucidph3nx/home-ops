@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: "Host(`uptime.${SECRET_PUBLIC_DOMAIN}`)"
+    - match: "Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       middlewares:
       - name: chain-authelia-auth
