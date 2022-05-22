@@ -9,3 +9,4 @@ resources:
   - longhorn-system.yaml
   - metric-system.yaml
   - log-system.yaml
+  - system-upgrade.yaml
