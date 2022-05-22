@@ -1,27 +1,42 @@
 
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: vaultwarden-headers
+  namespace: networking
+spec:
+  headers:
+    customRequestHeaders:
+      X-Forwarded-Proto: "https"
+
+---
+
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: vaultwarden-ui-ingress
+  name: vaultwarden-ingress
   namespace: networking
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: "Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`)"
+    - match: "(Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`) && !Path(`/notifications/hub`))"
       kind: Rule
       middlewares:
       - name: chain-authelia-auth
         namespace: auth
+      - name: vaultwarden-headers
+        namespace: networking
       services:
         - name: vaultwarden
           namespace: default
           port: 80
-    - match: "Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`)"
-      kind: Rule
-      services:
-        - name: vaultwarden
-          namespace: default
-          port: 3012
+    # - match: "(Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`))"
+    #   kind: Rule
+    #   services:
+    #     - name: vaultwarden
+    #       namespace: default
+    #       port: 3012
   tls:
     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
