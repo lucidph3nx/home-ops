@@ -35,9 +35,9 @@ spec:
   routes:
     - match: "Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
-      # middlewares:
-      # - name: vaultwarden-headers
-      #   namespace: networking
+      middlewares:
+      - name: vaultwarden-headers
+        namespace: networking
       services:
         - name: vaultwarden
           namespace: default
@@ -50,9 +50,9 @@ spec:
           port: 80
     - match: "(Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`))"
       kind: Rule
-      # middlewares:
-      #   - name: vaultwarden-redirectscheme
-      #     namespace: networking
+      middlewares:
+        - name: vaultwarden-redirectscheme
+          namespace: networking
       services:
         - name: vaultwarden
           namespace: default
