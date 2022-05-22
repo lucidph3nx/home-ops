@@ -21,7 +21,7 @@ spec:
   redirectScheme:
     scheme: https
     permanent: true
-    port: 3012
+    port: "3012"
 
 ---
 
