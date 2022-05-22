@@ -21,7 +21,6 @@ spec:
   redirectScheme:
     scheme: https
     permanent: true
-    port: "3012"
 
 ---
 
@@ -58,5 +57,6 @@ spec:
         - name: vaultwarden
           namespace: default
           port: 3012
+          passHostHeader: true
   tls:
     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
