@@ -15,12 +15,13 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: vaultwarden-redirectscheme
+  name: vaultwarden-websocket-redirectscheme
   namespace: networking
 spec:
   redirectScheme:
     scheme: https
     permanent: true
+    port: 3012
 
 ---
 
@@ -51,7 +52,7 @@ spec:
     - match: "(Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`))"
       kind: Rule
       middlewares:
-        - name: vaultwarden-redirectscheme
+        - name: vaultwarden-websocket-redirectscheme
           namespace: networking
       services:
         - name: vaultwarden
