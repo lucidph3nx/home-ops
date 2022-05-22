@@ -40,11 +40,11 @@ spec:
     #     - name: vaultwarden
     #       namespace: default
     #       port: 80
-    - match: "(Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/notifications/hub`))"
+    - match: "Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/notifications/hub`)"
       kind: Rule
-      # middlewares:
-      #   - name: vaultwarden-websocket-redirectscheme
-      #     namespace: networking
+      middlewares:
+        - name: vaultwarden-websocket-redirectscheme
+          namespace: networking
       services:
         - name: vaultwarden
           namespace: default
