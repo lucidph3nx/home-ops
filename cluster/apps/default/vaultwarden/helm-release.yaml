@@ -34,10 +34,10 @@ spec:
     persistence:
       config:
         enabled: true
-        # storageClass: longhorn
+        storageClass: longhorn
         existingClaim: pvc-vaultwarden
-        # mountPath: /data
-        # retain: true
+        mountPath: /config
+        retain: true
     # to avoid permissions issues on volume
     podSecurityContext:
       runAsUser: 1000
