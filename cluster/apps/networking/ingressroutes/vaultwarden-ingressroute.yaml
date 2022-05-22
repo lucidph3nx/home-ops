@@ -7,15 +7,6 @@ metadata:
   namespace: networking
 spec:
   headers:
-    frameDeny: true
-    browserXssFilter: true
-    contentTypeNosniff: true
-    forceSTSHeader: true
-    stsIncludeSubdomains: true
-    stsPreload: true
-    stsSeconds: 15552000
-    customFrameOptionsValue: SAMEORIGIN
-    customRequestHeaders:
       X-Forwarded-Proto: "https"
 ---
 
@@ -41,7 +32,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: "(Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`) && !Path(`/notifications/hub`))"
+    - match: "Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       middlewares:
       - name: chain-authelia-auth
