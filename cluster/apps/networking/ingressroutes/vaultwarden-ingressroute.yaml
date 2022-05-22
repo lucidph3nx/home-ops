@@ -32,32 +32,33 @@ metadata:
 spec:
   entryPoints:
     - websecure
-    - web
   routes:
-    - match: "Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`)"
+
+    # - match: "(Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub/negotiate`))"
+    #   kind: Rule
+    #   services:
+    #     - name: vaultwarden
+    #       namespace: default
+    #       port: 80
+    - match: "(Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/notifications/hub`))"
       kind: Rule
-      middlewares:
-      - name: vaultwarden-headers
-        namespace: networking
-      services:
-        - name: vaultwarden
-          namespace: default
-          port: 80
-    - match: "(Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub/negotiate`))"
-      kind: Rule
-      services:
-        - name: vaultwarden
-          namespace: default
-          port: 80
-    - match: "(Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`))"
-      kind: Rule
-      middlewares:
-        - name: vaultwarden-websocket-redirectscheme
-          namespace: networking
+      # middlewares:
+      #   - name: vaultwarden-websocket-redirectscheme
+      #     namespace: networking
       services:
         - name: vaultwarden
           namespace: default
           port: 3012
-          passHostHeader: true
+          # passHostHeader: true
+    - match: "Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`)"
+      kind: Rule
+      # middlewares:
+      # - name: vaultwarden-headers
+      #   namespace: networking
+      services:
+        - name: vaultwarden
+          namespace: default
+          port: 80
+
   tls:
     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
