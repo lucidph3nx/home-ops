@@ -32,11 +32,14 @@ spec:
         - name: vaultwarden
           namespace: default
           port: 80
-    # - match: "(Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`))"
-    #   kind: Rule
-    #   services:
-    #     - name: vaultwarden
-    #       namespace: default
-    #       port: 3012
+    - match: "(Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`))"
+      kind: Rule
+      middlewares:
+      - name: vaultwarden-headers
+        namespace: networking
+      services:
+        - name: vaultwarden
+          namespace: default
+          port: 3012
   tls:
     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
