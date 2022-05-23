@@ -32,7 +32,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-    - web
   routes:
     - match: "Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
@@ -54,6 +53,7 @@ metadata:
 spec:
   entryPoints:
     - websecure
+    - web
   routes:
     - match: "Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`)"
       kind: Rule
