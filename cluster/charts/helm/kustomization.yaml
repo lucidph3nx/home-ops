@@ -10,3 +10,4 @@ resources:
   - longhorn-charts.yaml
   - prometheus-community-charts.yaml
   - grafana-charts.yaml
+  - external-dns-charts.yaml

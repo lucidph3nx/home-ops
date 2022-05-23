@@ -11,4 +11,5 @@ data:
   HOST1_IP: "10.87.100.1"
   HOST2_IP: "10.87.100.2"
   UNIFI_IP: "192.168.1.219"
+  OCTOPRINT_IP: "192.168.1.205"
   TIMEZONE: "Pacific/Auckland"

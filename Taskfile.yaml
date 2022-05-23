@@ -5,11 +5,13 @@ vars:
   PROJECT_DIR:
     sh: "git rev-parse --show-toplevel"
   CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
+  TERRAFORM_DIR: "{{.PROJECT_DIR}}/provision/terraform"
 
 dotenv: [".config.env"]
 
 includes:
   cluster: .taskfiles/ClusterTasks.yaml
+  terraform: .taskfiles/TerraformTasks.yml
 
 tasks:
 
