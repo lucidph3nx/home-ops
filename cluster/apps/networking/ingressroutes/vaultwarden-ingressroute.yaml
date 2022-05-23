@@ -12,27 +12,36 @@
 # ---
 
 # Redirect to https
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: vaultwarden-websocket-redirectscheme
-  namespace: networking
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: vaultwarden-websocket-redirectscheme
+#   namespace: networking
+# spec:
+#   redirectScheme:
+#     scheme: https
+#     permanent: true
 
----
+# ---
 
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: vaultwarden-web-ingress
+  name: vaultwarden-ingress
   namespace: networking
 spec:
   entryPoints:
     - websecure
   routes:
+    - match: "Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`)"
+      kind: Rule
+      # middlewares:
+      #   - name: vaultwarden-websocket-redirectscheme
+      #     namespace: networking
+      services:
+        - name: vaultwarden
+          namespace: default
+          port: 3012
     - match: "Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       services:
@@ -40,29 +49,5 @@ spec:
           namespace: default
           port: 80
 
-  tls:
-    secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
-
----
-
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: vaultwarden-websocket-ingress
-  namespace: networking
-spec:
-  entryPoints:
-    - websecure
-    - web
-  routes:
-    - match: "Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`)"
-      kind: Rule
-      middlewares:
-        - name: vaultwarden-websocket-redirectscheme
-          namespace: networking
-      services:
-        - name: vaultwarden
-          namespace: default
-          port: 3012
   tls:
     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
