@@ -19,10 +19,9 @@ spec:
     createNamespace: true
   values:
     persistence:
-      config:
-        enabled: true
-        storageClass: longhorn
-        existingClaim: pvc-grafana
+      enabled: true
+      storageClass: longhorn
+      existingClaim: pvc-grafana
     admin: 
       existingSecret: grafana-secrets
       userKey: admin-user
