@@ -22,7 +22,6 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
-        existingClaim: pvc-grafana
     admin: 
       existingSecret: grafana-secrets
       userKey: admin-user
