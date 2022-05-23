@@ -18,7 +18,6 @@ metadata:
   name: vaultwarden-websocket-redirectscheme
   namespace: networking
 spec:
-  headers:
   redirectScheme:
     scheme: https
     permanent: true
