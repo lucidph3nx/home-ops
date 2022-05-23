@@ -41,3 +41,8 @@ spec:
         exposedPort: 80
       websecure:
         exposedPort: 443  
+    logs:
+      general:
+        level: info
+      access:
+        enabled: true
