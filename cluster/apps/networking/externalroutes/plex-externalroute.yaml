@@ -8,7 +8,7 @@ spec:
   type: ExternalName
   ports:
   - name: http
-    port: 5000 
+    port: 32400 
   externalName: "${PLEX_IP}"
 
 ---
