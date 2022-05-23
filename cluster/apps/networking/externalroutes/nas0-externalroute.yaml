@@ -26,7 +26,7 @@ spec:
     - match: "Host(`nas0.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       services:
-        - name: nas0
+        - name: nas0-externalname
           namespace: networking
           kind: Service
           port: 5000
