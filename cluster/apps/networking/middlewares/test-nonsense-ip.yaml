@@ -1,0 +1,20 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: test-nonsense-ip
+  namespace: networking
+spec:
+  ipWhiteList:
+    sourceRange:
+      - 22.22.22.22/32
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: test-nonsense-ip-only
+  namespace: networking
+spec:
+  chain:
+    middlewares:
+      - name: test-nonsense-ip
