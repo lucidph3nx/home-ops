@@ -1,15 +1,13 @@
-apiVersion: externaldns.k8s.io/v1alpha1
-kind: DNSEndpoint
+# This is necessary because external dns doesnt support ingressroutes yet
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
 metadata:
   name: changedetection-io-cloudflare-dns
+  annotations:
+    kubernetes.io/ingress.class: traefik
 spec:
-  endpoints:
-  - dnsName: "changedetection-io.${SECRET_PUBLIC_DOMAIN}"
-    # recordTTL: 180
-    recordType: CNAME
-    targets:
-    - "ipv4.${SECRET_PUBLIC_DOMAIN}"
-
+  rules:
+    - host: "changedetection-io.${SECRET_PUBLIC_DOMAIN}"
 ---
 
 apiVersion: traefik.containo.us/v1alpha1
