@@ -1,16 +1,3 @@
-
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: Middleware
-# metadata:
-#   name: vaultwarden-headers
-#   namespace: networking
-# spec:
-#   headers:
-#     customRequestHeaders:
-#       X-Forwarded-Proto: "https"
-# ---
-
 # Redirect to https
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
@@ -33,7 +20,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: "Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`)"
+    - match: "Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       services:
         - name: vaultwarden
@@ -55,7 +42,7 @@ spec:
     - websecure
     - web
   routes:
-    - match: "Host(`vaultwarden-test.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`)"
+    - match: "Host(`vaultwarden.${SECRET_PUBLIC_DOMAIN}`) && Path(`/notifications/hub`)"
       kind: Rule
       middlewares:
         - name: vaultwarden-websocket-redirectscheme
