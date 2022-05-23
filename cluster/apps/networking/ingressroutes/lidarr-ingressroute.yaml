@@ -11,7 +11,7 @@ spec:
     - match: "Host(`lidarr.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       middlewares:
-      - name: test-nonsense-ip-only
+      - name: cloudflare-only
         namespace: networking
       - name: chain-authelia-auth
         namespace: auth
