@@ -94,7 +94,6 @@ spec:
           host: "${SECRET_SMTP_HOST}"
           port: 465
           username: "${SECRET_ADMIN_EMAIL}"
-          password: "${SECRET_ADMIN_EMAIL_PASSWORD}"
           sender: "${SECRET_NOTIFICATION_EMAIL}"
           subject: "[${SECRET_PUBLIC_DOMAIN} auth] {title}"
           startup_check_address: "${SECRET_TEST_EMAIL}"
