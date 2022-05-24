@@ -23,4 +23,4 @@ spec:
       retries: 5
   values:
     defaultSettings:
-      backupTarget: nfs://10.87.200.0:/volume1/backups/longhorn
+      backupTarget: "nfs://${NAS0_IP}:/volume1/backups/longhorn"
