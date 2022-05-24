@@ -50,7 +50,7 @@ spec:
       enabled: true
       log:
         ## Level of verbosity for logs: info, debug, trace.
-        level: debug
+        level: info
       theme: dark
       totp:
         issuer: "${SECRET_PUBLIC_DOMAIN}"
