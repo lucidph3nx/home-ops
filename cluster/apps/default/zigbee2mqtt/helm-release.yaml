@@ -28,6 +28,9 @@ spec:
     config:
       serial:
         port: /dev/ttyACM0
+      mqtt:
+        base_topic: zigbee2mqtt
+        server: mqtt://mosquitto.default.svc.cluster.local
     securityContext:
       privileged: true
     persistence:
