@@ -1,53 +1,53 @@
-# ---
-# apiVersion: helm.toolkit.fluxcd.io/v2beta1
-# kind: HelmRelease
-# metadata:
-#   name: zigbee2mqtt
-#   namespace: default
-# spec:
-#   interval: 15m
-#   chart:
-#     spec:
-#       chart: zigbee2mqtt
-#       version: 9.3.2
-#       sourceRef:
-#         kind: HelmRepository
-#         name: k8s-at-home-charts
-#         namespace: flux-system
-#       interval: 15m
-#   install:
-#     createNamespace: true
-#   values:
-#     image:
-#       repository: ghcr.io/koenkk/zigbee2mqtt
-#       tag: 1.19.1
-#     env:
-#       TZ: "${TIMEZONE}"
-#       ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
-#     config:
-#       serial:
-#         port: /dev/ttyACM0
-#     securityContext:
-#       privileged: true
-#     persistence:
-#       data:
-#         enabled: true
-#         storageClass: longhorn
-#         accessMode: ReadWriteOnce
-#         size: 1Gi
-#         mountPath: /data
-#         retain: true
-#       usb:
-#         enabled: true
-#         type: hostPath
-#         hostPath: /dev/ttyACM0
-#         hostPathType: CharDevice
-#     affinity:
-#       nodeAffinity:
-#         requiredDuringSchedulingIgnoredDuringExecution:
-#           nodeSelectorTerms:
-#           - matchExpressions:
-#             - key: app
-#               operator: In
-#               values:
-#               - zigbee-controller
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: zigbee2mqtt
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: zigbee2mqtt
+      version: 9.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/koenkk/zigbee2mqtt
+      tag: 1.19.1
+    env:
+      TZ: "${TIMEZONE}"
+      ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
+    config:
+      serial:
+        port: /dev/ttyACM0
+    securityContext:
+      privileged: true
+    persistence:
+      data:
+        enabled: true
+        storageClass: longhorn
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        mountPath: /data
+        retain: true
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/ttyACM0
+        hostPathType: CharDevice
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - zigbee-controller
