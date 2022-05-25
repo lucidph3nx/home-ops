@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
-      tag: 1.25.1
+      tag: 1.19.1
     env:
       TZ: "${TIMEZONE}"
     # config:
@@ -38,7 +38,7 @@ spec:
         retain: true
       usb:
         enabled: true
-        mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
+        type: hostPath
         hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
         hostPathType: CharDevice
     affinity:
