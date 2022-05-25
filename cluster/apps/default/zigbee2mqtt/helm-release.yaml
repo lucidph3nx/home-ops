@@ -29,7 +29,7 @@ spec:
       usb:
         enabled: true
         type: hostPath
-        hostPath: /dev/bus/usb/003/002
+        hostPath: /dev/ttyACM0
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
@@ -39,5 +39,3 @@ spec:
               operator: In
               values:
               - zigbee-controller
-    serial:
-      port: /dev/bus/usb/003/002
