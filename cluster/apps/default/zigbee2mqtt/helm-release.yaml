@@ -23,10 +23,10 @@ spec:
       tag: 1.19.1
     env:
       TZ: "${TIMEZONE}"
-      ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
+      ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
     config:
       serial:
-        port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
+        port: /dev/ttyACM0
     securityContext:
       privileged: true
     persistence:
@@ -40,7 +40,7 @@ spec:
       usb:
         enabled: true
         type: hostPath
-        hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
+        hostPath: /dev/ttyACM0
         hostPathType: CharDevice
     affinity:
       nodeAffinity:
