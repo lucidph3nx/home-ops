@@ -23,7 +23,7 @@ spec:
       tag: 2022.5.4
     env:
       TZ: "${TIMEZONE}"
-    persistance:
+    persistence:
       config:
         enabled: true
         storageClass: longhorn
