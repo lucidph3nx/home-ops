@@ -28,7 +28,7 @@ spec:
         retain: true
       usb:
         enabled: true
-        type: hostPath
+        mountPath: /dev/ttyACM0
         hostPath: /dev/ttyACM0
         hostPathType: CharDevice
     affinity:
@@ -43,3 +43,4 @@ spec:
     config:
       serial:
         port: /dev/ttyACM0
+        adapter: deconz
