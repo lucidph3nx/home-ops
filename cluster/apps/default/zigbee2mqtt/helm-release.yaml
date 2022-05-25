@@ -28,7 +28,7 @@ spec:
         retain: true
       usb:
         enabled: true
-        mountPath: /dev/ttyACM0
+        mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
         hostPath: /dev/ttyACM0
         hostPathType: CharDevice
     affinity:
@@ -42,5 +42,5 @@ spec:
               - zigbee-controller
     config:
       serial:
-        port: /dev/ttyACM0
+        port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
         adapter: deconz
