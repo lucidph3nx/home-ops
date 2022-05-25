@@ -18,6 +18,16 @@ spec:
   install:
     createNamespace: true
   values:
+    image:
+      repository: ghcr.io/koenkk/zigbee2mqtt
+      tag: 1.25.1
+    env:
+      TZ: "${TIMEZONE}"
+    config:
+      serial:
+        port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
+    securityContext:
+      privileged: true
     persistence:
       data:
         enabled: true
@@ -29,7 +39,7 @@ spec:
       usb:
         enabled: true
         mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
-        hostPath: /dev/ttyACM0
+        hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
         hostPathType: CharDevice
     affinity:
       nodeAffinity:
@@ -40,7 +50,3 @@ spec:
               operator: In
               values:
               - zigbee-controller
-    config:
-      serial:
-        port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
-        adapter: deconz
