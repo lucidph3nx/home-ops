@@ -22,6 +22,7 @@ spec:
       data:
         enabled: true
         storageClass: longhorn
+        accessMode: ReadWriteOnce
         mountPath: /data
         retain: true
       usb:
