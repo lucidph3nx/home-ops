@@ -29,3 +29,28 @@ spec:
         storageClass: longhorn
         mountPath: /config
         retain: true
+    addons:
+      codeserver:
+        enabled: true
+        image:
+          repository: ghcr.io/k8s-at-home/code-server
+          tag: v4.4.0
+        env:
+          TZ: "${TIMEZONE}"
+          workingDir: "/config"
+        args:
+          - --auth
+          - "none"
+          - --user-data-dir
+          - "/config/.vscode"
+          - --extensions-dir
+          - "/config/.vscode"
+        volumeMounts:
+          - name: config
+            mountPath: /config
+      resources:
+        requests:
+          cpu: 10m
+          memory: 110M
+        limits:
+          memory: 454M
