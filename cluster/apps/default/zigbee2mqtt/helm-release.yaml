@@ -1,0 +1,41 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: zigbee2mqtt
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: zigbee2mqtt
+      version: 9.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+  values:
+    persistence:
+      data:
+        enabled: true
+        storageClass: longhorn
+        mountPath: /data
+        retain: true
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/bus/usb/003/002
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - zigbee-controller
+    serial:
+      port: /dev/bus/usb/003/002
