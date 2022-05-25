@@ -30,6 +30,7 @@ spec:
         enabled: true
         type: hostPath
         hostPath: /dev/ttyACM0
+        hostPathType: CharDevice
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
@@ -39,3 +40,5 @@ spec:
               operator: In
               values:
               - zigbee-controller
+    serial:
+      port: /dev/ttyACM0
