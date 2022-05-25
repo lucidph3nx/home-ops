@@ -24,6 +24,7 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
+      ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: deconz
     config:
       serial:
         port: /dev/ttyACM0
