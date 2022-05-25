@@ -40,5 +40,6 @@ spec:
               operator: In
               values:
               - zigbee-controller
-    serial:
-      port: /dev/ttyACM0
+    config:
+      serial:
+        port: /dev/ttyACM0
