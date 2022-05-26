@@ -23,13 +23,13 @@ spec:
       tag: 1.19.1
     env:
       TZ: "${TIMEZONE}"
-      ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
-      ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: deconz
-      ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
-      ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: debug
+      # ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
+      # ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: deconz
+      # ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
+      # ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: debug
     config:
       serial:
-        port: /dev/ttyACM0
+        port: null #/dev/ttyACM0
       mqtt:
         base_topic: zigbee2mqtt
         server: mqtt://mosquitto.default.svc.cluster.local:1883
@@ -48,7 +48,8 @@ spec:
       usb:
         enabled: true
         type: hostPath
-        hostPath: /dev/ttyACM0
+        hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
+        #/dev/ttyACM0
         hostPathType: CharDevice
     affinity:
       nodeAffinity:
