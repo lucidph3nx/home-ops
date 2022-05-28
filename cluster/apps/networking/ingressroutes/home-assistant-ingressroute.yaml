@@ -9,9 +9,6 @@ spec:
   routes:
     - match: "Host(`home-assistant.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
-      middlewares:
-      - name: chain-authelia-auth
-        namespace: auth
       services:
         - name: home-assistant
           port: 8123
