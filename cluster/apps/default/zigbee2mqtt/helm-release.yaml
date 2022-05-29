@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
-      tag: 1.19.1
+      tag: 1.25.1
     env:
       TZ: "${TIMEZONE}"
       # ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
