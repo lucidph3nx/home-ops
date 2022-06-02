@@ -38,4 +38,4 @@ spec:
         storageClass: longhorn
         size: 1Gi
     initdb:
-      args: --locale=C
+      args: --lc-collate=C --lc-ctype=C

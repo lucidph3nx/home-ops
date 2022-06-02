@@ -41,12 +41,9 @@ spec:
       existingSecret: matrix-synapse-postgresql-secrets
       existingSecretPasswordKey: password
     redis:
-      enabled: false
-    externalRedis:
-      host: matrix-synapse-redis-master
-      port: 6379
-      existingSecret: matrix-synapse-redis-secrets
-      existingSecretPasswordKey: redis_password
+      enabled: true
+      auth:
+        existingSecret: matrix-synapse-secrets
     persistence:
       enabled: true
       existingClaim: pvc-matrix-synapse-data
