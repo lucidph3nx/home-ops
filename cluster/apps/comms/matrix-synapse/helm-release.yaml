@@ -31,9 +31,6 @@ spec:
     publicServerName: matrix.${SECRET_DOMAIN}
     wellknown:
       enabled: true
-    # signingkey:
-    #   job:
-    #     enabled: false
     postgresql:
       enabled: false
     externalPostgresql:
