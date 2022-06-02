@@ -1,0 +1,54 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: matrix-synapse
+  namespace: comms
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://ananace.gitlab.io/charts
+      chart: matrix-synapse
+      version: 2.1.38
+      sourceRef:
+        kind: HelmRepository
+        name: ananace-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: matrixdotorg/synapse
+      tag: v1.60.0
+    serverName: matrix.${SECRET_DOMAIN}
+    publicServerName: matrix.${SECRET_DOMAIN}
+    wellknown:
+      enabled: true
+    signingkey:
+      job:
+        enabled: false
+    postgresql:
+      enabled: false
+    externalPostgresql:
+      host: matrix-synapse-postgres
+      port: 5432
+      username: synapse
+      existingSecretPasswordKey: matrix-synapse-postgresql-secrets
+      database: synapse
+    redis:
+      enabled: false
+    externalRedis:
+      host: matrix-synapse-redis
+      port: 6379
+      existingSecret: matrix-synapse-redis-secrets
+    persistence:
+      enabled: true
+      existingClaim: pvc-matrix-synapse-data
+    service:
+      type: ClusterIP
+      port: 8008
+      targetPort: http
+    ingress:
+      enabled: false

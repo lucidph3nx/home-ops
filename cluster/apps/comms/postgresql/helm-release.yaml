@@ -1,0 +1,39 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: matrix-synapse-postgres
+  namespace: comms
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: postgresql
+      version: 11.2.6
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    auth:
+      database: synapse
+      username: synapse
+      existingSecret: matrix-synapse-postgresql-secrets
+    primary:
+      persistence:
+        enabled: true
+        storageClass: longhorn
+        size: 1Gi
+    readReplicas:
+      persistence:
+        enabled: true
+        storageClass: longhorn
+        size: 1Gi

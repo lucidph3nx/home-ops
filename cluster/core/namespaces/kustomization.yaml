@@ -10,3 +10,4 @@ resources:
   - metric-system.yaml
   - log-system.yaml
   - system-upgrade.yaml
+  - comms.yaml

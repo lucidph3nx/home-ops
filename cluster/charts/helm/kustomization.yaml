@@ -11,3 +11,4 @@ resources:
   - prometheus-community-charts.yaml
   - grafana-charts.yaml
   - external-dns-charts.yaml
+  - ananace-charts.yaml
