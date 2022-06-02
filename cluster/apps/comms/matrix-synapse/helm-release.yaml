@@ -44,6 +44,7 @@ spec:
       host: matrix-synapse-redis
       port: 6379
       existingSecret: matrix-synapse-redis-secrets
+      existingSecretPasswordKey: redis_password
     persistence:
       enabled: true
       existingClaim: pvc-matrix-synapse-data
