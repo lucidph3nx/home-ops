@@ -30,7 +30,7 @@ spec:
         existingClaim: pvc-sonarr
         mountPath: /config
         retain: true
-      music:
+      tv:
         enabled: true
         type: nfs
         server: "${NAS0_IP}"

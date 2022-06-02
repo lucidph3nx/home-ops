@@ -32,4 +32,16 @@ spec:
       tag: 2.00.18
       pullPolicy: IfNotPresent
     env:
-      TZ: "${TIMEZONE}
+      TZ: "${TIMEZONE}"
+    persistence:
+      config:
+        enabled: true
+        storageClass: longhorn
+        mountPath: /config
+        retain: true
+      tv:
+        enabled: true
+        type: nfs
+        server: "${NAS0_IP}"
+        path: /volume1/TV-Series
+        mountPath: /tv
