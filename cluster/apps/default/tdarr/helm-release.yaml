@@ -5,11 +5,10 @@ metadata:
   name: tdarr
   namespace: default
 spec:
-  interval: 5m
+  interval: 15m
   suspend: false
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: tdarr
       version: 4.5.2
       sourceRef:
