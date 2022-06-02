@@ -36,10 +36,10 @@ spec:
     externalPostgresql:
       host: matrix-synapse-postgres-postgresql
       port: 5432
+      database: synapse
       username: synapse
       existingSecret: matrix-synapse-postgresql-secrets
-      existingSecretPasswordKey: postgres-password
-      database: synapse
+      existingSecretPasswordKey: password
     redis:
       enabled: false
     externalRedis:
