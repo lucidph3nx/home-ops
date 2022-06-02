@@ -41,7 +41,7 @@ spec:
       port: 5432
       username: synapse
       existingSecret: matrix-synapse-postgresql-secrets
-      existingSecretPasswordKey: postgres-synapse-password
+      existingSecretPasswordKey: postgres-password
       database: synapse
     redis:
       enabled: false
