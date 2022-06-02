@@ -28,7 +28,8 @@ spec:
       username: synapse
       existingSecret: matrix-synapse-postgresql-secrets
       secretKeys: 
-        userPasswordKey: postgres-password
+        adminPasswordKey: postgres-admin-password
+        userPasswordKey: postgres-synapse-password
     primary:
       persistence:
         enabled: true
