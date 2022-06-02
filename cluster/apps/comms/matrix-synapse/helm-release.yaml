@@ -27,8 +27,8 @@ spec:
     image:
       repository: matrixdotorg/synapse
       tag: v1.60.0
-    serverName: matrix.${SECRET_DOMAIN}
-    publicServerName: matrix.${SECRET_DOMAIN}
+    serverName: "matrix.${SECRET_DOMAIN}"
+    publicServerName: "matrix.${SECRET_DOMAIN}"
     wellknown:
       enabled: true
     postgresql:
