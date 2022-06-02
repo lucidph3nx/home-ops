@@ -19,13 +19,6 @@ spec:
   values:
     termination:
       gracePeriodSeconds: 120
-    resources:
-      limits:
-        cpu: 800m
-        memory: 712Mi
-      requests:
-        cpu: 5000m
-        memory: 128Mi
     image:
       repository: docker.io/haveagitgat/tdarr
       tag: 2.00.18
