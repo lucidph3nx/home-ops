@@ -26,6 +26,8 @@ spec:
     publicServerName: "matrix.${SECRET_PUBLIC_DOMAIN}"
     wellknown:
       enabled: true
+    config:
+      enableRegistration: true
     postgresql:
       enabled: true
       existingSecret: matrix-synapse-secrets
