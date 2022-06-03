@@ -30,14 +30,13 @@ spec:
     wellknown:
       enabled: true
     postgresql:
-      enabled: false
-    externalPostgresql:
-      host: matrix-synapse-postgres-postgresql
-      port: 5432
-      database: synapse
-      username: synapse
-      existingSecret: matrix-synapse-postgresql-secrets
-      existingSecretPasswordKey: password
+      enabled: true
+      existingSecret: matrix-synapse-secrets
+      postgresqlUsername: synapse
+      postgresqlDatabase: synapse
+      persistence:
+        storageClass: longhorn
+        size: 10Gi
     redis:
       enabled: true
       auth:
