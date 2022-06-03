@@ -26,6 +26,7 @@ spec:
     publicServerName: "matrix.${SECRET_PUBLIC_DOMAIN}"
     wellknown:
       enabled: true
+    config:
       registrationSharedSecret: "${SECRET_MATRIX_REGISTRATION_SHARED}"
     postgresql:
       enabled: true
