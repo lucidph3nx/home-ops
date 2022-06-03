@@ -28,6 +28,7 @@ spec:
       enabled: true
     config:
       enableRegistration: true
+      registrationSharedSecret: "${SECRET_MATRIX_REGISTRATION_SHARED}"
     postgresql:
       enabled: true
       existingSecret: matrix-synapse-secrets
