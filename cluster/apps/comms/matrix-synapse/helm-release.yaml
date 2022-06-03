@@ -21,6 +21,7 @@ spec:
       namespace: comms
   install:
     createNamespace: true
+    
   values:
     image:
       repository: matrixdotorg/synapse
