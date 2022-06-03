@@ -19,8 +19,6 @@ spec:
   dependsOn:
     - name: matrix-synapse-postgres
       namespace: comms
-    - name: matrix-synapse-redis
-      namespace: comms
   install:
     createNamespace: true
   values:
