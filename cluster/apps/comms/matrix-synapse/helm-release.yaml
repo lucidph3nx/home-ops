@@ -36,8 +36,7 @@ spec:
         size: 10Gi
     redis:
       enabled: true
-      auth:
-        existingSecret: matrix-synapse-secrets
+      existingSecret: matrix-synapse-secrets
     persistence:
       enabled: true
       existingClaim: pvc-matrix-synapse-data
