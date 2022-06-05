@@ -29,4 +29,3 @@ spec:
         storageClass: longhorn
         mountPath: /app/data
         retain: true
-        
