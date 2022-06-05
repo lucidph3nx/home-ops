@@ -23,7 +23,6 @@ spec:
       tag: "latest"
     env:
       TZ: "${TIMEZONE}"
-      UPTIME_KUMA_HOST: "${SECRET_PUBLIC_DOMAIN}"
     persistence:
       config:
         enabled: true
