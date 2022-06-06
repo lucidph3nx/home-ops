@@ -8,6 +8,7 @@
   "schedule": [
     "every weekend"
   ],
+  "assigneesFromCodeOwners": true,
   // set up ignored deps
   "ignoreDeps": [
     "ghcr.io/fluxcd/helm-controller",
