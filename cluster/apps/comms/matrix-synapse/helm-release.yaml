@@ -22,9 +22,6 @@ spec:
     image:
       repository: matrixdotorg/synapse
       tag: v1.60.0
-    synapse:
-      readinessProbe:
-        initialDelaySeconds: 120 # increase time to allow startup
     serverName: "matrix.${SECRET_PUBLIC_DOMAIN}"
     publicServerName: "matrix.${SECRET_PUBLIC_DOMAIN}"
     wellknown:
@@ -32,6 +29,8 @@ spec:
     config:
       registrationSharedSecret: "${SECRET_MATRIX_REGISTRATION_SHARED}"
       logLevel: DEBUG
+      readinessProbe:
+        initialDelaySeconds: 120 # increase time to allow startup
     postgresql:
       enabled: true
       existingSecret: matrix-synapse-secrets
