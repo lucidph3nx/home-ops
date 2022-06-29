@@ -13,3 +13,4 @@ resources:
   - comms.yaml
   - metallb-system.yaml
   - kube-system.yaml
+  - pihole.yaml
