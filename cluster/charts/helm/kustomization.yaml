@@ -12,3 +12,4 @@ resources:
   - grafana-charts.yaml
   - external-dns-charts.yaml
   - ananace-charts.yaml
+  - mojo2600-charts.yaml
