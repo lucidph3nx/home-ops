@@ -11,3 +11,4 @@ resources:
   - log-system.yaml
   - system-upgrade.yaml
   - comms.yaml
+  - kube-system.yaml
