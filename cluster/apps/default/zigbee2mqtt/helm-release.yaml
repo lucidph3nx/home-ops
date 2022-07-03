@@ -29,13 +29,14 @@ spec:
       # ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: debug
     config:
       homeassistant: true
+      permit_join: false
       serial:
         port: null #/dev/ttyACM0
       mqtt:
         base_topic: zigbee2mqtt
         server: mqtt://mosquitto.default.svc.cluster.local:1883
       advanced:
-        log_level: debug
+        log_level: info
     securityContext:
       privileged: true
     persistence:
