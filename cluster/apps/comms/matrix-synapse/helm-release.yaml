@@ -20,6 +20,8 @@ spec:
     createNamespace: true
   values:
     synapse:
+      livenessProbe:
+        initialDelaySeconds: 180 # increase time to allow startup
       readinessProbe:
         initialDelaySeconds: 120 # increase time to allow startup
     image:
