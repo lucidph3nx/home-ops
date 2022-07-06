@@ -19,6 +19,9 @@ spec:
   install:
     createNamespace: true
   values:
+    synapse:
+      readinessProbe:
+        initialDelaySeconds: 120 # increase time to allow startup
     image:
       repository: matrixdotorg/synapse
       tag: v1.61.1
@@ -29,8 +32,6 @@ spec:
     config:
       registrationSharedSecret: "${SECRET_MATRIX_REGISTRATION_SHARED}"
       logLevel: DEBUG
-      readinessProbe:
-        initialDelaySeconds: 120 # increase time to allow startup
     postgresql:
       enabled: true
       existingSecret: matrix-synapse-secrets
