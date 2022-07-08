@@ -1,0 +1,48 @@
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: jellyfin
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: jellyfin
+      version: 9.4.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+  values:
+    image:
+      repository: jellyfin/jellyfin
+      tag: 10.7.7
+    env:
+      TZ: "${TIMEZONE}"
+      JELLYFIN_CACHE_DIR: /config/cache
+    ingress:
+      main:
+        enabled: false
+    persistence:
+      config:
+        enabled: true
+        mountPath: /config
+        storageClass: longhorn
+        accessMode: ReadWriteOnce
+        retain: true
+        size: 1Gi
+      movies:
+        enabled: true
+        type: nfs
+        server: "${NAS0_IP}"
+        path: /volume1/Films
+        mountPath: /movies
+      tv:
+        enabled: true
+        type: nfs
+        server: "${NAS0_IP}"
+        path: /volume1/TV-Series
+        mountPath: /tv
