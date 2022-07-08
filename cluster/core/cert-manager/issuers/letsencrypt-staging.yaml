@@ -4,6 +4,9 @@ kind: ClusterIssuer
 metadata:
   name: letsencrypt-staging
 spec:
+  dependsOn:
+    - name: cert-manager
+      namespace: cert-manager
   acme:
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     email: "${SECRET_ADMIN_EMAIL}"
