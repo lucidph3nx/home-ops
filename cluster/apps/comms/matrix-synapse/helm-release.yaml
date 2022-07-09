@@ -26,7 +26,7 @@ spec:
         initialDelaySeconds: 120 # increase time to allow startup
     image:
       repository: matrixdotorg/synapse
-      tag: v1.61.1
+      tag: v1.62.0
     serverName: "matrix.${SECRET_PUBLIC_DOMAIN}"
     publicServerName: "matrix.${SECRET_PUBLIC_DOMAIN}"
     wellknown:
