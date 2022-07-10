@@ -335,7 +335,7 @@ spec:
       containers:
       - args:
         - --port=7472
-        - --config=config
+        # - --config=config #removed?
         - --log-level=info
         env:
         - name: METALLB_NODE_NAME
@@ -434,7 +434,7 @@ spec:
       containers:
       - args:
         - --port=7472
-        - --config=config
+        # - --config=config #removed?
         - --log-level=info
         env:
         - name: METALLB_ML_SECRET_NAME
