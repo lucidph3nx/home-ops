@@ -5,5 +5,5 @@ resources:
   - cert-manager
   - namespaces
   - longhorn-system
-  - metallb-system
-  - kube-system
+  # - metallb-system
+  # - kube-system
