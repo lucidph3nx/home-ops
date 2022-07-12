@@ -11,6 +11,6 @@ resources:
   - log-system.yaml
   - system-upgrade.yaml
   - comms.yaml
-  # - metallb-system.yaml
-  # - kube-system.yaml
+  - metallb-system.yaml
+  - kube-system.yaml
   - pihole.yaml
