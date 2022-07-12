@@ -6,4 +6,3 @@ resources:
   - namespaces
   - longhorn-system
   - metallb-system
-  # - kube-system
