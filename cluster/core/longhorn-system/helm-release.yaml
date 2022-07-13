@@ -24,3 +24,4 @@ spec:
   values:
     defaultSettings:
       backupTarget: "nfs://${NAS0_IP}:/volume1/backups/longhorn"
+      defaultReplicaCount: 4
