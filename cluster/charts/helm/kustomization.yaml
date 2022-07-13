@@ -13,3 +13,4 @@ resources:
   - external-dns-charts.yaml
   - ananace-charts.yaml
   - mojo2600-charts.yaml
+  - metallb-charts.yaml
