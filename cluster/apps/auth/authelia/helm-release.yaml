@@ -43,8 +43,6 @@ spec:
         entryPoints: 
           - websecure
     pod:
-      kind: Deployment
-      replicas: 1
       env:
       - name: TZ
         value: "${TIMEZONE}"
