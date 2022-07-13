@@ -1,0 +1,17 @@
+# variables for K3s Cluster
+k3s_version: v1.24.2+k3s2
+
+# for home directory etc
+ansible_user: ben
+systemd_dir: /etc/systemd/system
+
+# k3s_token is required  masters can talk together securely
+# this token should be alpha numeric only
+k3s_token: "Qz9DZfbPtExEabzAer0bHe6TfOJLzJ8I18qmG5VzUoQeC7NuKZ"
+
+# interface which will be used for flannel
+flannel_iface: "eth0"
+
+# change these to your liking, the only required one is--no-deploy servicelb 
+extra_server_args: "--no-deploy servicelb --no-deploy traefik" 
+extra_agent_args: ""

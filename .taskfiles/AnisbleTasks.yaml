@@ -1,0 +1,22 @@
+---
+version: "3"
+
+env:
+  ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/ansible.cfg"
+
+vars:
+  ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+
+tasks:
+
+  deploy:
+    desc: Deploy Cluster
+    dir: provision/ansible
+    cmds:
+      - ansible-playbook {{.ANSIBLE_DIR}}/k3s-deploy.yaml -i {{.ANSIBLE_INVENTORY_DIR}}/hosts
+
+  reset:
+    desc: Deploy Cluster
+    dir: provision/ansible
+    cmds:
+      - ansible-playbook {{.ANSIBLE_DIR}}/k3s-reset.yaml -i {{.ANSIBLE_INVENTORY_DIR}}/hosts

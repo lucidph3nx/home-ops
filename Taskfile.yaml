@@ -5,22 +5,12 @@ vars:
   PROJECT_DIR:
     sh: "git rev-parse --show-toplevel"
   CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
+  ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/ansible"
   TERRAFORM_DIR: "{{.PROJECT_DIR}}/provision/terraform"
 
 dotenv: [".config.env"]
 
 includes:
   cluster: .taskfiles/ClusterTasks.yaml
-  terraform: .taskfiles/TerraformTasks.yml
-
-tasks:
-
-  verify:
-    desc: Verify env settings
-    cmds:
-      - ./configure --verify
-
-  configure:
-    desc: Configure repository from env settings
-    cmds:
-      - ./configure
+  terraform: .taskfiles/TerraformTasks.yaml
+  ansible: .taskfiles/AnisbleTasks.yaml
