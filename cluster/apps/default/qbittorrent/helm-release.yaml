@@ -31,8 +31,7 @@ spec:
         existingClaim: pvc-qbittorrent
         mountPath: /config
         retain: true
-      # for the container to talk to its sidecar OPENVPN
-      shared:
+      shared: # for the container to talk to its sidecar OPENVPN
         enabled: true
         type: emptyDir
         mountPath: /shared
