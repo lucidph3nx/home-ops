@@ -36,5 +36,6 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
+        existingClaim: pvc-vaultwarden
         mountPath: /config
         retain: true
