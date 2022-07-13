@@ -31,7 +31,7 @@ spec:
       homeassistant: true
       permit_join: false
       serial:
-        port: null #/dev/ttyACM0
+        port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00 #null #/dev/ttyACM0
       mqtt:
         base_topic: zigbee2mqtt
         server: mqtt://mosquitto.default.svc.cluster.local:1883
@@ -52,7 +52,7 @@ spec:
         type: hostPath
         hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
         #/dev/ttyACM0
-        # hostPathType: CharDevice
+        hostPathType: CharDevice
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
