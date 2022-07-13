@@ -28,7 +28,7 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
-        # existingClaim: pvc-qbittorrent
+        existingClaim: pvc-qbittorrent
         mountPath: /config
         retain: true
       # for the container to talk to its sidecar OPENVPN
