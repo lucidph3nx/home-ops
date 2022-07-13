@@ -1,5 +1,5 @@
 # variables for K3s Cluster
-k3s_version: v1.24.2+k3s2
+k3s_version: v1.23.8+k3s2
 
 # for home directory etc
 ansible_user: ben
