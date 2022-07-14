@@ -27,7 +27,7 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
-        # existingClaim: pvc-sonarr
+        existingClaim: pvc-sonarr
         mountPath: /config
         retain: true
       tv:
