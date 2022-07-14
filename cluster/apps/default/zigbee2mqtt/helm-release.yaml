@@ -20,19 +20,18 @@ spec:
   values:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
-      tag: 1.26.0
+      tag: 1.25.2
     env:
       TZ: "${TIMEZONE}"
-      # ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
-      # ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: deconz
+      ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
+      ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: deconz
       # ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
       # ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: debug
     config:
       homeassistant: true
       permit_join: false
       serial:
-        port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00 #null #/dev/ttyACM0
-        adapter: deconz
+        port: null #/dev/ttyACM0
       mqtt:
         base_topic: zigbee2mqtt
         server: mqtt://mosquitto.default.svc.cluster.local:1883
@@ -44,6 +43,7 @@ spec:
       data:
         enabled: true
         storageClass: longhorn
+        existingClaim: pvc-zigbee2mqtt
         accessMode: ReadWriteOnce
         size: 1Gi
         mountPath: /data
@@ -53,13 +53,23 @@ spec:
         type: hostPath
         hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
         #/dev/ttyACM0
-        hostPathType: CharDevice
+        # hostPathType: CharDevice
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
           nodeSelectorTerms:
+          # note: label node like this 
+          # kubectl label nodes k3s-agent5 app=zigbee-controller
           - matchExpressions:
             - key: app
               operator: In
               values:
               - zigbee-controller
+
+ # !!! note to future ben, or anyone else !!!
+ # trying to get the ConBee to appear as a readable ttyACM0 interface is a nightmare
+ # this is mostly because I am using cloud init Ubuntu 20.04 images which are missing important usb things
+ # find out the kernel version with `uname -a` then install extra modules
+ # sudo apt install linux-modules-extra-5.4.0-91-generic
+ # https://arduino.stackexchange.com/questions/48583/no-ttyacm0-nor-ttyusb0
+ # never forget the hours you spent, on more than one occasion, to fix this!!!
