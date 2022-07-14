@@ -22,7 +22,7 @@ spec:
     replicaCount: 1
     serviceDns:
       type: LoadBalancer
-      loadBalancerIP: "10.87.42.11" # or whatever your ip is going to be, from inside your metal-lb range
+      loadBalancerIP: "10.87.42.11"
       externalTrafficPolicy: Cluster
       annotations:
         metallb.universe.tf/allow-shared-ip: pihole-svc
@@ -32,7 +32,7 @@ spec:
       enabled: false
     persistentVolumeClaim:
       enabled: true
-      existingClaim: pvc-pihole
+      # existingClaim: pvc-pihole
       storageClass: longhorn
     # adminPassword: "" # doesnt work, had to use env
     extraEnvVars:

@@ -51,3 +51,16 @@
     path: /etc/sudoers
     validate: 'visudo -cf %s'
   when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
+
+- name: Add blacklist items for multipathd
+  lineinfile:
+    line: 'blacklist { devnode "^sd[a-z0-9]+" }'
+    state: present
+    insertafter: EOF
+    dest: /etc/multipath.conf
+
+- name: Restart multipathd.service
+  ansible.builtin.systemd:
+    state: restarted
+    daemon_reload: yes
+    name: multipathd
