@@ -21,7 +21,8 @@ spec:
     persistence:
       enabled: true
       storageClass: longhorn
-      existingClaim: pvc-grafana
+      # existingClaim: pvc-grafana
+      retain: true
     admin: 
       existingSecret: grafana-secrets
       userKey: admin-user
