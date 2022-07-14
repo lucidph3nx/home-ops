@@ -22,6 +22,17 @@ spec:
       tag: 1.27.2.5929-a806c5905
     env:
       TZ: "${TIMEZONE}"
+      ADVERTISE_IP: 101.98.36.73
+      # ALLOWED_NETWORKS:
+      PLEX_CLAIM: "claim-VkUiJdL5jwS-7zzDyyhH"
+      PLEX_PREFERENCE_1: "FriendlyName=tinfoilforest-plex"
+      # PLEX_PREFERENCE_2: "EnableIPv6=0"
+      # PLEX_PREFERENCE_3: "logDebug=0"
+      # PLEX_PREFERENCE_4: "DisableTLSv1_0=1"
+      # PLEX_PREFERENCE_5: "LanNetworksBandwidth=xxx.xxx.xxx.0/18\,xxx.xxx.xxx.0/24\,xxx.xxx.xxx.0/24"
+      # PLEX_PREFERENCE_6: "TranscoderQuality=2"
+      # PLEX_PREFERENCE_7: "TreatWanIpAsLocal=0"
+      # PLEX_PREFERENCE_8: "TranscoderH264BackgroundPreset=fast"
     podSecurityContext:
       supplementalGroups:
       - 44
