@@ -19,6 +19,10 @@ spec:
   install:
     createNamespace: true
   values:
+    image:
+      repository: "pihole/pihole"
+      tag: "2022.07.1"
+      pullPolicy: IfNotPresent
     replicaCount: 1
     serviceDns:
       type: LoadBalancer
