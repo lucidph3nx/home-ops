@@ -5,9 +5,6 @@ metadata:
   name: letsencrypt-staging
 spec:
   acme:
-    dependsOn:
-    - name: cert-manager
-      namespace: cert-manager
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     email: "${SECRET_ADMIN_EMAIL}"
     privateKeySecretRef:
