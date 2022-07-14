@@ -24,7 +24,7 @@ spec:
       - name: chain-authelia-auth
         namespace: auth
       - name: pihole-dashboard-addprefix
-        namespace: pihole
+        namespace: networking
       services:
         - name: pihole-web
           namespace: pihole
