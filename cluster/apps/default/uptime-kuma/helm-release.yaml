@@ -27,5 +27,6 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
+        existingClaim: pvc-uptime-kuma
         mountPath: /app/data
         retain: true
