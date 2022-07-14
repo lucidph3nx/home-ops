@@ -27,7 +27,7 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
-        # existingClaim: pvc-sabnzbd
+        existingClaim: pvc-sabnzbd
         mountPath: /config
         retain: true
       downloads:
