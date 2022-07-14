@@ -27,6 +27,7 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
+        existingClaim: pvc-prowlarr
         mountPath: /config
         retain: true
     # to avoid permissions issues on volume
