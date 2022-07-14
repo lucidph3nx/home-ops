@@ -36,7 +36,7 @@ spec:
       enabled: false
     persistentVolumeClaim:
       enabled: true
-      # existingClaim: pvc-pihole
+      existingClaim: pvc-pihole
       storageClass: longhorn
     # adminPassword: "" # doesnt work, had to use env
     extraEnvVars:
