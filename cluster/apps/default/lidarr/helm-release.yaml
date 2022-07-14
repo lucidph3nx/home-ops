@@ -27,7 +27,7 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
-        # existingClaim: pvc-lidarr
+        existingClaim: pvc-lidarr
         mountPath: /config
         retain: true
       music:

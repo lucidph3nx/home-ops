@@ -27,7 +27,7 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
-        # existingClaim: pvc-radarr
+        existingClaim: pvc-radarr
         mountPath: /config
         retain: true
       movies:
