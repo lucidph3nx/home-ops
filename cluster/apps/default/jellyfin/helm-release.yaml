@@ -31,9 +31,9 @@ spec:
         enabled: true
         mountPath: /config
         storageClass: longhorn
+        existingClaim: pvc-jellyfin
         accessMode: ReadWriteOnce
         retain: true
-        size: 1Gi
       movies:
         enabled: true
         type: nfs
