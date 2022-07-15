@@ -27,8 +27,8 @@ tasks:
   flux:install:
     desc: Install Flux into your cluster, run this again if it fails
     cmds:
-      - flux bootstrap github --owner={{.GIT_OWNER}} --repository={{.GIT_REPONAME}} --branch=main --path=cluster/base --private=false --personal=true
-      #  --personal --token-auth
+      - flux bootstrap github --owner={{.GIT_OWNER}} --repository={{.GIT_REPONAME}} --path=cluster/base --private=false --personal=true
+      #  --branch=main --path=cluster/base --personal --token-auth
       # - kubectl apply -k {{.CLUSTER_DIR}}/base/flux-system
     vars:
       GIT_OWNER: lucidph3nx
