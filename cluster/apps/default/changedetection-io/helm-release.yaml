@@ -27,5 +27,6 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
+        existingClaim: pvc-changedetection-io
         mountPath: /datastore
         retain: true
