@@ -5556,7 +5556,7 @@ spec:
   ingress:
   - from:
     - namespaceSelector: {}
-    ports:
+    ports: 
     - port: 8080
       protocol: TCP
   podSelector: {}
