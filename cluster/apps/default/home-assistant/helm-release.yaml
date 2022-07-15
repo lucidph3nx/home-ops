@@ -27,6 +27,7 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
+        existingClaim: pvc-home-assistant
         mountPath: /config
         retain: true
     addons:
