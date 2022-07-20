@@ -32,7 +32,6 @@ spec:
       main:
         type: LoadBalancer
         loadBalancerIP: "10.87.42.12"
-        externalTrafficPolicy: Local
         port:
           port: 32400
     persistence:
