@@ -12,6 +12,8 @@ spec:
       services:
         - name: plex
           port: 32400
+          scheme: http
+          kind: Service
           namespace: default
   tls:
     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"

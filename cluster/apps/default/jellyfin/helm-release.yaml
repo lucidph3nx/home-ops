@@ -6,6 +6,9 @@ metadata:
   name: jellyfin
   namespace: default
 spec:
+  dependsOn:
+  - name: longhorn
+    namespace: longhorn-system
   interval: 5m
   chart:
     spec:

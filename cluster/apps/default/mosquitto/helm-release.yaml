@@ -5,6 +5,9 @@ metadata:
   name: mosquitto
   namespace: default
 spec:
+  dependsOn:
+  - name: longhorn
+    namespace: longhorn-system
   interval: 15m
   chart:
     spec:
