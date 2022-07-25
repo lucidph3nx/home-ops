@@ -110,3 +110,8 @@
     src: /usr/local/bin/k3s
     dest: /usr/local/bin/crictl
     state: link
+
+- name: chmod /etc/rancher/k3s/k3s.yaml
+  file:
+    path: /etc/rancher/k3s/k3s.yaml
+    mode: u=rw,g=r,o=r
