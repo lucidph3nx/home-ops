@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: vaultwarden/server
-      tag: 1.25.1
+      tag: 1.25.2
     env:
       # TZ: "${TIMEZONE}"
       WEBSOCKET_ENABLED: true
