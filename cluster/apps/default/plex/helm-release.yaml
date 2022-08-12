@@ -26,11 +26,11 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       # PLEX_CLAIM: "claim-VkUiJdL5jwS-7zzDyyhH"
-    podSecurityContext:
-      supplementalGroups:
-      runAsUser: 44
-      runAsGroup: 109
-      fsGroup: 100
+    # podSecurityContext:
+    #   supplementalGroups:
+    #   runAsUser: 44
+    #   runAsGroup: 109
+    #   fsGroup: 100
     service:
       main:
         type: LoadBalancer
