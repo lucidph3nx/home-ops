@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: zigbee2mqtt
-      version: 9.4.0
+      version: 9.4.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
-      tag: 1.25.2
+      tag: 1.27.0
     env:
       TZ: "${TIMEZONE}"
       ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
