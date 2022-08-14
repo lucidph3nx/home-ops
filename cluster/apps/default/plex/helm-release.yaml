@@ -20,15 +20,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    # initContainers:
-    #   update-volume-permission:
-    #     image: busybox@sha256:ef320ff10026a50cf5f0213d35537ce0041ac1d96e9b7800bafd8bc9eff6c693
-    #     command: ["sh", "-c", "chown -R 1000:1000 /config"]
-    #     volumeMounts:
-    #       - name: config
-    #         mountPath: /config
-    #     securityContext:
-    #       runAsUser: 0
     image:
       repository: ghcr.io/k8s-at-home/plex
       tag: v1.28.0.5999-97678ded3@sha256:ef756c7d784bd9e10da43a3da395e26cc283674dcb5d991cef9104572b37646e
@@ -38,10 +29,6 @@ spec:
       TZ: "${TIMEZONE}"
       # PLEX_CLAIM: "claim-VkUiJdL5jwS-7zzDyyhH"
     podSecurityContext:
-      # runAsUser: 1000
-      # runAsGroup: 1000
-      # fsGroup: 1000
-      # fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 44
         - 109
