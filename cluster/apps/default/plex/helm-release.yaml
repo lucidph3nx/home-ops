@@ -34,6 +34,8 @@ spec:
       tag: 1.28.0.5999-97678ded3
     env:
       TZ: "${TIMEZONE}"
+      PLEX_UID: 1000
+      PLEX_GID: 1000
       # PLEX_CLAIM: "claim-VkUiJdL5jwS-7zzDyyhH"
     podSecurityContext:
       runAsUser: 1000
