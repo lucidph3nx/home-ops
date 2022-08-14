@@ -34,8 +34,8 @@ spec:
       homeassistant: true
       permit_join: false
       serial:
-      #   port: null #/dev/ttyACM0
-        port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
+        port: null #/dev/ttyACM0
+        # port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
       mqtt:
         base_topic: zigbee2mqtt
         server: mqtt://mosquitto.default.svc.cluster.local:1883
