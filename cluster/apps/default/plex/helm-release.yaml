@@ -31,7 +31,7 @@ spec:
           runAsUser: 0
     image:
       repository: plexinc/pms-docker
-      tag: 1.27.2.5929-a806c5905
+      tag: 1.28.0.5999-97678ded3
     env:
       TZ: "${TIMEZONE}"
       # PLEX_CLAIM: "claim-VkUiJdL5jwS-7zzDyyhH"
