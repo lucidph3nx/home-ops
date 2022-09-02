@@ -59,7 +59,7 @@ spec:
       websecure:
         exposedPort: 443  
         tls:
-          enaled: true
+          enabled: true
     logs:
       general:
         level: info
