@@ -18,6 +18,8 @@ spec:
   dependsOn:
     - name: cert-manager
       namespace: cert-manager
+    - name: metallb
+      namespace: metallb-system
   install:
     createNamespace: true
     remediation:
@@ -47,12 +49,17 @@ spec:
         enabled: true
         allowExternalNameServices: true
         allowCrossNamespace: true
+        ingressClass: traefik
+    globalArguments:
+      - "--serversTransport.insecureSkipVerify=true"
     ports:
       web:
         redirectTo: websecure
-        exposedPort: 80
+        # exposedPort: 80
       websecure:
         exposedPort: 443  
+        tls:
+          enaled: true
     logs:
       general:
         level: info
