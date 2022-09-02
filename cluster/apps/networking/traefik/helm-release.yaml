@@ -60,6 +60,12 @@ spec:
         exposedPort: 443  
         tls:
           enabled: true
+          options: "default"
+    tlsOptions:
+      default:
+        minVersion: VersionTLS12
+        maxVersion: VersionTLS13
+        sniStrict: true
     logs:
       general:
         level: info
