@@ -36,6 +36,9 @@ spec:
       type: LoadBalancer
       spec:
         loadBalancerIP: 10.87.42.10
+    ingressRoute:
+      dashboard:
+        enabled: false
     ingressClass:
       enabled: true
       isDefaultClass: true
@@ -52,6 +55,7 @@ spec:
         ingressClass: traefik
     globalArguments:
       - "--serversTransport.insecureSkipVerify=true"
+      - "--providers.kubernetesingress.ingressclass=traefik"
     ports:
       web:
         redirectTo: websecure
