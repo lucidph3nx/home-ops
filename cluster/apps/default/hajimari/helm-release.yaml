@@ -61,16 +61,17 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
-          - host: hajimari.${SECRET_DOMAIN}
+          - host: hajimari.${SECRET_PUBLIC_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - hajimari.${SECRET_DOMAIN}
+              - hajimari.${SECRET_PUBLIC_DOMAIN}
             secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
     data:
       enabled: false
