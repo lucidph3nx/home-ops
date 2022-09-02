@@ -14,3 +14,4 @@ resources:
   - ananace-charts.yaml
   - mojo2600-charts.yaml
   - metallb-charts.yaml
+  - hajimari-charts.yaml
