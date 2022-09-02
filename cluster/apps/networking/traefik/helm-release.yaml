@@ -36,9 +36,11 @@ spec:
         loadBalancerIP: 10.87.42.10
     providers:
       kubernetesCRD:
+        enabled: true
         allowExternalNameServices: true
         allowCrossNamespace: true
       kubernetesIngress:
+        enabled: true
         allowExternalNameServices: true
         allowCrossNamespace: true
     ports:
