@@ -38,6 +38,9 @@ spec:
       kubernetesCRD:
         allowExternalNameServices: true
         allowCrossNamespace: true
+      kubernetesIngress:
+        allowExternalNameServices: true
+        allowCrossNamespace: true
     ports:
       web:
         redirectTo: websecure
