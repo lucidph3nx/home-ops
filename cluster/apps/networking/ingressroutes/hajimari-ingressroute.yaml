@@ -10,7 +10,7 @@
 #   entryPoints:
 #     - websecure
 #   routes:
-#     - match: "Host(`dashboard.${SECRET_PUBLIC_DOMAIN}`)"
+#     - match: "Host(`hajimari.${SECRET_PUBLIC_DOMAIN}`)"
 #       kind: Rule
 #       middlewares:
 #       - name: chain-authelia-auth
