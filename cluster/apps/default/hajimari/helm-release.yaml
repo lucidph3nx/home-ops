@@ -66,9 +66,9 @@ spec:
           external-dns/is-public: "true"
         hosts:
           - host: hajimari.${SECRET_PUBLIC_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
+            # paths:
+            #   - path: /
+            #     pathType: Prefix
         tls:
           - hosts:
               - hajimari.${SECRET_PUBLIC_DOMAIN}
