@@ -13,3 +13,4 @@ resources:
   - comms.yaml
   - kube-system.yaml
   - pihole.yaml
+  - mgmt.yaml
