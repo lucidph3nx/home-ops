@@ -39,13 +39,13 @@ spec:
             external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
             external-dns/is-public: "true"
           hosts:
-            - host: changedetection-io.${SECRET_DOMAIN}
+            - host: changedetection-io.${SECRET_PUBLIC_DOMAIN}
               paths:
                 - path: /
                   pathType: Prefix
           tls:
             - hosts:
-                - "changedetection-io.${SECRET_DOMAIN}"
+                - "changedetection-io.${SECRET_PUBLIC_DOMAIN}"
               secretName: "changedetection-io-${SECRET_PUBLIC_DOMAIN/./-}"
     persistence:
       config:
