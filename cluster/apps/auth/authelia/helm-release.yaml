@@ -37,15 +37,15 @@ spec:
       enabled: true
       ingressClassName: "traefik"
       annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
+        # cert-manager.io/cluster-issuer: letsencrypt-production
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.tls: "true"
+        # traefik.ingress.kubernetes.io/router.tls: "true"
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
         external-dns/is-public: "true"
       subdomain: auth
-      tls:
-        enabled: true
-        secret: "auth-${SECRET_PUBLIC_DOMAIN/./-}"
+      # tls:
+      #   enabled: true
+      #   secret: "auth-${SECRET_PUBLIC_DOMAIN/./-}"
       traefikCRD:
         enabled: true
         disableIngressRoute: true
