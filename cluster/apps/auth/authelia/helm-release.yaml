@@ -46,10 +46,10 @@ spec:
         - hosts:
             - auth.${SECRET_PUBLIC_DOMAIN}
           secretName: "auth-${SECRET_PUBLIC_DOMAIN/./-}"
-      traefikCRD:
-        enabled: true
-        entryPoints: 
-          - websecure
+      # traefikCRD:
+      #   enabled: true
+      #   entryPoints: 
+      #     - websecure
     pod:
       kind: Deployment
       replicas: 3
