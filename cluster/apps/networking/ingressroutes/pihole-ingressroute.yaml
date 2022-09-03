@@ -7,8 +7,7 @@ spec:
   addPrefix:
     prefix: /admin
 
----
-
+# ---
 # apiVersion: traefik.containo.us/v1alpha1
 # kind: IngressRoute
 # metadata:
