@@ -31,6 +31,8 @@ spec:
           enabled: true
           ingressClassName: "traefik"
           annotations:
+            hajimari.io/enable: "true"
+            hajimari.io/icon: "playlist-music"
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
             external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"

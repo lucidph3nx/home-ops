@@ -40,7 +40,14 @@ spec:
       env:
         PHPLDAPADMIN_LDAP_CLIENT_TLS_REQCERT: "never"
       ingress:
-        enabled: false
+        enabled: true
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+          external-dns/is-public: "true"
+          hosts:
+            - ldapadmin.${SECRET_PUBLIC_DOMAIN}
     ltb-passwd:
       enabled : false
     customLdifFiles:
