@@ -28,6 +28,7 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       # PLEX_CLAIM: "claim-VkUiJdL5jwS-7zzDyyhH"
+      ALLOWED_NETWORKS: "10.0.0.0/8"
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
