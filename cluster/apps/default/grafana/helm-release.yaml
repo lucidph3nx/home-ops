@@ -28,6 +28,7 @@ spec:
       ingressClassName: "traefik"
       annotations:
         hajimari.io/enable: "true"
+        hajimari.io/icon: "chart-bell-curve"
         cert-manager.io/cluster-issuer: letsencrypt-production
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
