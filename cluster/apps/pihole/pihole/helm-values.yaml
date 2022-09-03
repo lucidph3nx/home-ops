@@ -55,7 +55,7 @@ spec:
       storageClass: longhorn
     # adminPassword: "" # doesnt work, had to use env
     extraEnvVars:
-      TZ: Pacific/Auckland
+      TZ: "${TIMEZONE}"
       DNSMASQ_USER: "root"
       WEBPASSWORD: "" # since I'm using behind Authelia, this is fine
     DNS1: "1.1.1.1"
@@ -66,4 +66,14 @@ spec:
         - address=/traefik.${SECRET_PUBLIC_DOMAIN}/${TRAEFIK_ENDPOINT}
         - address=/longhorn.${SECRET_PUBLIC_DOMAIN}/${TRAEFIK_ENDPOINT}
         - address=/auth.${SECRET_PUBLIC_DOMAIN}/${TRAEFIK_ENDPOINT}
-        - address=/ldapadmin.${SECRET_PUBLIC_DOMAIN}/${TRAEFIK_ENDPOINT}
+
+---
+# the traefik middleware that adds the /admin prefix to incoming requests
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: pihole-dashboard-addprefix
+  namespace: networking
+spec:
+  addPrefix:
+    prefix: /admin
