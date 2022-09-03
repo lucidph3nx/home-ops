@@ -73,7 +73,7 @@ spec:
         tls:
           - hosts:
               - hajimari.${SECRET_PUBLIC_DOMAIN}
-            secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+            secretName: "hajimari-${SECRET_PUBLIC_DOMAIN/./-}-tls"
     data:
       enabled: false
     resources:
