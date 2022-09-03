@@ -45,10 +45,11 @@ spec:
       tls:
         enabled: trye
         secret: ${SECRET_PUBLIC_DOMAIN/./-}
-      # traefikCRD:
-      #   enabled: true
-      #   entryPoints: 
-      #     - websecure
+      traefikCRD:
+        enabled: true
+        disableIngressRoute: true
+        entryPoints: 
+          - websecure
     pod:
       kind: Deployment
       replicas: 3
