@@ -51,14 +51,14 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
           external-dns/is-public: "true"
-          hosts:
-            - host: plex.${SECRET_PUBLIC_DOMAIN}
-              paths:
-                - path: /
-                  pathType: Prefix
-                  service: 
-                    name: plex
-                    port: 32400
+        hosts:
+          - host: plex.${SECRET_PUBLIC_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service: 
+                  name: plex
+                  port: 32400
     persistence:
       config:
         enabled: true
