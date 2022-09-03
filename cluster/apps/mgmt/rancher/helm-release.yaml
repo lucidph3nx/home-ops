@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://releases.rancher.com/server-charts/stable
-      chart: rancher
+      chart: rancher-charts
       version: 2.6.8
       sourceRef:
         kind: HelmRepository
