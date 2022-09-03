@@ -39,7 +39,6 @@ spec:
       main:
         type: LoadBalancer
         loadBalancerIP: "${PLEX_ENDPOINT}"
-        externalTrafficPolicy: Local
     ingress:
       main:
         enabled: true
