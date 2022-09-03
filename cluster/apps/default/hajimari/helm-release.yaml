@@ -71,8 +71,8 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - hosts:
-              - hajimari.${SECRET_PUBLIC_DOMAIN}
+          # - hosts:
+          #     - hajimari.${SECRET_PUBLIC_DOMAIN}
             secretName: "hajimari-${SECRET_PUBLIC_DOMAIN/./-}"
     data:
       enabled: false
