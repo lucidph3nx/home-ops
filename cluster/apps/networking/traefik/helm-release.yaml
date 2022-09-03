@@ -60,7 +60,7 @@ spec:
     additionalArguments:
       - "--providers.kubernetesingress.ingressendpoint.ip=${TRAEFIK_ENDPOINT}"
       - "--providers.kubernetescrd.allowexternalnameservices=true"
-      - "--entrypoints.websecure.http.tls"
+      # - "--entrypoints.websecure.http.tls"
     ports:
       web:
         redirectTo: websecure
