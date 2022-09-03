@@ -43,7 +43,7 @@ spec:
         external-dns/is-public: "true"
       subdomain: auth
       tls:
-        enabled: trye
+        enabled: true
         secret: "auth-${SECRET_PUBLIC_DOMAIN/./-}"
       traefikCRD:
         enabled: true
