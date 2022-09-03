@@ -1,21 +1,21 @@
 
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: longhorn-ingress
-  namespace: networking
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: "Host(`longhorn.${SECRET_PUBLIC_DOMAIN}`)"
-      kind: Rule
-      middlewares:
-      - name: chain-authelia-auth
-        namespace: auth
-      services:
-        - name: longhorn-frontend
-          namespace: longhorn-system
-          port: 80
-  tls:
-    secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: longhorn-ingress
+#   namespace: networking
+# spec:
+#   entryPoints:
+#     - websecure
+#   routes:
+#     - match: "Host(`longhorn.${SECRET_PUBLIC_DOMAIN}`)"
+#       kind: Rule
+#       middlewares:
+#       - name: chain-authelia-auth
+#         namespace: auth
+#       services:
+#         - name: longhorn-frontend
+#           namespace: longhorn-system
+#           port: 80
+#   tls:
+#     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"

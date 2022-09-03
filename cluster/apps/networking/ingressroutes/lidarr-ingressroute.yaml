@@ -1,21 +1,21 @@
 
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: lidarr-ingress
-  namespace: networking
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: "Host(`lidarr.${SECRET_PUBLIC_DOMAIN}`)"
-      kind: Rule
-      middlewares:
-      - name: chain-authelia-auth
-        namespace: auth
-      services:
-        - name: lidarr
-          namespace: default
-          port: 8686
-  tls:
-    secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: lidarr-ingress
+#   namespace: networking
+# spec:
+#   entryPoints:
+#     - websecure
+#   routes:
+#     - match: "Host(`lidarr.${SECRET_PUBLIC_DOMAIN}`)"
+#       kind: Rule
+#       middlewares:
+#       - name: chain-authelia-auth
+#         namespace: auth
+#       services:
+#         - name: lidarr
+#           namespace: default
+#           port: 8686
+#   tls:
+#     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
