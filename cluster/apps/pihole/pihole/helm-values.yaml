@@ -29,7 +29,7 @@ spec:
     replicaCount: 1
     serviceDns:
       type: LoadBalancer
-      loadBalancerIP: "10.87.42.11"
+      loadBalancerIP: "${PIHOLE_ENDPOINT}"
       externalTrafficPolicy: Cluster
       annotations:
         metallb.universe.tf/allow-shared-ip: pihole-svc
