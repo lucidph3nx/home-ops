@@ -28,6 +28,7 @@ spec:
         matchNames:
           - default
           - pihole
+      name: "ben"
       groups:
         - name: procrastination
           links:
