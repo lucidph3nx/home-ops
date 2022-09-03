@@ -39,10 +39,10 @@ spec:
     ingressRoute:
       dashboard:
         enabled: false
-    # ingressClass:
-    #   enabled: true
-    #   isDefaultClass: true
-    #   fallbackApiVersion: v1
+    ingressClass:
+      enabled: true
+      isDefaultClass: true
+      fallbackApiVersion: v1
     providers:
       kubernetesCRD:
         enabled: true
