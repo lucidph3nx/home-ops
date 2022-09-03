@@ -44,7 +44,7 @@ spec:
       subdomain: auth
       tls:
         enabled: trye
-        secret: ${SECRET_PUBLIC_DOMAIN/./-}
+        secret: "auth-${SECRET_PUBLIC_DOMAIN/./-}"
       traefikCRD:
         enabled: true
         disableIngressRoute: true
