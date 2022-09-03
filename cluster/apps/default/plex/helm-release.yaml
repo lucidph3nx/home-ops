@@ -56,6 +56,9 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
+                  service: 
+                    name: plex
+                    port: 32400
     persistence:
       config:
         enabled: true
