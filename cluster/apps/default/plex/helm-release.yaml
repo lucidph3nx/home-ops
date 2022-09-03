@@ -40,6 +40,10 @@ spec:
       main:
         type: LoadBalancer
         loadBalancerIP: "${PLEX_ENDPOINT}"
+        port:
+          port: 32400
+      local:
+        type: ClusterIP
         externalTrafficPolicy: local
         port:
           port: 32400
