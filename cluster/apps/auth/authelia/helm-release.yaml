@@ -35,7 +35,7 @@ spec:
     domain: "${SECRET_PUBLIC_DOMAIN}"
     ingress:
       enabled: true
-      ingressClassName: traefik
+      ingressClassName: "traefik"
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
