@@ -64,7 +64,6 @@ spec:
     ports:
       web:
         redirectTo: websecure
-        # exposedPort: 80
       websecure:
         exposedPort: 443  
         tls:
