@@ -37,6 +37,18 @@ spec:
       enabled: false
     https:
       enabled: false
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "dns"
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd, networking-pihole-dashboard-addprefix@kubernetescrd"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+        external-dns/is-public: "true"
+      hosts:
+        - pihole.${SECRET_PUBLIC_DOMAIN}
     persistentVolumeClaim:
       enabled: true
       existingClaim: pvc-pihole
@@ -50,7 +62,8 @@ spec:
     DNS2: "1.0.0.1"
     dnsmasq:
       customDnsEntries: # some useful defaults
-        - address=/pihole.tinfoilforest.nz/10.87.42.10
-        - address=/traefik.tinfoilforest.nz/10.87.42.10
-        - address=/longhorn.tinfoilforest.nz/10.87.42.10
-        - address=/auth.tinfoilforest.nz/10.87.42.10
+        - address=/pihole.${SECRET_PUBLIC_DOMAIN}/${TRAEFIK_ENDPOINT}
+        - address=/traefik.${SECRET_PUBLIC_DOMAIN}/${TRAEFIK_ENDPOINT}
+        - address=/longhorn.${SECRET_PUBLIC_DOMAIN}/${TRAEFIK_ENDPOINT}
+        - address=/auth.${SECRET_PUBLIC_DOMAIN}/${TRAEFIK_ENDPOINT}
+        - address=/ldapadmin.${SECRET_PUBLIC_DOMAIN}/${TRAEFIK_ENDPOINT}
