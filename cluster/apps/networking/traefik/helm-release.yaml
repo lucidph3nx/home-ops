@@ -54,6 +54,7 @@ spec:
         allowCrossNamespace: true
         ingressClass: traefik
     globalArguments:
+      - "--api.insecure=true"
       - "--serversTransport.insecureSkipVerify=true"
       - "--providers.kubernetesingress.ingressclass=traefik"
     ports:
