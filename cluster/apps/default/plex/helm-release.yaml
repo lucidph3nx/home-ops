@@ -37,11 +37,9 @@ spec:
         - 109
     service:
       main:
-        type: ClusterIP #LoadBalancer
-        # loadBalancerIP: "${PLEX_ENDPOINT}"
+        type: LoadBalancer
+        loadBalancerIP: "${PLEX_ENDPOINT}"
         externalTrafficPolicy: Local
-        # port:
-        #   port: 32400
     ingress:
       main:
         enabled: true
