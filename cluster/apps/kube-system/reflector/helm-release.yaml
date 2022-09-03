@@ -24,4 +24,4 @@ spec:
   values:
     configuration:
       logging:
-        minimumLevel: Info
+        minimumLevel: Information #Debug
