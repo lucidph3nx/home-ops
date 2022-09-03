@@ -24,23 +24,22 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/grafana
     ingress:
-      main:
-        enabled: true
-        ingressClassName: "traefik"
-        annotations:
-          hajimari.io/enable: "true"
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.tls: "true"
-          traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-          external-dns/is-public: "true"
-        hosts:
-          - "grafana.${SECRET_PUBLIC_DOMAIN}"
-        tls:
-          - hosts:
-              - grafana.${SECRET_PUBLIC_DOMAIN}
-            secretName: "grafana-${SECRET_PUBLIC_DOMAIN/./-}"
+      enabled: true
+      ingressClassName: "traefik"
+      annotations:
+        hajimari.io/enable: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+        external-dns/is-public: "true"
+      hosts:
+        - "grafana.${SECRET_PUBLIC_DOMAIN}"
+      tls:
+        - hosts:
+            - grafana.${SECRET_PUBLIC_DOMAIN}
+          secretName: "grafana-${SECRET_PUBLIC_DOMAIN/./-}"
     persistence:
       enabled: true
       storageClass: longhorn
