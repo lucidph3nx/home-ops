@@ -23,12 +23,12 @@ spec:
     env:
       TZ: "${TIMEZONE}"
     hajimari:
-      defaultEnable: true
+      defaultEnable: false
       namespaceSelector:
         matchNames:
           - default
           - pihole
-      name: "ben"
+      name: "Ben"
       groups:
         - name: procrastination
           links:
@@ -47,7 +47,6 @@ spec:
               url: "https://music.youtube.com"
             - name: plex
               url: "https://app.plex.tv"
-          persistence:
     service:
       main:
         ports:
@@ -58,7 +57,6 @@ spec:
     ingress:
       main:
         enabled: true
-        # ingressClassName: traefik
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
@@ -81,3 +79,8 @@ spec:
       requests:
         cpu: 100m
         memory: 128M
+    persistence:
+      data:
+        enabled: true
+        storageClass: longhorn
+        size: 1Gi
