@@ -43,9 +43,8 @@ spec:
         external-dns/is-public: "true"
       subdomain: auth
       tls:
-        - hosts:
-            - auth.${SECRET_PUBLIC_DOMAIN}
-          secretName: "auth-${SECRET_PUBLIC_DOMAIN/./-}"
+        enabled: trye
+        secret: ${SECRET_PUBLIC_DOMAIN/./-}
       # traefikCRD:
       #   enabled: true
       #   entryPoints: 
