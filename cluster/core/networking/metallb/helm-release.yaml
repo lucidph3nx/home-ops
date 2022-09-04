@@ -23,3 +23,7 @@ spec:
   values:
     crds:
       enabled: false
+    controller:
+      loglevel: debug
+    speaker:
+      loglevel: debug
