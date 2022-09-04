@@ -36,9 +36,9 @@ spec:
       type: LoadBalancer
       spec:
         loadBalancerIP: "${TRAEFIK_ENDPOINT}"
-    ingressRoute:
-      dashboard:
-        enabled: false
+    # ingressRoute:
+    #   dashboard:
+    #     enabled: false
     ingressClass:
       enabled: true
       isDefaultClass: true
