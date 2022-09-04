@@ -38,7 +38,9 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: "${PLEX_ENDPOINT}"
+        # loadBalancerIP: "${PLEX_ENDPOINT}"
+        externalIPs: 
+        - ${PLEX_ENDPOINT}
         port:
           port: 32400
     ingress:
