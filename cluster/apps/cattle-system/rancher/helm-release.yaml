@@ -20,8 +20,6 @@ spec:
     replicas: 3
     ingress:
       enabled: true
-      tls:
-        source: secret
       extraAnnotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
