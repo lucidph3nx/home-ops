@@ -28,7 +28,7 @@ spec:
         matchNames:
           - default
           - pihole
-          - mgmt
+          - networking
       name: "Ben"
       groups:
         - name: procrastination
