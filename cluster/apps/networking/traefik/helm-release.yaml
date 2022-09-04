@@ -35,7 +35,9 @@ spec:
       enabled: true
       type: LoadBalancer
       spec:
-        loadBalancerIP: "${TRAEFIK_ENDPOINT}"
+        externalIPs: 
+        - ${TRAEFIK_ENDPOINT}
+        # loadBalancerIP: "${TRAEFIK_ENDPOINT}"
     ingressRoute:
       dashboard:
         enabled: true
