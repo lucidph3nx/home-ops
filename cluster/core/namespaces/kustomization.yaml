@@ -12,3 +12,4 @@ resources:
   - system-upgrade.yaml
   - kube-system.yaml
   - pihole.yaml
+  - mgmt.yaml
