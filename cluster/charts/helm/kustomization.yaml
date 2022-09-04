@@ -16,3 +16,4 @@ resources:
   - metallb-charts.yaml
   - hajimari-charts.yaml
   - emberstack-charts.yaml
+  - kubernetes-dashboard-charts.yaml
