@@ -27,7 +27,7 @@ spec:
       # tag: 1.28.0.5999-97678ded3
     env:
       TZ: "${TIMEZONE}"
-      # PLEX_CLAIM: "claim-VkUiJdL5jwS-7zzDyyhH"W
+      # PLEX_CLAIM: "claim-VkUiJdL5jwS-7zzDyyhH"
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
@@ -38,25 +38,25 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: "${PLEX_ENDPOINT}"
+        loadBalancerIP: "10.87.42.12" #"${PLEX_ENDPOINT}"
         port:
           port: 32400
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: traefik
-        annotations:
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "plex"
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: "redirect-web-to-443@internal"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-          external-dns/is-public: "true"
-        hosts:
-          - host: plex.${SECRET_PUBLIC_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
+    # ingress:
+    #   main:
+    #     enabled: true
+    #     ingressClassName: traefik
+    #     annotations:
+    #       hajimari.io/enable: "true"
+    #       hajimari.io/icon: "plex"
+    #       traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    #       traefik.ingress.kubernetes.io/router.middlewares: "redirect-web-to-443@internal"
+    #       external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+    #       external-dns/is-public: "true"
+    #     hosts:
+    #       - host: plex.${SECRET_PUBLIC_DOMAIN}
+    #         paths:
+    #           - path: /
+    #             pathType: Prefix
     persistence:
       config:
         enabled: true
