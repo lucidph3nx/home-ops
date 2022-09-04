@@ -29,7 +29,7 @@ spec:
     replicaCount: 1
     serviceDns:
       type: LoadBalancer
-      # loadBalancerIP: "${PIHOLE_ENDPOINT}"
+      # loadBalancerIP: "${PIHOLE_ENDPOINT}" 
       externalIPs: 
         - ${PIHOLE_ENDPOINT}
       externalTrafficPolicy: Cluster
