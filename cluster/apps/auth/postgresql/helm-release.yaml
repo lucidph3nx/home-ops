@@ -19,13 +19,16 @@ spec:
         namespace: flux-system
       interval: 5m
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
     remediation:
       retries: 3
   values:
+    image:
+      registry: docker.io
+      repository: bitnami/postgresql
+      tag: 14.5.0-debian-11-r21
     auth:
       database: authelia
       username: authelia
