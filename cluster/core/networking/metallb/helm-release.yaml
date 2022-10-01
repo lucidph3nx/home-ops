@@ -28,10 +28,10 @@ spec:
       loglevel: debug
       image:
         respository: quay.io/metallb/controller
-        tag: 0.13.5
+        tag: v0.13.5
     speaker:
       enabled: true
       loglevel: debug
       image:
         respository: quay.io/metallb/controller
-        tag: 0.13.5
+        tag: v0.13.5
