@@ -22,7 +22,7 @@ spec:
       retries: 5
   values:
     crds:
-      enabled: true
+      enabled: false
     controller:
       enabled: true
       loglevel: debug
