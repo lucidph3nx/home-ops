@@ -22,8 +22,16 @@ spec:
       retries: 5
   values:
     crds:
-      enabled: false
+      enabled: true
     controller:
+      enabled: true
       loglevel: debug
+      image:
+        respository: quay.io/metallb/controller
+        tag: 0.13.5
     speaker:
+      enabled: true
       loglevel: debug
+      image:
+        respository: quay.io/metallb/controller
+        tag: 0.13.5
