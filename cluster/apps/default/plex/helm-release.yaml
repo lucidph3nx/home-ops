@@ -27,13 +27,13 @@ spec:
       tag: 1.29.0.6244-819d3678c
     env:
       TZ: "${TIMEZONE}"
-      PLEX_UID: 1001
-      PLEX_GID: 1001
+      PLEX_UID: 0
+      PLEX_GID: 0
       # PLEX_CLAIM: "claim-VkUiJdL5jwS-7zzDyyhH"
     podSecurityContext:
-      runAsUser: 1001
-      runAsGroup: 1001
-      fsGroup: 1001
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
       # supplementalGroups:
       #   - 44
       #   - 109
