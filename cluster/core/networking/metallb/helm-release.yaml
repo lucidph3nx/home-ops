@@ -22,7 +22,7 @@ spec:
       retries: 5
   values:
     crds:
-      enabled: false
+      enabled: false # I install separately in crd folder
     controller:
       enabled: true
       loglevel: debug
