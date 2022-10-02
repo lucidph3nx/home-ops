@@ -21,20 +21,22 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/plex
-      tag: v1.28.0.5999-97678ded3
-      #plexinc/pms-docker
-      # tag: 1.28.0.5999-97678ded3
+      # repository: ghcr.io/k8s-at-home/plex
+      # tag: v1.28.0.5999-97678ded3
+      repository: plexinc/pms-docker
+      tag: 1.29.0.6244-819d3678c
     env:
       TZ: "${TIMEZONE}"
+      PLEX_UID: 1001
+      PLEX_GID: 1001
       # PLEX_CLAIM: "claim-VkUiJdL5jwS-7zzDyyhH"
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      supplementalGroups:
-        - 44
-        - 109
+      runAsUser: 1001
+      runAsGroup: 1001
+      fsGroup: 1001
+      # supplementalGroups:
+      #   - 44
+      #   - 109
     service:
       main:
         type: LoadBalancer
