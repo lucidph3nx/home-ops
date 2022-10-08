@@ -23,7 +23,7 @@ spec:
       type: Recreate
     image:
       repository: grafana/grafana
-      tag: 9.1.6
+      tag: 9.1.7
     ingress:
       enabled: true
       ingressClassName: "traefik"
