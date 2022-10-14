@@ -76,7 +76,7 @@
   "packageRules": [
     // setup datasources
     {
-      "matchDatasources": ["helm"],
+      "matchDatasources": ["helm", "kubernetes-api"],
       "separateMinorPatch": true,
       "ignoreDeprecated": true
     },
@@ -105,17 +105,17 @@
       "labels": ["renovate/image", "dep/patch"]
     },
     {
-      "matchDatasources": ["helm"],
+      "matchDatasources": ["helm", "kubernetes-api"],
       "matchUpdateTypes": ["major"],
       "labels": ["renovate/helm", "dep/major"]
     },
     {
-      "matchDatasources": ["helm"],
+      "matchDatasources": ["helm", "kubernetes-api"],
       "matchUpdateTypes": ["minor"],
       "labels": ["renovate/helm", "dep/minor"]
     },
     {
-      "matchDatasources": ["helm"],
+      "matchDatasources": ["helm", "kubernetes-api"],
       "matchUpdateTypes": ["patch"],
       "labels": ["renovate/helm", "dep/patch"]
     }
