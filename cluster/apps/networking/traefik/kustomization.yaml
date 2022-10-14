@@ -7,3 +7,5 @@ resources:
   - rbac.yaml
   - tls-store
   - addons
+configurations:
+  - kustomizeconfig.yaml
