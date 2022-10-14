@@ -25,6 +25,10 @@ spec:
     remediation:
       retries: 5
   values:
+    initContainers:
+        - name: init-chown
+          image: busybox:1.28
+          command: [ 'sh', '-c', 'chown -R /*']
     image:
       repository: lscr.io/linuxserver/sabnzbd
       tag: "3.6.1"
