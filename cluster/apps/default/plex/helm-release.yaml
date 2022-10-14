@@ -34,9 +34,6 @@ spec:
       runAsUser: 0
       runAsGroup: 0
       fsGroup: 0
-      # supplementalGroups:
-      #   - 44
-      #   - 109
     service:
       main:
         type: LoadBalancer

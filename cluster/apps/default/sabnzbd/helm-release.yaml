@@ -25,22 +25,11 @@ spec:
     remediation:
       retries: 5
   values:
-    init-permission: 
-      image: busybox:1.35.0
-      imagePullPolicy: IfNotPresent
-      command: 
-        - sh    - -c
-      args: 
-        - chown -R 1000:1000 /
-      securityContext: 
-        runAsUser: 0
     image:
       repository: lscr.io/linuxserver/sabnzbd
       tag: "3.6.1"
     env:
       TZ: "${TIMEZONE}"
-      PUID: 1000
-      PGID: 1000
       SABNZBD__PORT: 80
       SABNZBD__HOST_WHITELIST_ENTRIES: >-
         sabnzbd,
@@ -82,6 +71,6 @@ spec:
         path: /volume1/downloads
         mountPath: /downloads
     podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
