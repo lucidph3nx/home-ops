@@ -30,6 +30,8 @@ spec:
       tag: "3.6.1"
     env:
       TZ: "${TIMEZONE}"
+      PUID: 1000
+      PGID: 1000
       SABNZBD__PORT: 80
       SABNZBD__HOST_WHITELIST_ENTRIES: >-
         sabnzbd,
