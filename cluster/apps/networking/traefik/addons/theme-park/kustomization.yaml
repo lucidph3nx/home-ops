@@ -4,7 +4,8 @@ kind: Kustomization
 namespace: networking
 resources:
   - header-middleware.yaml
-
+generatorOptions:
+  disableNameSuffixHash: true
 configMapGenerator:
   - name: traefik-middleware
     files:
