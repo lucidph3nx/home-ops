@@ -26,7 +26,7 @@ spec:
       replicas: 3
       strategy: RollingUpdate
     image:
-      repository: gilbn/theme.park
+      repository: ghcr.io/gilbn/theme.park
       tag: "1.13"
     env:
       TP_COMMUNITY_THEME: "true"
@@ -34,7 +34,7 @@ spec:
       main:
         ports:
           http:
-            port: 8080
+            port: 80
     ingress:
       main:
         enabled: true
