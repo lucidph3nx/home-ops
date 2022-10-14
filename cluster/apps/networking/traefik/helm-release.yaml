@@ -38,6 +38,9 @@ spec:
         externalIPs: 
         - ${TRAEFIK_ENDPOINT}
         # loadBalancerIP: "${TRAEFIK_ENDPOINT}"
+    experimental:
+      plugins:
+        enabled: true
     ingressRoute:
       dashboard:
         enabled: true
@@ -62,7 +65,10 @@ spec:
     additionalArguments:
       - "--providers.kubernetesingress.ingressendpoint.ip=${TRAEFIK_ENDPOINT}"
       - "--providers.kubernetescrd.allowexternalnameservices=true"
-      # - "--entrypoints.websecure.http.tls"
+      # Add plugin/dynamic file provider for theme-park
+      - "--experimental.plugins.rewritebody.modulename=github.com/packruler/rewrite-body"
+      - "--experimental.plugins.rewritebody.version=v0.5.1"
+      - "--providers.file.directory=/config"
     ports:
       web:
         redirectTo: websecure

@@ -17,3 +17,4 @@ resources:
   - hajimari-charts.yaml
   - emberstack-charts.yaml
   - kubernetes-dashboard-charts.yaml
+  - bjw-s-charts.yaml
