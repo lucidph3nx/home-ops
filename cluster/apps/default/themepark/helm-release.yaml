@@ -27,7 +27,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: gilbn/theme.park
-      tag: 1.13
+      tag: v1.13
     env:
       TP_COMMUNITY_THEME: "true"
     service:
