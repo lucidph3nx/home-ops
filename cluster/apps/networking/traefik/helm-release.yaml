@@ -69,6 +69,10 @@ spec:
       - "--experimental.plugins.rewritebody.modulename=github.com/packruler/rewrite-body"
       - "--experimental.plugins.rewritebody.version=v0.5.1"
       - "--providers.file.directory=/config"
+    volumes:
+      - name: traefik-middleware
+        type: configMap
+        mountPath: /config
     ports:
       web:
         redirectTo: websecure
