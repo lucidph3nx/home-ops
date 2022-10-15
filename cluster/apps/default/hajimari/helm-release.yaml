@@ -24,11 +24,13 @@ spec:
       TZ: "${TIMEZONE}"
     hajimari:
       defaultEnable: false
+      darkTheme: atomone
       customThemes:
       - name: atomone
         backgroundColor: '#282c34'
         primaryColor: '#61afef'
         accentColor: '#98c379'
+      showAppUrls: false
       namespaceSelector:
         matchNames:
           - default
