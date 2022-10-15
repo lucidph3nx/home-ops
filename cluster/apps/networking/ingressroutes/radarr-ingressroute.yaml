@@ -1,0 +1,21 @@
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: radarr-ingress
+  namespace: networking
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: "Host(`radarr.${SECRET_PUBLIC_DOMAIN}`)"
+      kind: Rule
+      middlewares:
+      - name: chain-authelia-auth
+        namespace: auth
+      services:
+        - name: radarr
+          namespace: default
+          port: 7878
+  tls:
+    secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
