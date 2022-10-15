@@ -24,15 +24,20 @@ spec:
       TZ: "${TIMEZONE}"
     hajimari:
       defaultEnable: false
+      customThemes:
+      - name: atomone
+        backgroundColor: '#282c34'
+        primaryColor: '#61afef'
+        accentColor: '#98c379'
       namespaceSelector:
         matchNames:
           - default
           - pihole
           - networking
       name: "Ben"
-      groups:
-        - name: procrastination
-          links:
+      globalBookmarks:
+        - group: procrastination
+          bookmarks:
             - name: reddit
               url: "http://reddit.com"
             - name: stuff
@@ -40,8 +45,8 @@ spec:
             - name: nzherald
               url: "https://www.nzherald.co.nz/"
 
-        - name: media
-          links:
+        - group: media
+          bookmarks:
             - name: youtube
               url: "https://youtube.com"
             - name: yt music
