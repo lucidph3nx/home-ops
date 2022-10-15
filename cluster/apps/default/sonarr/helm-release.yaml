@@ -30,7 +30,7 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       PUID: 911
-      PGID: 911
+      PGID: 1000
     service:
       main:
         ports:
@@ -72,5 +72,5 @@ spec:
     # to avoid permissions issues on volume
     podSecurityContext:
       runAsUser: 911
-      runAsGroup: 911
-      fsGroup: 911
+      runAsGroup: 1000
+      fsGroup: 1000
