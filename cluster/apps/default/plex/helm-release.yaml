@@ -8,52 +8,50 @@ spec:
   dependsOn:
   - name: longhorn
     namespace: longhorn-system
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: plex
-      version: 6.4.3
+      chart: app-template
+      version: 0.2.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
     image:
-      # repository: ghcr.io/k8s-at-home/plex
-      # tag: v1.28.0.5999-97678ded3
       repository: plexinc/pms-docker
       tag: 1.29.0.6244-819d3678c
     env:
       TZ: "${TIMEZONE}"
       PLEX_UID: 0
       PLEX_GID: 0
-      # PLEX_CLAIM: "claim-VkUiJdL5jwS-7zzDyyhH"
-    podSecurityContext:
-      runAsUser: 0
-      runAsGroup: 0
-      fsGroup: 0
     service:
       main:
         type: LoadBalancer
         externalIPs: 
         - ${PLEX_ENDPOINT}
-        port:
-          port: 32400
+        ports:
+          http:
+            port: 32400
     ingress:
       main:
         enabled: true
-        ingressClassName: traefik
+        ingressClassName: "traefik"
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "plex"
+          traefik.ingress.kubernetes.io/router.middlewares: plex-theme@file
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          # traefik.ingress.kubernetes.io/router.middlewares: "redirect-web-to-443@internal"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
-          - host: plex.${SECRET_PUBLIC_DOMAIN}
+          - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -86,3 +84,8 @@ spec:
         server: "${NAS0_IP}"
         path: /volume1/Music
         mountPath: /music
+    # to avoid permissions issues on volume
+    podSecurityContext:
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
