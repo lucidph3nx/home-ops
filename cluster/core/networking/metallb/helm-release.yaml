@@ -26,12 +26,12 @@ spec:
     controller:
       enabled: true
       loglevel: debug
-      image:
-        respository: quay.io/metallb/controller
-        tag: v0.13.5
+      # image:
+      #   respository: quay.io/metallb/controller
+      #   tag: v0.13.5
     speaker:
       enabled: true
       loglevel: debug
-      image:
-        respository: quay.io/metallb/controller
-        tag: v0.13.5
+      # image:
+      #   respository: quay.io/metallb/controller
+      #   tag: v0.13.5
