@@ -45,8 +45,6 @@ spec:
         enabled: true
     rbac:
       enabled: false
-      serviceAccount:
-        name: traefik-ingress-controller
     ingressRoute:
       dashboard:
         enabled: true
