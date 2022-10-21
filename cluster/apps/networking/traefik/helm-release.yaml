@@ -43,6 +43,8 @@ spec:
     experimental:
       plugins:
         enabled: true
+    rbac:
+      enabled: false
     ingressRoute:
       dashboard:
         enabled: true
