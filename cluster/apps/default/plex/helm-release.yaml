@@ -37,6 +37,8 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.universe.tf/loadBalancerIPs: ${PLEX_ENDPOINT}
+          traefik.ingress.kubernetes.io/service.serversscheme: https
+        externalTrafficPolicy: Local
         ports:
           http:
             port: 32400
