@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: networking
 resources:
   - helm-release.yaml
-  # - rbac.yaml
+  - rbac.yaml
   - tls-store
   - addons
 configurations:
