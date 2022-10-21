@@ -33,11 +33,11 @@ spec:
     service:
       enabled: true
       type: LoadBalancer
-      # annotations:
-      #   metallb.universe.tf/loadBalancerIPs: ${TRAEFIK_ENDPOINT}
-      spec:
-        externalIPs: 
-        - ${TRAEFIK_ENDPOINT}
+      annotations:
+        metallb.universe.tf/loadBalancerIPs: ${TRAEFIK_ENDPOINT}
+      # spec:
+      #   externalIPs: 
+      #   - ${TRAEFIK_ENDPOINT}
         # loadBalancerIP: "${TRAEFIK_ENDPOINT}"
     experimental:
       plugins:
