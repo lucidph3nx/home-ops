@@ -29,13 +29,14 @@ spec:
       tag: 1.29.0.6244-819d3678c
     env:
       TZ: "${TIMEZONE}"
+      ADVERTISE_IP: "http://${PLEX_ENDPOINT}:32400,https://{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}:443"
       PLEX_UID: 0
       PLEX_GID: 0
     service:
       main:
         type: LoadBalancer
-        externalIPs: 
-        - ${PLEX_ENDPOINT}
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: ${PLEX_ENDPOINT}
         ports:
           http:
             port: 32400
