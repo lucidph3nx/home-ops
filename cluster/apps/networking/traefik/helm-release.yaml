@@ -35,7 +35,8 @@ spec:
       type: LoadBalancer
       annotations:
         metallb.universe.tf/loadBalancerIPs: ${TRAEFIK_ENDPOINT}
-      # spec:
+      spec:
+        externalTrafficPolicy: Cluster
       #   externalIPs: 
       #   - ${TRAEFIK_ENDPOINT}
         # loadBalancerIP: "${TRAEFIK_ENDPOINT}"
