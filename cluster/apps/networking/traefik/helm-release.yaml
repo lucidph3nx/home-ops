@@ -21,7 +21,6 @@ spec:
     - name: metallb
       namespace: networking
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -29,14 +28,16 @@ spec:
       retries: 3
   values:
     deployment:
-      kind: Deployment
+      enabled: true
       replicas: 3
     service:
       enabled: true
       type: LoadBalancer
-      spec:
-        externalIPs: 
-        - ${TRAEFIK_ENDPOINT}
+      annotations:
+        metallb.universe.tf/loadBalancerIPs: ${TRAEFIK_ENDPOINT}
+      # spec:
+      #   externalIPs: 
+      #   - ${TRAEFIK_ENDPOINT}
         # loadBalancerIP: "${TRAEFIK_ENDPOINT}"
     experimental:
       plugins:
