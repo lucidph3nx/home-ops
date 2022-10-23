@@ -36,11 +36,10 @@ spec:
       main:
         ports:
           http:
-            port: 9001
-      api:
-        ports:
-          http:
-            port: 9000
+            port: &port-console 9001
+          api:
+            enabled: true
+            port: &port-api 9000
     ingress:
       main:
         enabled: true
@@ -50,22 +49,18 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
-        - host: "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
-      api:
-        enabled: true
-        ingressClassName: "traefik"
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-          external-dns/is-public: "true"
-        hosts:
-        - host: "s3.${SECRET_PUBLIC_DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
+          - host: &host-console "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *port-console
+          - host: &host-api "s3.${SECRET_PUBLIC_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *port-api
     persistence:
       config:
         enabled: true
