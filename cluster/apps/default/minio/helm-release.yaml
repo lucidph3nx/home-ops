@@ -34,15 +34,13 @@ spec:
     args: ["server", "/data", "--console-address", ":9001"]
     service:
       main:
-        enabled: true
         ports:
           http:
-            port: &port-console 9001
+            port: 9001
       api:
-        enabled: true
         ports:
           http:
-            port: &port-api 9000
+            port: 9000
     ingress:
       main:
         enabled: true
@@ -52,12 +50,10 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
-        - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
+        - host: "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
-              service:
-                port: *port-console
       api:
         enabled: true
         ingressClassName: "traefik"
@@ -66,12 +62,10 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
-        - host: &host "s3.${SECRET_PUBLIC_DOMAIN}"
+        - host: "s3.${SECRET_PUBLIC_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
-              service:
-                port: *port-api
     persistence:
       config:
         enabled: true
