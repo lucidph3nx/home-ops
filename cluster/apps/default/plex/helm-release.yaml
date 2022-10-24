@@ -29,7 +29,7 @@ spec:
       tag: 1.29.1.6316-f4cdfea9c
     env:
       TZ: "${TIMEZONE}"
-      # ADVERTISE_IP: "http://${SECRET_PUBLIC_IP}:32400,http://${PLEX_ENDPOINT}:32400,https://{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}:443"
+      ADVERTISE_IP: "https://${SECRET_PUBLIC_IP}:32400,https://${PLEX_ENDPOINT}:32400,https://{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}:443"
       PLEX_UID: 0
       PLEX_GID: 0
     service:
