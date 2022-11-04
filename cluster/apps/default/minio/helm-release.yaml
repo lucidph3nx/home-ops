@@ -20,8 +20,8 @@ spec:
     remediation:
       retries: 5
   dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+  - name: longhorn
+    namespace: longhorn-system
   values:
     image:
       repository: quay.io/minio/minio
