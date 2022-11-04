@@ -11,21 +11,26 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: lidarr
-      version: 14.2.2
+      chart: app-template
+      version: 1.0.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 15m
   install:
-    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
     image:
-      repository: ghcr.io/k8s-at-home/lidarr
-      tag: v1.0.2.2592
+      repository: lscr.io/linuxserver/lidarr
+      tag: 1.0.2.2592-ls101
     env:
       TZ: "${TIMEZONE}"
+      PUID: 0
+      PGID: 0
     ingress:
         main:
           enabled: true
@@ -38,7 +43,7 @@ spec:
             external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
             external-dns/is-public: "true"
           hosts:
-            - host: lidarr.${SECRET_PUBLIC_DOMAIN}
+            - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
               paths:
                 - path: /
                   pathType: Prefix
@@ -63,6 +68,6 @@ spec:
         mountPath: /downloads
     # to avoid permissions issues on volume
     podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
