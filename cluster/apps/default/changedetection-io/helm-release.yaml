@@ -30,7 +30,7 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       USE_X_SETTINGS: 1
-      PLAYWRIGHT_DRIVER_URL: ws://changedetection-browser.default.svc.cluster.local:3000/?stealth=1&--disable-web-security=true
+      PLAYWRIGHT_DRIVER_URL: ws://changedetection-browser.default.svc.cluster.local:3000/?stealth=1&--disable-web-security=true&--user-data-dir=~/browserless-cache-123
     service:
       main:
         ports:
