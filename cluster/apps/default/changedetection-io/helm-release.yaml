@@ -31,7 +31,7 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       USE_X_SETTINGS: 1
-      PLAYWRIGHT_DRIVER_URL: ws://change-detection-browser.default.svc.cluster.local:3000/?stealth=1&--disable-web-security=true
+      PLAYWRIGHT_DRIVER_URL: ws://changedetection-browser.default.svc.cluster.local:3000/?stealth=1&--disable-web-security=true
     service:
       main:
         ports:
@@ -65,7 +65,7 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: change-detection-browser
+  name: changedetection-browser
   namespace: default
 spec:
   interval: 15m
