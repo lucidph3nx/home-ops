@@ -24,7 +24,6 @@ spec:
     remediation:
       retries: 5
   values:
-    hostname: "uptime.${SECRET_PUBLIC_DOMAIN}"
     image:
       repository: louislam/uptime-kuma
       tag: "latest"
