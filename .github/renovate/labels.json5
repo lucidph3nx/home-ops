@@ -1,6 +1,5 @@
 {
     "packageRules": [
-      "dependencyDashboard": true
     // setup datasources
     {
       "matchDatasources": ["helm"],
