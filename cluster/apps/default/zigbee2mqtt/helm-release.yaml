@@ -35,7 +35,7 @@ spec:
       # ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: debug
     configMaps:
       config:
-        enabled: false # only needed on first run
+        enabled: true
         data:
           configuration.yaml: |
             advanced:
@@ -80,6 +80,10 @@ spec:
               - path: /
                 pathType: Prefix
     persistence:
+      config:
+        enabled: true
+        type: configMaps
+        mountPath: /data/configuration.yaml
       data:
         enabled: true
         storageClass: longhorn
