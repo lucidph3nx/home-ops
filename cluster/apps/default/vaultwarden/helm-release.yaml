@@ -30,6 +30,7 @@ spec:
     env:
       # TZ: "${TIMEZONE}"
       WEBSOCKET_ENABLED: true
+      DATA_FOLDER: "config"
     service:
       main:
         ports:
@@ -45,3 +46,4 @@ spec:
         existingClaim: pvc-vaultwarden
         mountPath: /config
         retain: true
+
