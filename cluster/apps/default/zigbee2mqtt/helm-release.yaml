@@ -11,15 +11,18 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: zigbee2mqtt
-      version: 9.4.2
+      chart: app-template
+      version: 1.2.0
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 15m
   install:
-    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
@@ -30,16 +33,31 @@ spec:
       ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: deconz
       # ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
       # ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: debug
-    config:
-      homeassistant: true
-      permit_join: false
-      serial:
-        port: null #/dev/ttyACM0
-      mqtt:
-        base_topic: zigbee2mqtt
-        server: mqtt://mosquitto.default.svc.cluster.local:1883
-      advanced:
-        log_level: info
+    configMaps:
+      config:
+        enabled: true
+        data:
+          configuration.yaml: |
+            advanced:
+              homeassistant_discovery_topic: homeassistant
+              homeassistant_status_topic: homeassistant/status
+              last_seen: ISO_8601
+              log_level: info
+              log_output:
+              - console
+              network_key: GENERATE
+            experimental:
+              new_api: true
+            frontend:
+              port: 8080
+            homeassistant: true
+            mqtt:
+              base_topic: zigbee2mqtt
+              include_device_information: true
+              server: mqtt://mosquitto.default.svc.cluster.local:1883
+            permit_join: false
+            serial:
+              port: null
     securityContext:
       privileged: true
     persistence:
@@ -79,3 +97,4 @@ spec:
 
  # this also includes when the kernel updates, you need to install the newer modules
  # probably should look for a long term fix...
+ 
