@@ -81,6 +81,7 @@ spec:
                 pathType: Prefix
     persistence:
       config:
+        name: zigbee2mqtt-configurations
         enabled: true
         type: configMap
         mountPath: /data/configuration.yaml
