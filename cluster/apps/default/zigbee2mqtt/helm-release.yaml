@@ -82,7 +82,7 @@ spec:
     persistence:
       config:
         enabled: true
-        type: configMaps
+        type: configMap
         mountPath: /data/configuration.yaml
       data:
         enabled: true
