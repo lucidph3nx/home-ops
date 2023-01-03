@@ -9,16 +9,21 @@ spec:
   dependsOn:
   - name: longhorn
     namespace: longhorn-system
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: jellyfin
-      version: 9.5.3
+      chart: app-template
+      version: 1.2.0
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
     image:
       repository: jellyfin/jellyfin
@@ -26,6 +31,11 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       JELLYFIN_CACHE_DIR: /config/cache
+    service:
+      main:
+        ports:
+          http:
+            port: 8096
     ingress:
         main:
           enabled: true
@@ -37,7 +47,7 @@ spec:
             external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
             external-dns/is-public: "true"
           hosts:
-            - host: jellyfin.${SECRET_PUBLIC_DOMAIN}
+            - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
               paths:
                 - path: /
                   pathType: Prefix
