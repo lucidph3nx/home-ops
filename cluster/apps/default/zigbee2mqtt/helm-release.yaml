@@ -35,7 +35,7 @@ spec:
       # ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: debug
     configMaps:
       config:
-        enabled: true
+        enabled: false # only needed on first run
         data:
           configuration.yaml: |
             advanced:
@@ -67,7 +67,7 @@ spec:
               port: 8080
     ingress:
       main:
-        enabled: true
+        enbled: true
         ingressClassName: "traefik"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
