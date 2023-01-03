@@ -26,6 +26,24 @@ spec:
       tag: v0.4.0.1802
     env:
       TZ: "${TIMEZONE}"
+    service:
+      main:
+        ports:
+            http:
+              port: 9696
+    ingress:
+      enabled: true
+      ingressClassName: "traefik"
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+        external-dns/is-public: "true"
+      hosts:
+        - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
     persistence:
       config:
         enabled: true
