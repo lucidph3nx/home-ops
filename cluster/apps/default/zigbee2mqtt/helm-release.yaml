@@ -29,6 +29,7 @@ spec:
       tag: 1.29.0
     env:
       TZ: "${TIMEZONE}"
+      ZIGBEE2MQTT_DATA: /data
     securityContext:
       privileged: true
     service:
