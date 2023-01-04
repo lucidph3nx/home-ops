@@ -34,7 +34,7 @@ spec:
       # ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
       # ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: debug
     configMaps:
-      config:
+      zigbee2mqtt-settings:
         enabled: true
         data:
           configuration.yaml: |
@@ -81,10 +81,13 @@ spec:
                 pathType: Prefix
     persistence:
       config:
-        name: zigbee2mqtt-configurations
         enabled: true
-        type: configMap
-        mountPath: /data/configuration.yaml
+        type: "custom"
+        mountPath: "/app/configuration.yaml"
+        subPath: "configuration.yaml"
+        volumeSpec:
+          configMap:
+            name: zigbee2mqtt-settings
       data:
         enabled: true
         storageClass: longhorn
