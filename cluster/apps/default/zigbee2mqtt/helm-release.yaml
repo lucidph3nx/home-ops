@@ -55,14 +55,14 @@ spec:
               - path: /
                 pathType: Prefix
     persistence:
-      config:
-        enabled: true
-        type: "custom"
-        mountPath: "/app/configuration.yaml"
-        subPath: "configuration.yaml"
-        volumeSpec:
-          configMap:
-            name: zigbee2mqtt-settings
+      # config:
+      #   enabled: true
+      #   type: "custom"
+      #   mountPath: "/app/configuration.yaml"
+      #   subPath: "configuration.yaml"
+      #   volumeSpec:
+      #     configMap:
+      #       name: zigbee2mqtt-settings
       data:
         enabled: true
         storageClass: longhorn
