@@ -25,10 +25,12 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/k8s-at-home/prowlarr
-      tag: v0.4.0.1802
+      repository: lscr.io/linuxserver/prowlarr
+      tag: "1.0.1"
     env:
       TZ: "${TIMEZONE}"
+      PUID: 0
+      PGID: 0
     service:
       main:
         ports:
@@ -57,6 +59,6 @@ spec:
         retain: true
     # to avoid permissions issues on volume
     podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
