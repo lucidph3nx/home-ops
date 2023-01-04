@@ -29,20 +29,6 @@ spec:
       tag: 1.29.0
     env:
       TZ: "${TIMEZONE}"
-      ZIGBEE2MQTT_CONFIG_ADVANCED_HOMEASSISTANT_DISCOVERY_TOPIC: homeassistant
-      ZIGBEE2MQTT_CONFIG_ADVANCED_HOMEASSISTANT_STATUS_TOPIC: homeassistant/status
-      ZIGBEE2MQTT_CONFIG_ADVANCED_LAST_SEEN: ISO_8601
-      ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: warn
-      ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_OUTPUT: '["console"]'
-      ZIGBEE2MQTT_CONFIG_ADVANCED_NETWORK_KEY: "[31, 251, 167, 123, 72, 80, 170, 250, 31, 110, 188, 49, 227, 208, 42, 16]"
-      ZIGBEE2MQTT_CONFIG_EXPERIMENTAL_NEW_API: "true"
-      ZIGBEE2MQTT_CONFIG_FRONTEND_PORT: 8080
-      ZIGBEE2MQTT_CONFIG_HOMEASSISTANT: "true"
-      ZIGBEE2MQTT_CONFIG_MQTT_INCLUDE_DEVICE_INFORMATION: "true"
-      ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
-      ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
-      ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
-      ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: deconz
     securityContext:
       privileged: true
     service:
@@ -65,6 +51,14 @@ spec:
               - path: /
                 pathType: Prefix
     persistence:
+      config:
+        enabled: true
+        type: "custom"
+        mountPath: "/app/configuration.yaml"
+        subPath: "configuration.yaml"
+        volumeSpec:
+          configMap:
+            name: zigbee2mqtt-settings
       data:
         enabled: true
         storageClass: longhorn
