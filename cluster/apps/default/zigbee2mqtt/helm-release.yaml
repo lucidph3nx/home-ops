@@ -87,7 +87,7 @@ spec:
             - key: app
               operator: In
               values:
-              - zigbee-control
+              - zigbee-controller
     configMaps:
       settings:
         enabled: true

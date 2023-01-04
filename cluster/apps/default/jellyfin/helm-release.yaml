@@ -37,20 +37,20 @@ spec:
           http:
             port: 8096
     ingress:
-        main:
-          enabled: true
-          ingressClassName: "traefik"
-          annotations:
-            hajimari.io/enable: "true"
-            hajimari.io/icon: "play-network"
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-            external-dns/is-public: "true"
-          hosts:
-            - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
-              paths:
-                - path: /
-                  pathType: Prefix
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "play-network"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+          external-dns/is-public: "true"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
     persistence:
       config:
         enabled: true
