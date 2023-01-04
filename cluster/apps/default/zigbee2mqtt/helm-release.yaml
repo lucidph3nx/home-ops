@@ -54,7 +54,7 @@ spec:
       config:
         enabled: true
         type: "custom"
-        mountPath: "/app/configuration.yaml"
+        mountPath: "/app/data/configuration.yaml"
         subPath: "configuration.yaml"
         volumeSpec:
           configMap:
