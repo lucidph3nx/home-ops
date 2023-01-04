@@ -29,10 +29,20 @@ spec:
       tag: 1.29.0
     env:
       TZ: "${TIMEZONE}"
+      ZIGBEE2MQTT_CONFIG_ADVANCED_HOMEASSISTANT_DISCOVERY_TOPIC: homeassistant
+      ZIGBEE2MQTT_CONFIG_ADVANCED_HOMEASSISTANT_STATUS_TOPIC: homeassistant/status
+      ZIGBEE2MQTT_CONFIG_ADVANCED_LAST_SEEN: ISO_8601
+      ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: warn
+      ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_OUTPUT: '["console"]'
+      ZIGBEE2MQTT_CONFIG_ADVANCED_NETWORK_KEY: GENERATE
+      ZIGBEE2MQTT_CONFIG_EXPERIMENTAL_NEW_API: "true"
+      ZIGBEE2MQTT_CONFIG_FRONTEND_PORT: 8080
+      ZIGBEE2MQTT_CONFIG_HOMEASSISTANT: "true"
+      ZIGBEE2MQTT_CONFIG_MQTT_INCLUDE_DEVICE_INFORMATION: "true"
+      ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
+      ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
       ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
       ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: deconz
-      # ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
-      # ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: debug
     securityContext:
       privileged: true
     service:
@@ -55,14 +65,6 @@ spec:
               - path: /
                 pathType: Prefix
     persistence:
-      # config:
-      #   enabled: true
-      #   type: "custom"
-      #   mountPath: "/app/configuration.yaml"
-      #   subPath: "configuration.yaml"
-      #   volumeSpec:
-      #     configMap:
-      #       name: zigbee2mqtt-settings
       data:
         enabled: true
         storageClass: longhorn
@@ -88,31 +90,6 @@ spec:
               operator: In
               values:
               - zigbee-controller
-    # configMaps:
-    #   settings:
-    #     enabled: true
-    #     data:
-    #       configuration.yaml: |
-    #         advanced:
-    #           homeassistant_discovery_topic: homeassistant
-    #           homeassistant_status_topic: homeassistant/status
-    #           last_seen: ISO_8601
-    #           log_level: info
-    #           log_output:
-    #           - console
-    #           network_key: GENERATE
-    #         experimental:
-    #           new_api: true
-    #         frontend:
-    #           port: 8080
-    #         homeassistant: true
-    #         mqtt:
-    #           base_topic: zigbee2mqtt
-    #           include_device_information: true
-    #           server: mqtt://mosquitto.default.svc.cluster.local:1883
-    #         permit_join: false
-    #         serial:
-    #           port: null
 
  # !!! note to future ben, or anyone else !!!
  # trying to get the ConBee to appear as a readable ttyACM0 interface is a nightmare
