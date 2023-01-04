@@ -112,7 +112,7 @@ spec:
               server: mqtt://mosquitto.default.svc.cluster.local:1883
             permit_join: false
             serial:
-              port: nuller
+              port: null
 
  # !!! note to future ben, or anyone else !!!
  # trying to get the ConBee to appear as a readable ttyACM0 interface is a nightmare
