@@ -33,31 +33,6 @@ spec:
       ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: deconz
       # ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
       # ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: debug
-    configMaps:
-      settings:
-        enabled: true
-        data:
-          configuration.yaml: |
-            advanced:
-              homeassistant_discovery_topic: homeassistant
-              homeassistant_status_topic: homeassistant/status
-              last_seen: ISO_8601
-              log_level: info
-              log_output:
-              - console
-              network_key: GENERATE
-            experimental:
-              new_api: true
-            frontend:
-              port: 8080
-            homeassistant: true
-            mqtt:
-              base_topic: zigbee2mqtt
-              include_device_information: true
-              server: mqtt://mosquitto.default.svc.cluster.local:1883
-            permit_join: false
-            serial:
-              port: null
     securityContext:
       privileged: true
     service:
@@ -112,7 +87,32 @@ spec:
             - key: app
               operator: In
               values:
-              - zigbee-controller
+              - zigbee-controll
+    configMaps:
+      settings:
+        enabled: true
+        data:
+          configuration.yaml: |
+            advanced:
+              homeassistant_discovery_topic: homeassistant
+              homeassistant_status_topic: homeassistant/status
+              last_seen: ISO_8601
+              log_level: info
+              log_output:
+              - console
+              network_key: GENERATE
+            experimental:
+              new_api: true
+            frontend:
+              port: 8080
+            homeassistant: true
+            mqtt:
+              base_topic: zigbee2mqtt
+              include_device_information: true
+              server: mqtt://mosquitto.default.svc.cluster.local:1883
+            permit_join: false
+            serial:
+              port: nuller
 
  # !!! note to future ben, or anyone else !!!
  # trying to get the ConBee to appear as a readable ttyACM0 interface is a nightmare
