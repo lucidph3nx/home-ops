@@ -34,7 +34,7 @@ spec:
       # ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
       # ZIGBEE2MQTT_CONFIG_ADVANCED_LOG_LEVEL: debug
     configMaps:
-      zigbee2mqtt-settings:
+      settings:
         enabled: true
         data:
           configuration.yaml: |
