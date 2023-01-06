@@ -29,6 +29,11 @@ spec:
       tag: 2022.12.8
     env:
       TZ: "${TIMEZONE}"
+      POSTGRESQL_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: hass-postgresql-secrets
+            key: password
     ingress:
         main:
           enabled: true
