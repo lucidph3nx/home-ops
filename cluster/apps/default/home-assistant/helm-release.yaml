@@ -65,18 +65,20 @@ spec:
       codeserver:
         enabled: true
         image:
-          repository: lscr.io/linuxserver/code-server
-          tag: "4.9.1"
+          repository: ghcr.io/coder/code-server
+          tag: 4.9.1
         env:
           TZ: "${TIMEZONE}"
-          DEFAULT_WORKSPACE: "/config"
-        # args:
-        #   - --auth
-        #   - "none"
-        #   - --user-data-dir
-        #   - "/config/.vscode"
-        #   - --extensions-dir
-        #   - "/config/.vscode"
+        args:
+          - --auth
+          - "none"
+          - --user-data-dir
+          - "/config/.vscode"
+          - --extensions-dir
+          - "/config/.vscode"
+          - --port
+          - "80"
+          - "/config"
         volumeMounts:
           - name: config
             mountPath: /config
