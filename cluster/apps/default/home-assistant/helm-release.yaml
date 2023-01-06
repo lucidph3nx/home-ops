@@ -77,7 +77,7 @@ spec:
           - --extensions-dir
           - "/config/.vscode"
           - --port
-          - "80"
+          - "12321"
           - "/config"
         volumeMounts:
           - name: config
