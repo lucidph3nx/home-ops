@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: openldap-stack-ha
-      version: 3.0.2
+      version: 4.0.0
       sourceRef:
         kind: HelmRepository
         name: helm-openldap-charts
