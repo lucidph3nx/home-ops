@@ -34,21 +34,26 @@ spec:
           secretKeyRef:
             name: hass-postgresql-secrets
             key: password
+    service:
+      main:
+        ports:
+          http:
+            port: 8123
     ingress:
-        main:
-          enabled: true
-          ingressClassName: "traefik"
-          annotations:
-            hajimari.io/enable: "true"
-            hajimari.io/icon: "home-assistant"
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-            external-dns/is-public: "true"
-          hosts:
-            - host: home-assistant.${SECRET_PUBLIC_DOMAIN}
-              paths:
-                - path: /
-                  pathType: Prefix
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "home-assistant"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+          external-dns/is-public: "true"
+        hosts:
+          - host: home-assistant.${SECRET_PUBLIC_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
     persistence:
       config:
         enabled: true
