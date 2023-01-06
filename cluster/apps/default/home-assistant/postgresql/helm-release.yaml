@@ -2,8 +2,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: postgresql
-  namespace: auth
+  name: hass-postgresql
+  namespace: default
 spec:
   dependsOn:
   - name: longhorn
