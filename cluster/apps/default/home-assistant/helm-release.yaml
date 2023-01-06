@@ -33,7 +33,7 @@ spec:
         valueFrom:
           secretKeyRef:
             name: hass-postgresql-secrets
-            key: postgres-password
+            key: password
     ingress:
         main:
           enabled: true
