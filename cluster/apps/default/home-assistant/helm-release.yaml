@@ -69,14 +69,14 @@ spec:
           tag: "4.9.1"
         env:
           TZ: "${TIMEZONE}"
-          workingDir: "/config"
-        args:
-          - --auth
-          - "none"
-          - --user-data-dir
-          - "/config/.vscode"
-          - --extensions-dir
-          - "/config/.vscode"
+          DEFAULT_WORKSPACE: "/config"
+        # args:
+        #   - --auth
+        #   - "none"
+        #   - --user-data-dir
+        #   - "/config/.vscode"
+        #   - --extensions-dir
+        #   - "/config/.vscode"
         volumeMounts:
           - name: config
             mountPath: /config
