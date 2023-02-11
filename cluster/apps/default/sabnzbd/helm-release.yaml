@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: lscr.io/linuxserver/sabnzbd
-      tag: "3.7.1"
+      tag: "3.7.2"
     env:
       TZ: "${TIMEZONE}"
     service:
