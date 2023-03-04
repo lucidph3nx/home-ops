@@ -6,9 +6,6 @@ metadata:
   name: cluster-settings
 data:
   NAS0_IP: "10.87.200.0"
-  HOST0_IP: "10.87.100.0"
-  HOST1_IP: "10.87.100.1"
-  HOST2_IP: "10.87.100.2"
   UNIFI_IP: "10.93.149.58"
   OCTOPRINT_IP: "10.93.149.56"
   TIMEZONE: "Pacific/Auckland"
