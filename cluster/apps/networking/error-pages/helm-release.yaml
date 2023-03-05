@@ -5,21 +5,20 @@ metadata:
   name: error-pages
   namespace: networking
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: error-pages
-      version: 1.2.2
+      chart: app-template
+      version: 1.3.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
   dependsOn:
     - name: traefik
       namespace: networking
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -29,6 +28,8 @@ spec:
     image:
       repository: ghcr.io/tarampampam/error-pages
       tag: 2.21.0
+    controller:
+      replicas: 1
     env:
       TEMPLATE_NAME: ghost
       SHOW_DETAILS: "false"
@@ -38,3 +39,4 @@ spec:
         cpu: 100m
       limits:
         memory: 250Mi
+        cpu: 250m
