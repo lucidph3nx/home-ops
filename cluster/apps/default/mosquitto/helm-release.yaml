@@ -29,7 +29,6 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: "${MOSQUITTO_IP}"
         annotations:
           metallb.universe.tf/loadBalancerIPs: ${MOSQUITTO_IP}
         externalIPs: 
