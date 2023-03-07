@@ -40,6 +40,7 @@ spec:
             enabled: false
           mqtt:
             enabled: true
+            primary: true
             port: 1883
     resources:
       requests:
@@ -47,3 +48,19 @@ spec:
         memory: 50Mi
       limits:
         memory: 150Mi
+    configMaps:
+      config:
+        enabled: true
+        data:
+          mosquitto.conf: |
+            listener 1883
+            allow_anonymous true
+            persistence false
+            connection_messages false
+    persistence:
+      config:
+        enabled: true
+        type: configMap
+        name: mosquitto-config
+        mountPath: /mosquitto/config/mosquitto.conf
+        subPath: mosquitto.conf
