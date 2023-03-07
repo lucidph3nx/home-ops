@@ -31,6 +31,8 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.universe.tf/loadBalancerIPs: ${MOSQUITTO_IP}
+        externalIPs: 
+          - ${MOSQUITTO_IP}
         externalTrafficPolicy: Local
         ports:
           http:
