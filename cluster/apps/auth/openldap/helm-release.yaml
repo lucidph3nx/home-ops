@@ -34,7 +34,7 @@ spec:
     persistence:
       enabled: true
       storageClass: longhorn
-      size: 8Gi
+      size: 1Gi
     phpldapadmin:
       enabled: true
       env:
