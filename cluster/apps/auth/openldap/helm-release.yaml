@@ -45,6 +45,13 @@ spec:
       enabled : false
     customLdifFiles:
       01-root.ldif: |-
+        dn: ${SECRET_LDAP_BASE_DN}
+        dc: tinfoilforest
+        o: Tinfoilforest
+        objectclass: top
+        objectclass: dcObject
+        objectclass: organization
+
         dn: ou=people,${SECRET_LDAP_BASE_DN}
         objectClass: organizationalUnit
         ou: people
