@@ -18,6 +18,8 @@ spec:
   install:
     createNamespace: true
   values:
+    rbac:
+      pspEnabled: false # disable psp, deprecatd in k8s 1.25
     replicas: 1
     deploymentStrategy:
       type: Recreate
