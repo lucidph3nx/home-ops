@@ -28,7 +28,7 @@ spec:
   values:
     global:
       ldapDomain: "${SECRET_PUBLIC_DOMAIN}"
-    existingSecret: auth-openldap-secrets
+      existingSecret: auth-openldap-secrets
     customTLS:
       enabled: false
     persistence:
