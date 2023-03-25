@@ -63,7 +63,7 @@ spec:
         storageClass: longhorn
         existingClaim: pvc-plex
         accessMode: ReadWriteOnce
-        size: 25Gi
+        size: 150Gi
       tmp:
         enabled: true
         type: emptyDir
@@ -86,8 +86,22 @@ spec:
         server: "${NAS0_IP}"
         path: /volume1/Music
         mountPath: /music
+      transcode:
+        enabled: true
+        type: emptyDir
     # to avoid permissions issues on volume
     podSecurityContext:
       runAsUser: 0
       runAsGroup: 0
       fsGroup: 0
+    nodeSelector:
+      intel.feature.node.kubernetes.io/gpu: "true"
+    resources:
+      requests:
+        gpu.intel.com/i915: 1
+        cpu: 100m
+        memory: 2000Mi
+      limits:
+        gpu.intel.com/i915: 1
+        memory: 10000Mi
+
