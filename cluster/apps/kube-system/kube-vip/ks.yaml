@@ -13,8 +13,3 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  postBuild:
-    substitute: {}
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-settings
