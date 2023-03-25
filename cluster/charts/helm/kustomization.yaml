@@ -19,3 +19,4 @@ resources:
   - kubernetes-dashboard-charts.yaml
   - bjw-s-charts.yaml
   - intel.yaml
+  - node-feature-discovery.yaml
