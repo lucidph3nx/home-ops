@@ -10,6 +10,7 @@ resources:
   - metric-system.yaml
   - log-system.yaml
   - system-upgrade.yaml
-  # - kube-system.yaml
   - pihole.yaml
   - mgmt.yaml
+    # i'll be moving these eventually
+    # into individual folders alongside the apps
