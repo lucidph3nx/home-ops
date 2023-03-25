@@ -1,5 +1,16 @@
 ---
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
-resources:
-  - app
+metadata:
+  name: cluster-apps-kube-vip
+  namespace: flux-system
+spec:
+  path: ./cluster/core/kube-system/kube-vip/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
+
