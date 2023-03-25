@@ -5,3 +5,4 @@ resources:
   - kube-vip
   - kube-dns-configmap.yaml
   - intel-device-plugin
+  - node-feature-discovery

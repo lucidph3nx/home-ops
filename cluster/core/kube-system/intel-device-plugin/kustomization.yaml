@@ -1,6 +1,46 @@
 ---
-apiVersion: kustomize.config.k8s.io/v1beta1
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomization_v1beta2.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
-resources:
-  - app
-  - gpu
+metadata:
+  name: cluster-apps-intel-device-plugin-operator
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cluster-apps-node-feature-discovery
+  path: ./cluster/core/kube-system/intel-device-plugin/gpu
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: intel-device-plugin-operator
+      namespace: kube-system
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomization_v1beta2.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cluster-apps-intel-device-plugin-gpu
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cluster-apps-intel-device-plugin-operator
+  path: ./cluster/core/kube-system/intel-device-plugin/gpu
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: intel-device-plugin-gpu
+      namespace: kube-system
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
