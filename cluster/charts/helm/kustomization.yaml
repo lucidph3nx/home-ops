@@ -18,3 +18,4 @@ resources:
   - emberstack-charts.yaml
   - kubernetes-dashboard-charts.yaml
   - bjw-s-charts.yaml
+  - intel.yaml
