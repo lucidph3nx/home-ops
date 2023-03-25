@@ -7,7 +7,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-node-feature-discovery
-  path: ./cluster/core/kube-system/intel-device-plugin/app
+  path: ./cluster/apps/kube-system/intel-device-plugin/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -29,7 +29,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-intel-device-plugin-operator
-  path: ./cluster/core/kube-system/intel-device-plugin/gpu
+  path: ./cluster/apps/kube-system/intel-device-plugin/gpu
   prune: true
   sourceRef:
     kind: GitRepository
