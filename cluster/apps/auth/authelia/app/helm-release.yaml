@@ -18,9 +18,9 @@ spec:
   dependsOn:
     - name: openldap
       namespace: auth
-    - name: redis
+    - name: authelia-redis
       namespace: auth
-    - name: postgresql
+    - name: authelia-postgresql
       namespace: auth
     - name: traefik
       namespace: networking
@@ -83,12 +83,12 @@ spec:
         redis:
           enabled: true
           enabledSecret: true
-          host: redis-master.auth.svc.cluster.local
+          host: authelia-redis-master.auth.svc.cluster.local
           port: 6379
       storage:
         postgres:
           enabled: true
-          host: postgresql.auth.svc.cluster.local
+          host: authelia-postgresql.auth.svc.cluster.local
           port: 5432
           username: authelia
           database: authelia
