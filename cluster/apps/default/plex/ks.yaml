@@ -8,6 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-intel-device-plugin-gpu
+    - name: cluster-apps-metallb-address-pool
   path: ./cluster/apps/default/plex/app
   prune: true
   sourceRef:

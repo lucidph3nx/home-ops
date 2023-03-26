@@ -24,6 +24,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-traefik-tls-store
+    - name: cluster-apps-metallb-address-pool
   path: ./cluster/apps/networking/traefik/app
   prune: true
   sourceRef:
