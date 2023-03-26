@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: postgresql
+  name: authelia-postgresql
   namespace: auth
 spec:
   dependsOn:
@@ -37,6 +37,7 @@ spec:
       persistence:
         enabled: true
         storageClass: longhorn
+        existingClaim: pvc-authelia-postgresql
         size: 1Gi
     readReplicas:
       persistence:

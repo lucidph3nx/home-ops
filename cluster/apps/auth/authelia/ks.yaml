@@ -8,8 +8,8 @@ spec:
   dependsOn:
     - name: cluster-apps-traefik
     - name: cluster-apps-openldap
-    - name: cluster-apps-auth-postgresql
-    - name: cluster-apps-auth-redis
+    - name: cluster-apps-authelia-postgresql
+    - name: cluster-apps-authelia-redis
   path: ./cluster/apps/auth/authelia/app
   prune: true
   sourceRef:
