@@ -24,8 +24,8 @@ spec:
   values:
     grafana:
       enabled: false
-      rbac:
-        pspEnabled: false
+    rbac:
+      pspEnabled: false
     loki:
       persistence:
         enabled: true
