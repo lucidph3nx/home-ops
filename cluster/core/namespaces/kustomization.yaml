@@ -4,12 +4,10 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - flux-system.yaml
-  - networking.yaml
   - auth.yaml
   - longhorn-system.yaml
   - metric-system.yaml
   - log-system.yaml
-  - system-upgrade.yaml
   - pihole.yaml
   - mgmt.yaml
     # i'll be moving these eventually
