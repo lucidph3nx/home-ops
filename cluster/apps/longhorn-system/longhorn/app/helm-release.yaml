@@ -28,6 +28,7 @@ spec:
       replicas: 3
     ingress:
       enabled: true
+      ingressClassName: "traefik"
       host: longhorn.${SECRET_PUBLIC_DOMAIN}
       path: /
       annotations:
