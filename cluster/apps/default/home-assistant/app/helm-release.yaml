@@ -32,7 +32,7 @@ spec:
       POSTGRESQL_PASSWORD:
         valueFrom:
           secretKeyRef:
-            name: hass-postgresql-secrets
+            name: home-assistant-db-secrets
             key: password
     service:
       main:

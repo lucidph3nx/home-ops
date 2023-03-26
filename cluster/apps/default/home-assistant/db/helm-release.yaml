@@ -32,7 +32,7 @@ spec:
     auth:
       database: hass
       username: hass
-      existingSecret: hass-postgresql-secrets
+      existingSecret: home-assistant-db-secrets
     primary:
       persistence:
         enabled: true
