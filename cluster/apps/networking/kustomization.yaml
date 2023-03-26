@@ -5,8 +5,8 @@ kind: Kustomization
 resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
-  - ./external-services
   # Flux-Kustomizations
+  - ./metallb/ks.yaml
   - ./external-dns/ks.yaml
   - ./traefik/ks.yaml
   - ./error-pages/ks.yaml
