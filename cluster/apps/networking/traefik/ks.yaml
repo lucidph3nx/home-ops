@@ -74,3 +74,21 @@ spec:
   retryInterval: 1m
   timeout: 3m
 
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cluster-apps-traefik-dashboard
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cluster-apps-traefik
+  path: ./cluster/apps/networking/traefik/dashboard
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-ops-cluster
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
+
