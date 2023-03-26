@@ -24,6 +24,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-metallb-address-pool
+    - name: cluster-apps-cert-manager
   path: ./cluster/apps/networking/traefik/app
   prune: true
   sourceRef:
