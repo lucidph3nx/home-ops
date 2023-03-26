@@ -1,4 +1,3 @@
-
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -71,3 +70,17 @@ spec:
         server: "${NAS0_IP}"
         path: /volume1/TV-Series
         mountPath: /tv
+      transcode:
+        enabled: true
+        type: emptyDir
+    nodeSelector:
+      intel.feature.node.kubernetes.io/gpu: "true"
+    resources:
+      requests:
+        gpu.intel.com/i915: 1
+        cpu: 100m
+        memory: 1000Mi
+      limits:
+        gpu.intel.com/i915: 1
+        memory: 6000Mi
+
