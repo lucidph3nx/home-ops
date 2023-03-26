@@ -8,11 +8,11 @@ resources:
   # - ./changedetection-io/ks.yaml
   # - ./grafana/ks.yaml
   # - ./hajimari/ks.yaml
-  # - ./home-assistant/ks.yaml
+  - ./home-assistant/ks.yaml
   # - ./jellyfin/ks.yaml
   # - ./lidarr/ks.yaml
   # - ./minio/ks.yaml
-  # - ./mosquitto/ks.yaml
+  - ./mosquitto/ks.yaml
   # - ./overseerr/ks.yaml
   # - ./plex/ks.yaml
   # - ./prowlarr/ks.yaml
@@ -21,5 +21,5 @@ resources:
   # - ./sonarr/ks.yaml
   # - ./uptime-kuma/ks.yaml
   - ./vaultwarden/ks.yaml
-  # - ./zigbee2mqtt/ks.yaml
+  - ./zigbee2mqtt/ks.yaml
   #
