@@ -43,5 +43,4 @@ spec:
         enabled: true
         storageClass: longhorn
         existingClaim: pvc-hass-postgresql-0
-        retain: true
         size: 5Gi
