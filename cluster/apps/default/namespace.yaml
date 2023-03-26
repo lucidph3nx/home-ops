@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: flux-system
+  name: default
   labels:
     kustomize.toolkit.fluxcd.io/prune: disabled
 

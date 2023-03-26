@@ -2,15 +2,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-plex
+  name: cluster-apps-auth-postgresql
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-intel-device-plugin-gpu
-    - name: cluster-apps-metallb-address-pool
-    - name: cluster-apps-traefik
     - name: cluster-apps-longhorn
-  path: ./cluster/apps/default/plex/app
+  path: ./cluster/apps/auth/postgresql/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -18,9 +15,8 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: plex
-      namespace: default
+      name: postgresql
+      namespace: auth
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-
