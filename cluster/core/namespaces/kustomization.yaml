@@ -5,7 +5,6 @@ resources:
   - cert-manager.yaml
   - flux-system.yaml
   - auth.yaml
-  - longhorn-system.yaml
   - metric-system.yaml
   - log-system.yaml
   - pihole.yaml
