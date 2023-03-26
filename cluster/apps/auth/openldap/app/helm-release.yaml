@@ -34,6 +34,7 @@ spec:
     persistence:
       enabled: true
       storageClass: longhorn
+      existingClaim: pvc-openldap
       size: 1Gi
     phpldapadmin:
       enabled: true
