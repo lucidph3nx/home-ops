@@ -19,27 +19,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-traefik-addons
-  namespace: flux-system
-spec:
-  path: ./cluster/apps/networking/traefik/addons
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  interval: 30m
-  retryInterval: 1m
-  timeout: 3m
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: cluster-apps-traefik
   namespace: flux-system
 spec:
   dependsOn:
     - name: cluster-apps-traefik-tls-store
-    - name: cluster-apps-traefik-addons
   path: ./cluster/apps/networking/traefik/app
   prune: true
   sourceRef:
