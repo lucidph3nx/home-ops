@@ -9,7 +9,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: home-ops-cluster
   wait: true
   interval: 30m
   retryInterval: 1m
@@ -29,7 +29,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: home-ops-cluster
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
@@ -52,7 +52,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: home-ops-cluster
   interval: 30m
   retryInterval: 1m
   timeout: 3m
@@ -70,7 +70,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: home-ops-cluster
   interval: 30m
   retryInterval: 1m
   timeout: 3m
