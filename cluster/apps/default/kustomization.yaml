@@ -20,6 +20,6 @@ resources:
   # - ./sabnzbd/ks.yaml
   # - ./sonarr/ks.yaml
   # - ./uptime-kuma/ks.yaml
-  # - ./vaultwarden/ks.yaml
+  - ./vaultwarden/ks.yaml
   # - ./zigbee2mqtt/ks.yaml
   #
