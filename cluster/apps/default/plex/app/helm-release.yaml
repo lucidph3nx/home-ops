@@ -25,7 +25,7 @@ spec:
       retries: 5
   values:
     image:
-      # renovate: datasource=docker depName=docker.io/plexinc/pms-docker
+      # renovate: datasource=docker image=docker.io/plexinc/pms-docker
       repository: docker.io/plexinc/pms-docker
       tag: 1.30.2.6563-3d4dc0cce
     env:
