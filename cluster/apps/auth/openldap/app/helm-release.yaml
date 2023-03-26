@@ -31,6 +31,7 @@ spec:
       existingSecret: auth-openldap-secrets
     customTLS:
       enabled: false
+    replicaCount: 1
     persistence:
       enabled: true
       storageClass: longhorn
