@@ -5,7 +5,7 @@ metadata:
   name: cluster-apps-longhorn
   namespace: flux-system
 spec:
-  path: ./cluster/core/longhorn-system/longhorn/app
+  path: ./cluster/apps/longhorn-system/longhorn/app
   prune: true
   sourceRef:
     kind: GitRepository
