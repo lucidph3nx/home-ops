@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-apps-traefik
     - name: cluster-apps-longhorn
-  path: ./cluster/pihole/pihole/pihole/app
+  path: ./cluster/pihole/pihole/app
   prune: true
   sourceRef:
     kind: GitRepository
