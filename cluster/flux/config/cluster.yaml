@@ -5,7 +5,7 @@ metadata:
   name: home-ops-cluster
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 1m
   url: ssh://git@github.com/lucidph3nx/home-ops
   ref:
     branch: main
