@@ -37,18 +37,26 @@ spec:
         metallb.universe.tf/loadBalancerIPs: ${TRAEFIK_ENDPOINT}
       spec:
         externalTrafficPolicy: Cluster
+    tlsStore:
+      default:
+        defaultCertificate:
+          secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+    tlsOptions:
+      default:
+        minVersion: VersionTLS12
+        maxVersion: VersionTLS13
+        sniStrict: true
     experimental:
       plugins:
         enabled: true
     rbac:
       enabled: true
-    ingressRoute:
-      dashboard:
-        enabled: true
     ingressClass:
       enabled: true
       isDefaultClass: true
-      fallbackApiVersion: v1
+    ingressRoute:
+      dashboard:
+        enabled: false
     providers:
       kubernetesCRD:
         enabled: true
@@ -74,11 +82,6 @@ spec:
         tls:
           enabled: true
           options: "default"
-    tlsOptions:
-      default:
-        minVersion: VersionTLS12
-        maxVersion: VersionTLS13
-        sniStrict: true
     logs:
       general:
         level: debug
