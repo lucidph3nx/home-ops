@@ -79,11 +79,11 @@ spec:
           image:
             repository: docker.io/qmcgaw/gluetun
             tag: v3.33.0
-          securityContext:
-            capabilities:
-              add:
-                - NET_ADMIN
-                - SYS_MODULE
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+              - SYS_MODULE
         env:
           TZ: "${TIMEZONE}"
         envFrom:
