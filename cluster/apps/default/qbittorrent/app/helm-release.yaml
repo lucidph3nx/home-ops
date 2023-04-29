@@ -32,8 +32,9 @@ spec:
       WAIT_FOR_VPN: "true"
     service: 
       main:
-        http:
-          port: 8080
+        ports:
+          http:
+            port: 8080
     ingress:
       main:
         enabled: true
@@ -50,7 +51,6 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-        
     persistence:
       config:
         enabled: true
