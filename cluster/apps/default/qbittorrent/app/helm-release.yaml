@@ -87,8 +87,8 @@ spec:
         env:
           TZ: "${TIMEZONE}"
         envFrom:
-          secretRef:
-            name: qbittorrent-secrets
+          - secretRef:
+              name: qbittorrent-secrets
         scripts:
           up: |-
             #!/bin/bash
