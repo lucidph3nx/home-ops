@@ -1,6 +1,5 @@
 {
   "extends": [
-    "github>lucidph3nx/home-ops//.github/renovate/disabledDatasources.json5",
     "github>lucidph3nx/home-ops//.github/renovate/labels.json5"
   ],
   "platform": "github",
