@@ -87,7 +87,9 @@ spec:
               - SYS_MODULE
         env:
           TZ: "${TIMEZONE}"
-        configFileSecret: qbittorrent-secrets
+        envFrom:
+          secretRef:
+            name: qbittorrent-secrets
         scripts:
           up: |-
             #!/bin/bash
