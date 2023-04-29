@@ -81,22 +81,17 @@ spec:
             repository: docker.io/qmcgaw/gluetun
             tag: v3.33.0
         securityContext:
-          runAsGroup: 0
-          runAsUser: 0
           capabilities:
             add:
               - NET_ADMIN
               - SYS_MODULE
         env:
           TZ: "${TIMEZONE}"
-          FIREWALL: 'on'
         configFileSecret: qbittorrent-secrets
         scripts:
           up: |-
             #!/bin/bash
-            /etc/openvpn/up.sh
             echo "connected" > /shared/vpnstatus
           down: |-
             #!/bin/bash
-            /etc/openvpn/down.sh
             echo "disconnected" > /shared/vpnstatus
