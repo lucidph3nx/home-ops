@@ -25,8 +25,8 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/k8s-at-home/qbittorrent
-      tag: v4.4.2
+      repository: ghcr.io/onedr0p/qbittorrent
+      tag: 4.5.2@sha256:621c2e012820a2f5d4a4e37ca6bf8aec40ebd0183f6f7d274808a7ac45a135d0
     env:
       TZ: "${TIMEZONE}"
       WAIT_FOR_VPN: "true"
@@ -75,16 +75,14 @@ spec:
     addons:
       vpn:
         enabled: true
-        type: openvpn
-        openvpn:
-          authSecret: qbittorrent-secrets
+        type: gluetun
         securityContext:
           runAsGroup: 0
           runAsUser: 0
-          capabilities:
-            add:
-              - NET_ADMIN
-              - SYS_MODULE
+          # capabilities:
+          #   add:
+          #     - NET_ADMIN
+          #     - SYS_MODULE
         env:
           TZ: "${TIMEZONE}"
           FIREWALL: 'on'
