@@ -1,0 +1,70 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: monica
+  namespace: gtd
+spec:
+  interval: 5m
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
+      chart: app-template
+      version: 1.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: monica
+      tag: 4.0.0-apache
+    env:
+      APP_ENV: production
+      APP_URL: "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
+      APP_TRUSTED_PROXIES: "*"
+      DB_DATABASE: monica
+      DB_HOST: monica-db.default.svc.cluster.local
+      DB_USERNAME: monica
+      DEFAULT_MAX_UPLOAD_SIZE: 2000
+    envFrom:
+      - name: APP_KEY
+        valueFrom:
+          secretRef:
+            name: monica-secrets
+            key: app-key
+      - name: DB_PASSWORD
+        valueFrom:
+          secretRef:
+            name: monica-db-secrets
+            key: mariadb-password
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+    persistence:
+      config:
+        enabled: true
+        existingClaim: monica-config
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: auth-chain-authelia-auth@kubernetescrd #,lidarr-theme@file
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+          external-dns/is-public: "true"
+          hosts:
+            - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
+              paths:
+                - path: /
+                  pathType: Prefix
