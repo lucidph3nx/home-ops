@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: monica
-  namespace: gtd
+  namespace: default
 spec:
   interval: 5m
   install:
@@ -31,7 +31,7 @@ spec:
       APP_URL: "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
       APP_TRUSTED_PROXIES: "*"
       DB_DATABASE: monica
-      DB_HOST: monica-db.default.svc.cluster.local
+      DB_HOST: monica-db-mariadb.default.svc.cluster.local
       DB_USERNAME: monica
       DEFAULT_MAX_UPLOAD_SIZE: 2000
       APP_Key:
