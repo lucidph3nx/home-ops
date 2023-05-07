@@ -34,13 +34,12 @@ spec:
       DB_HOST: monica-db.default.svc.cluster.local
       DB_USERNAME: monica
       DEFAULT_MAX_UPLOAD_SIZE: 2000
-    envFrom:
-      - name: APP_KEY
+      APP_Key:
         valueFrom:
           secretRef:
             name: monica-secrets
             key: app-key
-      - name: DB_PASSWORD
+      DB_PASSWORD:
         valueFrom:
           secretRef:
             name: monica-db-secrets
