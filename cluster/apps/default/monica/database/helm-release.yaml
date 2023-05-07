@@ -26,7 +26,7 @@ spec:
     auth:
       database: monica
       username: monica
-      existingSecret: monica-db-secret
+      existingSecret: monica-db-secrets
     primary:
       persistence:
         enabled: true
