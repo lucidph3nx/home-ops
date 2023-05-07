@@ -37,12 +37,12 @@ spec:
       DEFAULT_MAX_UPLOAD_SIZE: 2000
       APP_KEY:
         valueFrom:
-          secretRef:
+          secretKeyRef:
             name: monica-secrets
             key: app-key
       DB_PASSWORD:
         valueFrom:
-          secretRef:
+          secretKeyRef:
             name: monica-db-secrets
             key: mariadb-password
     service:
