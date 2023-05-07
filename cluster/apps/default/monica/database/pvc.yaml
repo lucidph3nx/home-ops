@@ -5,7 +5,7 @@ metadata:
   name: monica-db
   namespace: default
 spec:
-  storageClassName: longhorn-static
+  storageClassName: longhorn
   accessModes:
   - ReadWriteOnce
   resources:
