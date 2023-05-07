@@ -5,23 +5,24 @@ metadata:
   name: monica
   namespace: default
 spec:
-  interval: 5m
-  install:
-    remediation:
-      retries: 5
-  upgrade:
-    remediation:
-      retries: 5
+  dependsOn:
+  - name: longhorn
+    namespace: longhorn-system
+  interval: 15m
   chart:
     spec:
-      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
       chart: app-template
       version: 1.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
     image:
       repository: monica
@@ -34,7 +35,7 @@ spec:
       DB_HOST: monica-db-mariadb.default.svc.cluster.local
       DB_USERNAME: monica
       DEFAULT_MAX_UPLOAD_SIZE: 2000
-      APP_Key:
+      APP_KEY:
         valueFrom:
           secretRef:
             name: monica-secrets
@@ -49,17 +50,13 @@ spec:
         ports:
           http:
             port: 80
-    persistence:
-      config:
-        enabled: true
-        existingClaim: monica-config
     ingress:
       main:
         enabled: true
         ingressClassName: "traefik"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: auth-chain-authelia-auth@kubernetescrd #,lidarr-theme@file
+          traefik.ingress.kubernetes.io/router.middlewares: auth-chain-authelia-auth@kubernetescrd
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
           external-dns/is-public: "true"
           hosts:
@@ -67,3 +64,9 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
+    persistence:
+      config:
+        enabled: true
+        storageClass: longhorn
+        existingClaim: monica-config
+        mountPath: /var/www/html/storage
