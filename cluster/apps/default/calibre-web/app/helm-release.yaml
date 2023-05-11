@@ -61,12 +61,6 @@ spec:
         mountPath: /config
         retain: true
         size: 1Gi
-      media:
-        enabled: true
-        mountPath: /data/nas-media
-        path: /volume1/Media
-        server: nas.bjw-s.tech
-        type: nfs
       books:
         enabled: true
         type: nfs
