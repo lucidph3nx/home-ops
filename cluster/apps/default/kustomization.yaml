@@ -5,6 +5,7 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
+  - ./calibre-web/ks.yaml
   - ./changedetection-io/ks.yaml
   - ./grafana/ks.yaml
   - ./hajimari/ks.yaml
