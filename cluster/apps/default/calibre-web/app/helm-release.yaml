@@ -28,7 +28,7 @@ spec:
       type: statefulset
     image:
       repository: linuxserver/calibre-web
-      tag: 2021.12.16
+      tag: 0.6.20
     env:
       TZ: "${TIMEZONE}"
       CACHE_DIR: /cache
