@@ -78,7 +78,7 @@ spec:
         gluetun:
           image:
             repository: docker.io/qmcgaw/gluetun
-            tag: v3.34.1
+            tag: v3.34.3
         securityContext:
           runAsGroup: 0
           runAsUser: 0
