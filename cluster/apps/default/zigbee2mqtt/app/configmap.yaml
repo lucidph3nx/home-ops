@@ -9,7 +9,7 @@ data:
       homeassistant_discovery_topic: homeassistant
       homeassistant_status_topic: homeassistant/status
       last_seen: ISO_8601
-      log_level: info
+      log_level: debug
       log_output:
         - console
       network_key:
@@ -74,3 +74,9 @@ data:
         friendly_name: spareroom sensor
       '0x001788010b8f655c':
         friendly_name: hall lightstrip
+      '0xa4c138395a596ade':
+        friendly_name: water_leak_detector_2
+      '0xa4c1380a611f6df7':
+        friendly_name: water_leak_detector_1
+    external_converters:
+      - LILYGO.Light
