@@ -26,7 +26,7 @@ spec:
   values:
     image:
       registry: docker.io
-      respository: asonix/pictrs
+      repository: asonix/pictrs
       tag: 0.4.0
     env:
       TZ: "${TIMEZONE}"

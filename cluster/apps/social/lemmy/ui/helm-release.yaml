@@ -28,7 +28,7 @@ spec:
   values:
     image:
       registry: docker.io
-      respository: dessalines/lemmy-ui
+      repository: dessalines/lemmy-ui
       tag: 0.18.2
     env:
       TZ: "${TIMEZONE}"
