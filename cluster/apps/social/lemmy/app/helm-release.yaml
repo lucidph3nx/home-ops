@@ -44,10 +44,10 @@ spec:
     persistence:
       config:
         enabled: true
-        type: secret
-        mountPath: "/config/config.hjson"
-        subPath: "config.hjson"
+        type: custom
         volumeSpec:
           secret:
-            name: lemmy-config
+            secretName: lemmy-config
+        mountPath: /config/config.hjson
+        readOnly: true
 
