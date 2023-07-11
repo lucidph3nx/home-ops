@@ -42,7 +42,7 @@ spec:
           http:
             port: 8536
     persistence:
-      config:
+      lemmy-config:
         enabled: true
         type: "custom"
         mountPath: "/config/config.hjson"
