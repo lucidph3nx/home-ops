@@ -29,6 +29,7 @@ spec:
       retries: 5
   values:
     image:
+      registry: docker.io
       respository: dessalines/lemmy
       tag: 0.18.2
     env:

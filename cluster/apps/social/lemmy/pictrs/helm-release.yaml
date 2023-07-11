@@ -25,6 +25,7 @@ spec:
       retries: 5
   values:
     image:
+      registry: docker.io
       respository: asonix/pictrs
       tag: 0.4.0
     env:
