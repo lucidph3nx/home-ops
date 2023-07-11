@@ -48,6 +48,6 @@ spec:
         volumeSpec:
           secret:
             secretName: lemmy-config
-        mountPath: /config/config.hjson
+        mountPath: /config
         readOnly: true
 
