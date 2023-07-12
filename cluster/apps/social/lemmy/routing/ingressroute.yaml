@@ -49,6 +49,18 @@ spec:
         - name: lemmy
           namespace: social
           port: 8536
+    - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && Headers(`Accept`, `application/activity+json`)"
+      kind: Rule
+      services:
+        - name: lemmy
+          namespace: social
+          port: 8536
+    - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && Headers(`Accept`, `application/ld+json`)"
+      kind: Rule
+      services:
+        - name: lemmy
+          namespace: social
+          port: 8536
     - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`)"
       kind: Rule
       services:
