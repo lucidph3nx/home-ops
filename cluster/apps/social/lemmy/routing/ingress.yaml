@@ -55,3 +55,4 @@ spec:
                 name: lemmy-ui
                 port:
                   number: 1234
+          - 

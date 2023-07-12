@@ -1,0 +1,60 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: lemmy-ingressroute
+  namespace: networking
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/api`)"
+      kind: rule
+      services:
+        - name: lemmy
+          namespace: social
+          port: 8536
+    - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/pictrs`)"
+      kind: rule
+      services:
+        - name: lemmy
+          namespace: social
+          port: 8536
+    - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/feeds`)"
+      kind: rule
+      services:
+        - name: lemmy
+          namespace: social
+          port: 8536
+    - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/nodeinfo`)"
+      kind: rule
+      services:
+        - name: lemmy
+          namespace: social
+          port: 8536
+    - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/.well-known`)"
+      kind: rule
+      services:
+        - name: lemmy
+          namespace: social
+          port: 8536
+    - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}` && Headers(`Content-Type`, `application/activity+json`))"
+      kind: rule
+      services:
+        - name: lemmy
+          namespace: social
+          port: 8536
+    - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}` && Headers(`Content-Type`, `application/ld+json`))"
+      kind: rule
+      services:
+        - name: lemmy
+          namespace: social
+          port: 8536
+    - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`)"
+      kind: rule
+      services:
+        - name: lemmy-ui
+          namespace: social
+          port: 1234
+
+  tls:
+    secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
