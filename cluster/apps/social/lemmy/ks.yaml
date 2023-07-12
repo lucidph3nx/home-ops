@@ -110,9 +110,9 @@ spec:
     kind: GitRepository
     name: home-ops-cluster
   healthChecks:
-    - apiVersion: networking.k8s.io/v1
-      kind: Ingress
-      name: lemmy-ingress
+    - apiVersion: traefik.containo.us/v1alpha1
+      kind: IngressRoute
+      name: lemmy-ingressroute
       namespace: social
   interval: 30m
   retryInterval: 1m
