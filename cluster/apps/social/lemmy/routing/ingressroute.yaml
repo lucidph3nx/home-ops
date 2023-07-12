@@ -8,49 +8,49 @@ spec:
     - websecure
   routes:
     - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/api`)"
-      kind: rule
+      kind: Rule
       services:
         - name: lemmy
           namespace: social
           port: 8536
     - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/pictrs`)"
-      kind: rule
+      kind: Rule
       services:
         - name: lemmy
           namespace: social
           port: 8536
     - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/feeds`)"
-      kind: rule
+      kind: Rule
       services:
         - name: lemmy
           namespace: social
           port: 8536
     - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/nodeinfo`)"
-      kind: rule
+      kind: Rule
       services:
         - name: lemmy
           namespace: social
           port: 8536
     - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/.well-known`)"
-      kind: rule
+      kind: Rule
       services:
         - name: lemmy
           namespace: social
           port: 8536
     - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}` && Headers(`Content-Type`, `application/activity+json`))"
-      kind: rule
+      kind: Rule
       services:
         - name: lemmy
           namespace: social
           port: 8536
     - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}` && Headers(`Content-Type`, `application/ld+json`))"
-      kind: rule
+      kind: Rule
       services:
         - name: lemmy
           namespace: social
           port: 8536
     - match: "Host(`lemmy.${SECRET_PUBLIC_DOMAIN}`)"
-      kind: rule
+      kind: Rule
       services:
         - name: lemmy-ui
           namespace: social
