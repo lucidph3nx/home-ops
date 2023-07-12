@@ -109,11 +109,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-ops-cluster
-  healthChecks:
-    - apiVersion: traefik.containo.us/v1alpha1
-      kind: IngressRoute
-      name: lemmy-ingressroute
-      namespace: social
   interval: 30m
   retryInterval: 1m
   timeout: 3m
