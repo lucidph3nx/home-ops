@@ -5,4 +5,5 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./lemmy/ks.yaml
+  # disable lemmy for now
+  # - ./lemmy/ks.yaml
