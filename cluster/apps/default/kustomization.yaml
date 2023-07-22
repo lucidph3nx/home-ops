@@ -13,7 +13,6 @@ resources:
   - ./jellyfin/ks.yaml
   - ./lidarr/ks.yaml
   - ./minio/ks.yaml
-  - ./monica/ks.yaml
   - ./mosquitto/ks.yaml
   - ./overseerr/ks.yaml
   - ./plex/ks.yaml
