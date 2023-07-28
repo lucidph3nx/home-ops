@@ -29,7 +29,7 @@ spec:
     image:
       registry: docker.io
       repository: dessalines/lemmy-ui
-      tag: 0.18.2
+      tag: 0.18.3
     env:
       TZ: "${TIMEZONE}"
       LEMMY_UI_LEMMY_INTERNAL_HOST: "lemmy:8536"
