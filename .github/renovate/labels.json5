@@ -46,6 +46,23 @@
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
       "labels": ["renovate/helm", "dep/patch"]
-    }
+    },
+    {
+      // https://docs.renovatebot.com/modules/versioning/#loose-versioning
+      // 1.30.2.6563-3d4dc0cce
+      "versioning": "loose",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["plexinc/pms-docker"]
+    },
+    {
+      "allowedVersions": "!/(14|20).*/",
+      "matchDatasources": ["docker"],
+      "matchPackagePatterns": ["linuxserver/qbittorrent"]
+    },
+    {
+      "allowedVersions": "!/^(5|2021).*/",
+      "matchDatasources": ["docker"],
+      "matchPackagePatterns": ["linuxserver/calibre-web"]
+    },
   ]
 }
