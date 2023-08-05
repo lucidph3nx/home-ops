@@ -45,6 +45,7 @@ spec:
             protocol: TCP
     ingress:
       main:
+        enabled: true
         ingressClassName: "traefik"
         annotations:
           # traefik.ingress.kubernetes.io/router.middlewares: auth-chain-authelia-auth@kubernetescrd
