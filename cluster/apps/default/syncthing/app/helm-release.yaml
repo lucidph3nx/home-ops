@@ -34,6 +34,8 @@ spec:
       listdisc:
         enabled: true
         type: LoadBalancer
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: ${SYNC_ENDPOINT}
         ports:
           discovery:
             enabled: true
