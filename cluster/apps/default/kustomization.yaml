@@ -21,7 +21,7 @@ resources:
   - ./radarr/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
-  # - ./syncthing/ks.yaml
+  - ./syncthing/ks.yaml
   - ./uptime-kuma/ks.yaml
   - ./vaultwarden/ks.yaml
   - ./zigbee2mqtt/ks.yaml
