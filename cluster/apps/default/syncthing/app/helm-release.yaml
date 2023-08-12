@@ -67,7 +67,7 @@ spec:
         enabled: true
         storageClass: longhorn
         existingClaim: pvc-syncthing
-        mountPath: /config
+        mountPath: /var/syncthing
         retain: true
     resources:
       requests:
