@@ -28,12 +28,15 @@ spec:
       tag: 1.23.7
     service:
       main:
+        enabled: true
+        externalTrafficPolicy: Local
         ports:
           http:
             port: 8384
       listdisc:
         enabled: true
         type: LoadBalancer
+        externalTrafficPolicy: Local
         annotations:
           metallb.universe.tf/loadBalancerIPs: ${SYNC_ENDPOINT}
         ports:
@@ -59,9 +62,6 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-    # podSecurityContext:
-      # runAsUser: 0
-      # privileged: true
     persistence:
       config:
         enabled: true
