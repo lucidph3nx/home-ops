@@ -29,14 +29,12 @@ spec:
     service:
       main:
         enabled: true
-        externalTrafficPolicy: Local
         ports:
           http:
             port: 8384
       listdisc:
         enabled: true
         type: LoadBalancer
-        externalTrafficPolicy: Local
         annotations:
           metallb.universe.tf/loadBalancerIPs: ${SYNC_ENDPOINT}
         ports:
