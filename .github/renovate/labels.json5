@@ -64,5 +64,10 @@
       "matchDatasources": ["docker"],
       "matchPackagePatterns": ["linuxserver/calibre-web"]
     },
+    // disable terraform
+    {
+      "matchDatasources": ["terraform"],
+      "enabled": false
+    },
   ]
 }
