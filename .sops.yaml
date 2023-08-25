@@ -8,3 +8,7 @@ creation_rules:
     encrypted_regex: "^(data|stringData)$"
     age: >-
       age17r33fln8jyfzrdxshtnv38dmyst33q8g3c2c5f9r8lcvkxa4ggrq07sffm
+  - path_regex: kubernetes/cluster0/.*\.ya?ml
+    encrypted_regex: "^(data|stringData)$"
+    age: >-
+      age1582vh25trj6w7klwt38d44n5nr8njr8rrxxx5kcfu3y2ezx9ss3s6j24ex
