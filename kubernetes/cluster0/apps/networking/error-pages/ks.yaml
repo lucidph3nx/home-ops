@@ -5,6 +5,8 @@ metadata:
   name: cluster-apps-error-pages
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: cluster-apps-traefik
   path: ./kubernetes/cluster0/apps/networking/error-pages/app
   prune: true
   sourceRef:
