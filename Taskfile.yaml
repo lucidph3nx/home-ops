@@ -17,7 +17,6 @@ dotenv: [".config.env"]
 
 includes:
   cluster: .taskfiles/ClusterTasks.yaml
-  terraform: .taskfiles/TerraformTasks.yaml
   ansible: .taskfiles/AnisbleTasks.yaml
   sops: .taskfiles/SopsTasks.yaml
 

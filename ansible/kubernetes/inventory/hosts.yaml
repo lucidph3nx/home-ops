@@ -4,17 +4,16 @@ kubernetes:
     ansible_user: ben
     ansible_ssh_port: 22
     ansible_ssh_private_key_file: /home/ben/.ssh/homelab_id_ed25519
-    # ansible_become_pass: AAAAA
   children:
     server:
       hosts:
         test-node0:
-          ansible_host: 192.168.122.251
-    #     node1:
-    #       ansible_host: 192.168.42.11
-    #     node2:
-    #       ansible_host: 192.168.42.12
-    # agent:
-    #   hosts:
-    #     node3:
-    #       ansible_host: 192.168.42.13
+          ansible_host: 192.168.121.10
+        test-node1:
+          ansible_host: 192.168.121.11
+        test-node2:
+          ansible_host: 192.168.121.12
+    agent:
+      hosts:
+        test-node3:
+          ansible_host: 192.168.121.13
