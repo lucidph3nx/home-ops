@@ -6,4 +6,4 @@ metadata:
   name: pool
 spec:
   cidrs:
-    - cidr: $LOADBALANCER_IP_POOL
+    - cidr: ${LOADBALANCER_IP_POOL}
