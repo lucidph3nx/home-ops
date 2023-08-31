@@ -1,0 +1,62 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nas0-externalname
+  namespace: networking
+spec:
+  type: ExternalName
+  ports:
+  - name: http
+    port: 5000 
+  externalName: "${NAS0_IP}"
+
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: nas0-externalroute
+#   namespace: networking
+#   annotations:
+#     kubernetes.io/ingress.class: traefik 
+# spec:
+#   entryPoints:
+#     - websecure
+#   routes:
+#     - match: "Host(`nas0.${SECRET_PUBLIC_DOMAIN}`)"
+#       kind: Rule
+#       services:
+#         - name: nas0-externalname
+#           namespace: networking
+#           kind: Service
+#           port: 5000
+#           scheme: http
+#   tls:
+#     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nas0-externalroute
+  namespace: networking
+  annotations:
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "nas"
+    hajimari.io/appName: "nas0"
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+    external-dns/is-public: "true"
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: nas0.${SECRET_PUBLIC_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nas0-externalname
+                port:
+                  number: 5000

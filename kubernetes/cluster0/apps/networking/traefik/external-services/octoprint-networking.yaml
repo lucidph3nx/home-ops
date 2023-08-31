@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: &app octoprint-externalname
+  namespace: networking
+  labels:
+    app.kubernetes.io/name: *app
+    app.kubernetes.io/instance: *app
+spec:
+  type: ExternalName
+  externalName: "${OCTOPRINT_IP}"
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: &app octoprint-externalroute
+  namespace: networking
+  labels:
+    app.kubernetes.io/name: *app
+    app.kubernetes.io/instance: *app
+  annotations:
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "printer-3d"
+    hajimari.io/appName: "octoprint"
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+    external-dns/is-public: "true"
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: octoprint.${SECRET_PUBLIC_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: octoprint-externalname
+                port:
+                  number: 80

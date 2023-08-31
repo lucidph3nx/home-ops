@@ -1,0 +1,47 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/source.toolkit.fluxcd.io/gitrepository_v1.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: home-ops-cluster0
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: ssh://git@github.com/lucidph3nx/home-ops
+  ref:
+    branch: main
+  secretRef:
+    name: github-deploy-key
+  ignore: |
+    # exclude all
+    /*
+    # include kubernetes cluster directory
+    !/kubernetes/cluster0
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./kubernetes/cluster0/flux
+  prune: true
+  wait: false
+  sourceRef:
+    kind: GitRepository
+    name: home-ops-cluster0
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+        optional: false
+      - kind: Secret
+        name: cluster-secrets
+        optional: false
+

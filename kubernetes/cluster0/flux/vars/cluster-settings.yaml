@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: flux-system
+  name: cluster-settings
+data:
+  CLUSTER_NAME: "home-ops-cluster0"
+  TIMEZONE: "Pacific/Auckland"
+  # cilium
+  LOADBALANCER_IP_POOL: "10.87.1.1/24"
+  CONTROLPLANE_IP: "10.87.1.2"
+  TRAEFIK_IP: "10.87.1.3"
+  # external service IPs
+  NAS0_IP: "10.87.200.0"
+  UNIFI_IP: "10.93.149.58"
+  OCTOPRINT_IP: "10.93.149.56"
