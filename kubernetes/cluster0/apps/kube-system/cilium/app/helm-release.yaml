@@ -69,7 +69,7 @@ spec:
           enabled: true
           className: internal
           hosts:
-            - &host hubble.$SECRET_PUBLIC_DOMAIN
+            - &host "hubble.${SECRET_PUBLIC_DOMAIN}"
           tls:
             - hosts:
                 - *host
