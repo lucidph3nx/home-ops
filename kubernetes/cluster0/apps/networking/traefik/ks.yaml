@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-apps-metallb-address-pool
     - name: cluster-apps-cert-manager
-  path: ./cluster/apps/networking/traefik/app
+  path: ./kubernetes/cluster0/apps/networking/traefik/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -31,7 +31,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-traefik
-  path: ./cluster/apps/networking/traefik/certificates
+  path: ./kubernetes/cluster0/apps/networking/traefik/certificates
   prune: true
   sourceRef:
     kind: GitRepository
@@ -49,7 +49,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-traefik
-  path: ./cluster/apps/networking/traefik/external-services
+  path: ./kubernetes/cluster0/apps/networking/traefik/external-services
   prune: true
   sourceRef:
     kind: GitRepository
@@ -67,7 +67,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-traefik
-  path: ./cluster/apps/networking/traefik/dashboard
+  path: ./kubernetes/cluster0/apps/networking/traefik/dashboard
   prune: true
   sourceRef:
     kind: GitRepository
