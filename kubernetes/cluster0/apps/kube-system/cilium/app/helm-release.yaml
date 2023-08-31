@@ -32,7 +32,7 @@ spec:
     bgp:
       enabled: false
     cluster:
-      name: $CLUSTER_NAME
+      name: ${CLUSTER_NAME}
       id: 1
     containerRuntime:
       integration: containerd
