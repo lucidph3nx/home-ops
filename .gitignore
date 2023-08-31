@@ -28,3 +28,6 @@ kubeconfig*
 talosconfig*
 *.pub
 *.key
+# vagrant
+.vagrant
+.ruby-lsp
