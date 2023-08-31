@@ -66,14 +66,14 @@ spec:
         enabled: true
         rollOutPods: true
         ingress:
-          enabled: true
-          className: internal
-          hosts:
-            - host: &host "hubble.${SECRET_PUBLIC_DOMAIN}"
-              paths:
-                - path: /
-                  pathType: Prefix
-    ipam:
+          enabled: false
+    #       className: "traefik"
+    #       hosts:
+    #         - &host hubble.${SECRET_PUBLIC_DOMAIN}
+    #       tls:
+    #         - hosts:
+    #             - *host
+    # ipam:
       mode: kubernetes
     ipv4NativeRoutingCIDR: 10.42.0.0/16
     k8sServiceHost: $CONTROLPLANE_IP
