@@ -8,6 +8,8 @@ spec:
   dependsOn:
   - name: longhorn
     namespace: longhorn-system
+  - name: home-assistant-db
+    namespace: default
   interval: 15m
   chart:
     spec:
