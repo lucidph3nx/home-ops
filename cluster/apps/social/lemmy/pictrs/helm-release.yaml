@@ -27,7 +27,7 @@ spec:
     image:
       registry: docker.io
       repository: asonix/pictrs
-      tag: 0.4.2
+      tag: 0.4.3
     env:
       TZ: "${TIMEZONE}"
       RUST_LOG: "debug"
