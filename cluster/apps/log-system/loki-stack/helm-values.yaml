@@ -25,7 +25,10 @@ spec:
     grafana:
       enabled: false
     loki:
+      structuredConfig:
+        limits_config:
+          retention_period: 1d
       persistence:
         enabled: true
         storageClassName: longhorn
-        size: 15Gi
+        size: 30Gi
