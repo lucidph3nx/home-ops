@@ -21,8 +21,8 @@ spec:
     - match: "(Host(`traefik.${SECRET_PUBLIC_DOMAIN}`) && !PathPrefix(`/api`))"
       kind: Rule
       middlewares:
-        - name: chain-authelia-auth
-          namespace: auth
+        # - name: chain-authelia-auth
+        #   namespace: auth
         - name: traefik-dashboard-addprefix
           namespace: networking
       services:
@@ -32,8 +32,8 @@ spec:
     - match: "(Host(`traefik.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/api`))"
       kind: Rule
       middlewares:
-        - name: chain-authelia-auth
-          namespace: auth
+        # - name: chain-authelia-auth
+        #   namespace: auth
       services:
         - name: api@internal
           kind: TraefikService
