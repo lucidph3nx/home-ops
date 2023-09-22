@@ -37,5 +37,5 @@ spec:
       persistence:
         enabled: true
         storageClass: longhorn
-        existingClaim: pvc-home-assistant-db
-        size: 5Gi
+        existingClaim: pvc-home-assistant-db0
+        size: 10Gi
