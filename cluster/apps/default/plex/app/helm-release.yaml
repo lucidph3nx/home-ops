@@ -62,9 +62,9 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
-        existingClaim: pvc-plex
+        existingClaim: pvc-plex0
         accessMode: ReadWriteOnce
-        size: 150Gi
+        size: 50Gi
       tmp:
         enabled: true
         type: emptyDir
