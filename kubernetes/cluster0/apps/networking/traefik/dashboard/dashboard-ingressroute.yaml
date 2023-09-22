@@ -31,9 +31,9 @@ spec:
     # separate route for api without dash prefix removed
     - match: "(Host(`traefik.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/api`))"
       kind: Rule
-      middlewares:
-        # - name: chain-authelia-auth
-        #   namespace: auth
+      # middlewares:
+      #   - name: chain-authelia-auth
+      #     namespace: auth
       services:
         - name: api@internal
           kind: TraefikService
