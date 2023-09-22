@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
-  - ./kube-dns-configmap.yaml
   # Flux-Kustomizations
   - ./cilium/ks.yaml
   # - ./intel-device-plugin/ks.yaml
