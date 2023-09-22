@@ -30,8 +30,7 @@ spec:
       type: LoadBalancer
       annotations:
         io.cilium/lb-ipam-ips: ${TRAEFIK_IP}
-      spec:
-        externalTrafficPolicy: Cluster
+      externalTrafficPolicy: Cluster
     tlsStore:
       default:
         defaultCertificate:
