@@ -88,6 +88,6 @@ spec:
         enabled: true
         type: configMap
         name: blocky
-        subPath: config.yaml
-        mountPath: /app/config.yaml
+        subPath: config.yml
+        mountPath: /app/config.yml
         readOnly: true

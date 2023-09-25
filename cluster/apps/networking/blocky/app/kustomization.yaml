@@ -10,7 +10,7 @@ configMapGenerator:
   - name: blocky
     namespace: networking
     files:
-      - ./config/config.yaml
+      - ./config/config.yml
 
 configurations:
   - kustomize-config.yaml
