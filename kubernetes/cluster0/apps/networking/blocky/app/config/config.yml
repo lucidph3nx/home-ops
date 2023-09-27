@@ -9,10 +9,10 @@ bootstrapDns: tcp+udp:1.1.1.1
 
 customDNS:
   mapping: # some useful defaults
-    unifi.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_ENDPOINT}
-    traefik.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_ENDPOINT}
-    longhorn.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_ENDPOINT}
-    auth.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_ENDPOINT}
+    unifi.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_IP}
+    traefik.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_IP}
+    longhorn.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_IP}
+    auth.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_IP}
 
 blocking:
   blackLists:

@@ -52,7 +52,7 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          io.cilium/lb-ipam-ips: ${PRIMARY_DNS_ENDPOINT}
+          io.cilium/lb-ipam-ips: ${PRIMARY_DNS_IP}
         ports:
           dns-tcp:
             enabled: true
