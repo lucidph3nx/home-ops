@@ -1,0 +1,39 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: longhorn
+  namespace: longhorn-system
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: longhorn
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    defaultSettings:
+      backupTarget: "nfs://${NAS0_IP}:/volume1/longhorn-backups"
+      defaultReplicaCount: 3
+    longhornUI:
+      replicas: 3
+    ingress:
+      enabled: true
+      ingressClassName: "traefik"
+      host: longhorn.${SECRET_PUBLIC_DOMAIN}
+      path: /
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+        external-dns/is-public: "true"
+
