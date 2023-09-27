@@ -77,5 +77,6 @@ prometheus:
   enable: true
   path: /metrics
 
-httpPort: 4000
+ports:
+  http: 4000
 logLevel: info
