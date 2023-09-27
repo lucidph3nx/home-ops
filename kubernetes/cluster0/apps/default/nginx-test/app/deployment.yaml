@@ -4,9 +4,6 @@ metadata:
   name: nginx-test
   namespace: default
 spec:
-  selector:
-    matchLabels:
-      app: nginx
   replicas: 1
   template:
     metadata:
