@@ -74,7 +74,7 @@ spec:
         exposedPort: 443  
         tls:
           enabled: true
-          options: "default"
+          # options: "default"
     logs:
       general:
         level: debug
