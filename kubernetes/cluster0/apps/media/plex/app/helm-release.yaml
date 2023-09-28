@@ -1,0 +1,108 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: plex
+  namespace: media
+spec:
+  dependsOn:
+  - name: longhorn
+    namespace: longhorn-system
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    image:
+      # renovate: datasource=docker image=docker.io/plexinc/pms-docker
+      repository: docker.io/plexinc/pms-docker
+      tag: 1.32.5.7516-8f4248874
+    env:
+      TZ: "${TIMEZONE}"
+      PLEX_UID: 0
+      PLEX_GID: 0
+    service:
+      main:
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: ${PLEX_IP}
+          traefik.ingress.kubernetes.io/service.serversscheme: https
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            port: 32400
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "plex"
+          # traefik.ingress.kubernetes.io/router.middlewares: plex-theme@file
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+          external-dns/is-public: "true"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+    persistence:
+      config:
+        enabled: true
+        storageClass: longhorn
+        existingClaim: pvc-plex0
+        accessMode: ReadWriteOnce
+        size: 50Gi
+      tmp:
+        enabled: true
+        type: emptyDir
+        medium: Memory
+      movies:
+        enabled: true
+        type: nfs
+        server: "${NAS0_IP}"
+        path: /volume1/Films
+        mountPath: /movies
+      tv:
+        enabled: true
+        type: nfs
+        server: "${NAS0_IP}"
+        path: /volume1/TV-Series
+        mountPath: /tv
+      music:
+        enabled: true
+        type: nfs
+        server: "${NAS0_IP}"
+        path: /volume1/Music
+        mountPath: /music
+      transcode:
+        enabled: true
+        type: emptyDir
+    # to avoid permissions issues on volume
+    podSecurityContext:
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
+    nodeSelector:
+      intel.feature.node.kubernetes.io/gpu: "true"
+    resources:
+      requests:
+        gpu.intel.com/i915: 1
+        cpu: 100m
+        memory: 2000Mi
+      limits:
+        gpu.intel.com/i915: 1
+        memory: 10000Mi
+
