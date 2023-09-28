@@ -7,7 +7,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-longhorn
-  path: ./kuberntes/cluster0/apps/auth/postgresql/app
+  path: ./kubernetes/cluster0/apps/auth/postgresql/app
   prune: true
   sourceRef:
     kind: GitRepository
