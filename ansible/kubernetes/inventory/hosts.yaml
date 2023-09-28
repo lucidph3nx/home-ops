@@ -7,13 +7,13 @@ kubernetes:
   children:
     server:
       hosts:
-        test-node0:
-          ansible_host: 192.168.121.10
-        test-node1:
-          ansible_host: 192.168.121.11
-        test-node2:
-          ansible_host: 192.168.121.12
+        node0:
+          ansible_host: 10.87.1.0
+        node1:
+          ansible_host: 10.87.1.1
+        node2:
+          ansible_host: 10.87.1.2
     agent:
       hosts:
-        test-node3:
-          ansible_host: 192.168.121.13
+        node3:
+          ansible_host: 10.87.1.3
