@@ -30,10 +30,10 @@ spec:
       type: LoadBalancer
       annotations:
         io.cilium/lb-ipam-ips: ${TRAEFIK_IP}
-    tlsStore:
-      default:
-        defaultCertificate:
-          secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+    # tlsStore:
+    #   default:
+    #     defaultCertificate:
+    #       secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
     tlsOptions:
       default:
         minVersion: VersionTLS12
