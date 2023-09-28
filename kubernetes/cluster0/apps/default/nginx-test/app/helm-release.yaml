@@ -33,6 +33,6 @@ spec:
       enabled: true
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      hostname: "192.168.121.110.nip.io"
+      hostname: "test.local"
       path: /
       pathType: Prefix
