@@ -4,3 +4,4 @@ kind: Kustomization
 namespace: default
 resources:
   - helm-release.yaml
+
