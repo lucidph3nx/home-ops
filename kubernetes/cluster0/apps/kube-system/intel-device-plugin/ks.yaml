@@ -7,11 +7,11 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-node-feature-discovery
-  path: ./cluster/apps/kube-system/intel-device-plugin/app
+  path: ./kubernetes/cluster0/apps/kube-system/intel-device-plugin/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-cluster
+    name: home-ops-cluster0
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
@@ -29,11 +29,11 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-intel-device-plugin-operator
-  path: ./cluster/apps/kube-system/intel-device-plugin/gpu
+  path: ./kubernetes/cluster0/apps/kube-system/intel-device-plugin/gpu
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-cluster
+    name: home-ops-cluster0
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
