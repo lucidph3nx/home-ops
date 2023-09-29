@@ -9,16 +9,16 @@ spec:
     - name: cluster-apps-intel-device-plugin-gpu
     - name: cluster-apps-traefik
     - name: cluster-apps-longhorn
-  path: ./cluster/apps/default/jellyfin/app
+  path: ./kubernetes/cluster0/apps/default/jellyfin/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-cluster
+    name: home-ops-cluster0
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: jellyfin
-      namespace: default
+      namespace: media
   interval: 30m
   retryInterval: 1m
   timeout: 3m
