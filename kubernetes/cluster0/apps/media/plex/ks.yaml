@@ -7,7 +7,6 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-intel-device-plugin-gpu
-    - name: cluster-apps-metallb-address-pool
     - name: cluster-apps-traefik
     - name: cluster-apps-longhorn
   path: ./kubernetes/cluster0/apps/media/plex/app
