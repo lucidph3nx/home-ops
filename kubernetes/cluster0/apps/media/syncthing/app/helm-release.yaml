@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app syncthing
-  namespace: default
+  namespace: media
 spec:
   interval: 15m
   chart:
@@ -36,7 +36,7 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          metallb.universe.tf/loadBalancerIPs: ${SYNC_ENDPOINT}
+          io.cilium/lb-ipam-ips: ${SYNC_ENDPOINT}
         ports:
           discovery:
             enabled: true
