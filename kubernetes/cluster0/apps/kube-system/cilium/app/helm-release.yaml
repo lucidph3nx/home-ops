@@ -27,8 +27,8 @@ spec:
     keepHistory: false
   values:
     autoDirectNodeRoutes: true
-    # bandwidthManager:
-    #   enabled: true
+    bandwidthManager:
+      enabled: true
       # bbr: true needs kernel 5.18 or newer
     bpf:
       masquerade: true
