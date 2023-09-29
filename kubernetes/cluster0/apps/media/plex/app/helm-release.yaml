@@ -38,7 +38,7 @@ spec:
         annotations:
           io.cilium/lb-ipam-ips: ${PLEX_IP}
           traefik.ingress.kubernetes.io/service.serversscheme: https
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Cluster
         ports:
           http:
             port: 32400
