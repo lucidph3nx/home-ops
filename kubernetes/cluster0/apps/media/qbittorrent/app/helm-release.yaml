@@ -92,8 +92,8 @@ spec:
               name: qbittorrent-secrets
         scripts:
           up: |-
-            #!/bin/sh
+            #!/bin/bash
             echo "connected" > /shared/vpnstatus
           down: |-
-            #!/bin/sh
+            #!/bin/bash
             echo "disconnected" > /shared/vpnstatus
