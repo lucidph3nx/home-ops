@@ -91,6 +91,7 @@ spec:
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     l2announcements:
       enabled: true
+      interface: enp88s0
       leaseDuration: 120s
       leaseRenewDeadline: 60s
       leaseRetryPeriod: 1s
