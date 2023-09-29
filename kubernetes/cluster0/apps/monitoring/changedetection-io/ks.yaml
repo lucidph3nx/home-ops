@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-apps-longhorn
     - name: cluster-apps-traefik
-  path: ./kubernetes/cluster0/apps/media/changedetection-io/app
+  path: ./kubernetes/cluster0/apps/monitoring/changedetection-io/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -17,7 +17,7 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: changedetection-io
-      namespace: media
+      namespace: monitoring
   interval: 30m
   retryInterval: 1m
   timeout: 3m
