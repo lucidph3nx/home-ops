@@ -7,3 +7,4 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./uptime-kuma/ks.yaml
+  - ./loki-stack/ks.yaml

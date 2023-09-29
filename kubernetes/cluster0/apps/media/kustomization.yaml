@@ -6,4 +6,14 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
+  - ./calibre-web/ks.yaml
+  - ./jellyfin/ks.yaml
+  - ./lidarr/ks.yaml
+  - ./overseerr/ks.yaml
   - ./plex/ks.yaml
+  - ./prowlarr/ks.yaml
+  - ./qbittorrent/ks.yaml
+  - ./radarr/ks.yaml
+  - ./sabnzbd/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./syncthing/ks.yaml
