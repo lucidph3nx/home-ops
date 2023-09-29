@@ -6,5 +6,6 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./uptime-kuma/ks.yaml
+  - ./kube-prometheus-stack/ks.yaml
   - ./loki-stack/ks.yaml
+  - ./uptime-kuma/ks.yaml
