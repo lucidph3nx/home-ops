@@ -29,6 +29,7 @@ spec:
       tag: 4.5.5@sha256:30dffe7ad04ea0e39db0b50c0bd5e79362f99f7ff6b250526d2f389b58d96f14
     env:
       TZ: "${TIMEZONE}"
+      QBITTORRENT__PORT: 8080
     service: 
       main:
         ports:
@@ -39,8 +40,6 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "cloud-download"
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: auth-chain-authelia-auth@kubernetescrd #,lidarr-theme@file
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
