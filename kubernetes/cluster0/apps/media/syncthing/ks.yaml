@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-apps-traefik
     - name: cluster-apps-longhorn
-  path: ./kubernetes/cluster0/apps/default/syncthing/app
+  path: ./kubernetes/cluster0/apps/media/syncthing/app
   prune: true
   sourceRef:
     kind: GitRepository

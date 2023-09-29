@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-apps-traefik
     - name: cluster-apps-longhorn
-  path: ./kubernetes/cluster/apps/media/overseerr/app
+  path: ./kubernetes/cluster0/apps/media/overseerr/app
   prune: true
   sourceRef:
     kind: GitRepository
