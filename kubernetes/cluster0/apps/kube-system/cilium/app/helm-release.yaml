@@ -31,7 +31,7 @@ spec:
     #   enabled: true
       # bbr: true needs kernel 5.18 or newer
     bpf:
-      masquerade: false
+      masquerade: true
       monitorAggregation: none
     bgp:
       enabled: false
