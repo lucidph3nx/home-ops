@@ -2,8 +2,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: prowlarr
-  namespace: default
+  name: sonarr
+  namespace: media
 spec:
   dependsOn:
   - name: longhorn
@@ -25,8 +25,8 @@ spec:
       retries: 5
   values:
     image:
-      repository: lscr.io/linuxserver/prowlarr
-      tag: "1.8.1259"
+      repository: lscr.io/linuxserver/sonarr
+      tag: "3.0.10"
     env:
       TZ: "${TIMEZONE}"
       PUID: 0
@@ -34,15 +34,17 @@ spec:
     service:
       main:
         ports:
-            http:
-              port: 9696
+          http:
+            port: 8989
     ingress:
       main:
         enabled: true
         ingressClassName: "traefik"
         annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "television-box"
+          traefik.ingress.kubernetes.io/router.middlewares: auth-chain-authelia-auth@kubernetescrd #,sonarr-theme@file
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
@@ -54,9 +56,21 @@ spec:
       config:
         enabled: true
         storageClass: longhorn
-        existingClaim: pvc-prowlarr
+        existingClaim: pvc-sonarr
         mountPath: /config
         retain: true
+      tv:
+        enabled: true
+        type: nfs
+        server: "${NAS0_IP}"
+        path: /volume1/TV-Series
+        mountPath: /tv
+      downloads:
+        enabled: true
+        type: nfs
+        server: "${NAS0_IP}"
+        path: /volume1/downloads
+        mountPath: /downloads
     # to avoid permissions issues on volume
     podSecurityContext:
       runAsUser: 0
