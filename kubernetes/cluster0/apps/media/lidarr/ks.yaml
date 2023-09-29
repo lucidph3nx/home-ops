@@ -8,16 +8,16 @@ spec:
   dependsOn:
     - name: cluster-apps-traefik
     - name: cluster-apps-longhorn
-  path: ./cluster/apps/default/lidarr/app
+  path: ./kubernetes/cluster0/apps/default/lidarr/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-cluster
+    name: home-ops-cluster0
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: lidarr
-      namespace: default
+      namespace: media
   interval: 30m
   retryInterval: 1m
   timeout: 3m
