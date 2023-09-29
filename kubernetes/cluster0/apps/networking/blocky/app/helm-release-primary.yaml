@@ -53,7 +53,7 @@ spec:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: ${PRIMARY_DNS_IP}
-        externalTrafficPolicy: local
+        externalTrafficPolicy: Local
         ports:
           dns-tcp:
             enabled: true
