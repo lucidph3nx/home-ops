@@ -1,13 +1,5 @@
 ---
 creation_rules:
-  - path_regex: provision/.*\.sops\.ya?ml
-    unencrypted_regex: "^(kind)$"
-    age: >-
-      age17r33fln8jyfzrdxshtnv38dmyst33q8g3c2c5f9r8lcvkxa4ggrq07sffm
-  - path_regex: cluster/.*\.ya?ml
-    encrypted_regex: "^(data|stringData)$"
-    age: >-
-      age17r33fln8jyfzrdxshtnv38dmyst33q8g3c2c5f9r8lcvkxa4ggrq07sffm
   - path_regex: kubernetes/cluster0/.*\.ya?ml
     encrypted_regex: "^(data|stringData)$"
     age: >-
