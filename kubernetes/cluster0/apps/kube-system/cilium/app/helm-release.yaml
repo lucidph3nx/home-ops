@@ -32,7 +32,6 @@ spec:
       # bbr: true needs kernel 5.18 or newer
     bpf:
       masquerade: true
-      monitorAggregation: none
     bgp:
       enabled: false
     cluster:
@@ -91,13 +90,12 @@ spec:
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     l2announcements:
       enabled: true
-      interface: enp88s0
       leaseDuration: 120s
       leaseRenewDeadline: 60s
       leaseRetryPeriod: 1s
     loadBalancer:
-      algorithm: maglev
-      mode: dsr
+      algorithm: "maglev"
+      mode: "dsr"
     localRedirectPolicy: true
     operator:
       rollOutPods: true
