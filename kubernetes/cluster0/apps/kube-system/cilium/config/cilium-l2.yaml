@@ -9,6 +9,6 @@ spec:
   interfaces:
     - ^enp.*
     # - ^eth[0-9]+
-  nodeSelector:
-    matchLabels:
-      kubernetes.io/os: linux
+  # nodeSelector:
+  #   matchLabels:
+  #     kubernetes.io/os: linux
