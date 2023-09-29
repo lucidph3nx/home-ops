@@ -9,7 +9,7 @@ spec:
     - name: cluster-apps-intel-device-plugin-gpu
     - name: cluster-apps-traefik
     - name: cluster-apps-longhorn
-  path: ./kubernetes/cluster0/apps/default/jellyfin/app
+  path: ./kubernetes/cluster0/apps/media/jellyfin/app
   prune: true
   sourceRef:
     kind: GitRepository

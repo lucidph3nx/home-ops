@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-apps-traefik
     - name: cluster-apps-longhorn
-  path: ./kubernetes/cluster0/apps/default/lidarr/app
+  path: ./kubernetes/cluster0/apps/media/lidarr/app
   prune: true
   sourceRef:
     kind: GitRepository
