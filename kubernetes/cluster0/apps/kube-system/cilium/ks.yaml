@@ -24,11 +24,12 @@ metadata:
   namespace: flux-system
 spec:
   path: ./kubernetes/cluster0/apps/kube-system/cilium/config
+  dependsOn:
+    - name: cluster-apps-cilium
   prune: false # never should be deleted
   sourceRef:
     kind: GitRepository
     name: home-ops-cluster0
-  wait: false
   interval: 30m
   retryInterval: 1m
   timeout: 5m
