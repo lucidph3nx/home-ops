@@ -52,7 +52,8 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          io.cilium/lb-ipam-ips: ${PRIMARY_DNS_IP}
+          # io.cilium/lb-ipam-ips: ${PRIMARY_DNS_IP}
+          metallb.universe.tf/loadBalancerIPs: ${PRIMARY_DNS_IP}
         externalTrafficPolicy: Cluster
         ports:
           dns-tcp:
