@@ -54,7 +54,7 @@ spec:
         annotations:
           # io.cilium/lb-ipam-ips: ${SECONDARY_DNS_IP}
           metallb.universe.tf/loadBalancerIPs: ${SECONDARY_DNS_IP}
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Local # aparently, quite important
         ports:
           dns-tcp:
             enabled: true
