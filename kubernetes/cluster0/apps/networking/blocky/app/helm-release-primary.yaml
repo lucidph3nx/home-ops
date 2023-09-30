@@ -54,6 +54,7 @@ spec:
         annotations:
           # io.cilium/lb-ipam-ips: ${PRIMARY_DNS_IP}
           metallb.universe.tf/loadBalancerIPs: ${PRIMARY_DNS_IP}
+          metallb.universe.tf/allow-shared-ip: *app
         externalTrafficPolicy: Cluster
         ports:
           dns-tcp:
