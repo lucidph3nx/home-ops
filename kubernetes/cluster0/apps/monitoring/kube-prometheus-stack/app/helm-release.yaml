@@ -102,14 +102,7 @@ spec:
       enabled: false
     prometheus:
       ingress:
-        enabled: true
-        ingressClassName: internal
-        pathType: Prefix
-        hosts:
-          - &host prometheus.devbu.io
-        tls:
-          - hosts:
-              - *host
+        enabled: false
       thanosService:
         enabled: true
       thanosServiceMonitor:
