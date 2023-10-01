@@ -21,14 +21,7 @@ spec:
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
       ingress:
-        enabled: true
-        pathType: Prefix
-        ingressClassName: internal
-        hosts:
-          - &host alertmanager.devbu.io
-        tls:
-          - hosts:
-              - *host
+        enabled: false
       alertmanagerSpec:
         replicas: 2
         useExistingSecret: true
