@@ -77,9 +77,9 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &cp
-        - 192.168.42.10
-        - 192.168.42.11
-        - 192.168.42.12
+        - 10.87.1.0
+        - 10.87.1.1
+        - 10.87.1.2
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate labels provided by k3s
