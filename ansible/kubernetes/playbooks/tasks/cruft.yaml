@@ -1,56 +1,31 @@
 ---
-- name: Coredns
+- name: Cruft
   block:
-    - name: Coredns | Check if Coredns HelmChart exists
+    - name: Cruft | Get list of custom mantifests
+      ansible.builtin.find:
+        paths: "{{ k3s_server_manifests_dir }}"
+        file_type: file
+        use_regex: true
+        patterns: ["^custom-.*"]
+      register: custom_manifest
+
+    - name: Cruft | Delete custom mantifests
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ custom_manifest.files }}"
+
+    - name: Cruft | Get list of custom addons
       kubernetes.core.k8s_info:
         kubeconfig: /etc/rancher/k3s/k3s.yaml
-        name: coredns
-        kind: HelmChart
-        namespace: kube-system
-      register: coredns_helmchart
+        kind: Addon
+      register: addons_list
 
-    - name: Coredns | Wait for Coredns to rollout
-      when: coredns_helmchart.resources | count > 0
-      kubernetes.core.k8s_info:
-        kubeconfig: /etc/rancher/k3s/k3s.yaml
-        name: helm-install-coredns
-        kind: Job
-        namespace: kube-system
-        wait: true
-        wait_condition:
-          type: Complete
-          status: true
-        wait_timeout: 360
-
-    - name: Coredns | Patch the Coredns HelmChart to unmanage it
-      when: coredns_helmchart.resources | count > 0
-      kubernetes.core.k8s_json_patch:
-        kubeconfig: /etc/rancher/k3s/k3s.yaml
-        name: coredns
-        kind: HelmChart
-        namespace: kube-system
-        patch:
-          - op: add
-            path: /metadata/annotations/helmcharts.helm.cattle.io~1unmanaged
-            value: "true"
-
-    - name: Coredns | Delete the Coredns HelmChart CR
-      when: coredns_helmchart.resources | count > 0
+    - name: Cruft | Delete addons
       kubernetes.core.k8s:
         kubeconfig: /etc/rancher/k3s/k3s.yaml
-        name: coredns
-        kind: HelmChart
+        name: "{{ item.metadata.name }}"
+        kind: Addon
         namespace: kube-system
         state: absent
-
-    - name: Coredns | Force delete the Coredns HelmChart
-      when: coredns_helmchart.resources | count > 0
-      kubernetes.core.k8s:
-        kubeconfig: /etc/rancher/k3s/k3s.yaml
-        name: coredns
-        kind: HelmChart
-        namespace: kube-system
-        state: patched
-        definition:
-          metadata:
-            finalizers: []
+      loop: "{{ addons_list.resources | selectattr('metadata.name', 'match', '^custom-.*') | list }}"
