@@ -8,4 +8,9 @@ labels:
   - pairs:
       app.kubernetes.io/name: qbittorrent
       app.kubernetes.io/instance: qbittorrent
-
+configMapGenerator:
+  - name: qbittorrent-dnsdist
+    files:
+      - ./config/dnsdist.conf
+generatorOptions:
+  disableNameSuffixHash: true
