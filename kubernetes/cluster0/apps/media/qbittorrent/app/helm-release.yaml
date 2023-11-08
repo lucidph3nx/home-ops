@@ -71,18 +71,6 @@ spec:
               capabilities:
                 add:
                   - NET_ADMIN
-          # plumbing
-          port-forward:
-            image:
-              repository: docker.io/snoringdragon/gluetun-qbittorrent-port-manager
-              tag: "1.0"
-            env:
-              - name: QBITTORRENT_SERVER
-                value: localhost
-              - name: QBITTORRENT_PORT
-                value: "8080"
-              - name: PORT_FORWARDED
-                value: "/tmp/gluetun/forwarded_port"
     service: 
       main:
         ports:
@@ -137,6 +125,3 @@ spec:
           main:
             gluetun:
               - path: /tmp/gluetun
-            port-forward:
-              - path: /tmp/gluetun
-                readOnly: true
