@@ -95,17 +95,14 @@ spec:
                   port: http
     persistence:
       config:
-        enabled: true
         storageClass: longhorn
         existingClaim: pvc-qbittorrent
-        mountPath: /config
         retain: true
         advancedMounts:
           main:
             main:
               - path: /config
       downloads:
-        enabled: true
         type: nfs
         server: "${NAS0_IP}"
         path: /volume1/downloads
