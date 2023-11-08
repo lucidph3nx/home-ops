@@ -26,7 +26,7 @@ spec:
   values:
     image:
       repository: lscr.io/linuxserver/prowlarr
-      tag: "1.8.1259"
+      tag: "1.9.4039-ls38"
     env:
       TZ: "${TIMEZONE}"
       PUID: 0
