@@ -40,10 +40,6 @@ spec:
                 requests:
                   cpu: 49m
                   memory: 1024Mi
-            securityContext:
-              runAsUser: 1000
-              runAsGroup: 1000
-              fsGroup: 1000
           # doh to avoid dns leaks
           dnsdist:
             image:
@@ -104,16 +100,19 @@ spec:
         existingClaim: pvc-qbittorrent
         mountPath: /config
         retain: true
-      shared: # for the container to talk to its sidecar OPENVPN
-        enabled: true
-        type: emptyDir
-        mountPath: /shared
+        advancedMounts:
+          main:
+            main:
+              - path: /config
       downloads:
         enabled: true
         type: nfs
         server: "${NAS0_IP}"
         path: /volume1/downloads
-        mountPath: /downloads
+        advancedMounts:
+          main:
+            main:
+              - path: /downloads
       dnsdist-config:
         type: configMap
         name: qbittorrent-dnsdist
