@@ -40,6 +40,9 @@ spec:
                 requests:
                   cpu: 49m
                   memory: 1024Mi
+            securityContext:
+              runAsUser: 568
+              runAsGroup: 568
           # doh to avoid dns leaks
           dnsdist:
             image:
