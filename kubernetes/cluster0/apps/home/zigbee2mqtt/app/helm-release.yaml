@@ -87,17 +87,18 @@ spec:
         hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
         globalMounts:
           - path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-          # note: label node like this 
-          # kubectl label nodes k3s-agent5 app=zigbee-controller
-          - matchExpressions:
-            - key: app
-              operator: In
-              values:
-              - zigbee-controller
+    defaultPodOptions:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            # note: label node like this 
+            # kubectl label nodes k3s-agent5 app=zigbee-controller
+            - matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - zigbee-controller
 
  # !!! note to future ben, or anyone else !!!
  # trying to get the ConBee to appear as a readable ttyACM0 interface is a nightmare
