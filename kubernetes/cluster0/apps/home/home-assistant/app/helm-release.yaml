@@ -44,26 +44,26 @@ spec:
                 requests:
                   cpu: 47m
                   memory: 1254M
-            codeserver:
-              image:
-                repository: ghcr.io/coder/code-server
-                tag: 4.18.0
-              env:
-                TZ: "${TIMEZONE}"
-              args:
-                - --auth
-                - "none"
-                - --user-data-dir
-                - "/config/.vscode"
-                - --extensions-dir
-                - "/config/.vscode"
-                - --port
-                - "12321"
-                - "/config"
-              resources:
-                requests:
-                  cpu: 10m
-                  memory: 110M
+          codeserver:
+            image:
+              repository: ghcr.io/coder/code-server
+              tag: 4.18.0
+            env:
+              TZ: "${TIMEZONE}"
+            args:
+              - --auth
+              - "none"
+              - --user-data-dir
+              - "/config/.vscode"
+              - --extensions-dir
+              - "/config/.vscode"
+              - --port
+              - "12321"
+              - "/config"
+            resources:
+              requests:
+                cpu: 10m
+                memory: 110M
     service:
       main:
         ports:
