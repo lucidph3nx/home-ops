@@ -98,6 +98,7 @@ spec:
         storageClass: longhorn
         existingClaim: pvc-qbittorrent
         retain: true
+        enabled: true
         advancedMounts:
           main:
             main:
@@ -106,6 +107,7 @@ spec:
         type: nfs
         server: "${NAS0_IP}"
         path: /volume1/downloads
+        enabled: true
         advancedMounts:
           main:
             main:
@@ -113,6 +115,7 @@ spec:
       dnsdist-config:
         type: configMap
         name: qbittorrent-dnsdist
+        enabled: true
         advancedMounts:
           main:
             dnsdist:
@@ -121,6 +124,7 @@ spec:
                 readOnly: true
       gluetun-data:
         type: emptyDir
+        enabled: true
         advancedMounts:
           main:
             gluetun:
