@@ -97,6 +97,7 @@ spec:
         storageClass: longhorn
         existingClaim: pvc-home-assistant
         retain: true
+        enabled: true
         advancedMounts:
           main:
             main:
