@@ -71,6 +71,10 @@ spec:
               capabilities:
                 add:
                   - NET_ADMIN
+        pod:
+          securityContext:
+            runAsUser: 0
+            supplementalGroups: [100,10000]
     service: 
       main:
         ports:
