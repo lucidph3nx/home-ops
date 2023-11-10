@@ -17,19 +17,19 @@ spec:
   timeout: 5m
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomize.toolkit.fluxcd.io/kustomization_v1.json
-# apiVersion: kustomize.toolkit.fluxcd.io/v1
-# kind: Kustomization
-# metadata:
-#   name: cluster-apps-cilium-config
-#   namespace: flux-system
-# spec:
-#   path: ./kubernetes/cluster0/apps/kube-system/cilium/config
-#   dependsOn:
-#     - name: cluster-apps-cilium
-#   prune: false # never should be deleted
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-ops-cluster0
-#   interval: 30m
-#   retryInterval: 1m
-#   timeout: 5m
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-cilium-config
+  namespace: flux-system
+spec:
+  path: ./kubernetes/cluster0/apps/kube-system/cilium/config
+  dependsOn:
+    - name: cluster-apps-cilium
+  prune: false # never should be deleted
+  sourceRef:
+    kind: GitRepository
+    name: home-ops-cluster0
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
