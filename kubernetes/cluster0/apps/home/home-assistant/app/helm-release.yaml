@@ -97,5 +97,10 @@ spec:
         storageClass: longhorn
         existingClaim: pvc-home-assistant
         retain: true
-        globalMounts:
-          - path: /config
+        advancedMounts:
+          main:
+            main:
+              - path: /config
+            codeserver:
+              - path: /config
+            
