@@ -69,6 +69,10 @@ spec:
         ports:
           http:
             port: 8123
+      codeserver:
+        ports:
+          http:
+            port: 12321
     ingress:
       main:
         enabled: true
