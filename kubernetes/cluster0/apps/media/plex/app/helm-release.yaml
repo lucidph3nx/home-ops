@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.1.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -24,14 +24,33 @@ spec:
     remediation:
       retries: 5
   values:
-    image:
-      # renovate: datasource=docker image=docker.io/plexinc/pms-docker
-      repository: docker.io/plexinc/pms-docker
-      tag: 1.32.5.7516-8f4248874
-    env:
-      TZ: "${TIMEZONE}"
-      PLEX_UID: 0
-      PLEX_GID: 0
+    defaultPodOptions:
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              # renovate: datasource=docker image=docker.io/plexinc/pms-docker
+              repository: docker.io/plexinc/pms-docker
+              tag: 1.32.5.7516-8f4248874
+              env:
+                TZ: "${TIMEZONE}"
+                PLEX_UID: 0
+                PLEX_GID: 0
+              # to avoid permissions issues on volume
+              securityContext:
+                runAsUser: 0
+                runAsGroup: 0
+                fsGroup: 0
+              resources:
+                requests:
+                  gpu.intel.com/i915: 1
+                  cpu: 100m
+                  memory: 2000Mi
+                limits:
+                  gpu.intel.com/i915: 1
     service:
       main:
         type: LoadBalancer
@@ -59,6 +78,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
     persistence:
       config:
         enabled: true
@@ -66,44 +88,49 @@ spec:
         existingClaim: pvc-plex0
         accessMode: ReadWriteOnce
         size: 50Gi
+        advancedMounts:
+          main:
+            main:
+              - path: /config
       tmp:
         enabled: true
         type: emptyDir
         medium: Memory
+        advancedMounts:
+          main:
+            main:
+              - path: /tmp
       movies:
         enabled: true
         type: nfs
         server: "${NAS0_IP}"
         path: /volume1/Films
-        mountPath: /movies
+        advancedMounts:
+          main:
+            main:
+              - path: /movies
       tv:
         enabled: true
         type: nfs
         server: "${NAS0_IP}"
         path: /volume1/TV-Series
-        mountPath: /tv
+        advancedMounts:
+          main:
+            main:
+              - path: /tv
       music:
         enabled: true
         type: nfs
         server: "${NAS0_IP}"
         path: /volume1/Music
-        mountPath: /music
+        advancedMounts:
+          main:
+            main:
+              - path: /music
       transcode:
         enabled: true
         type: emptyDir
-    # to avoid permissions issues on volume
-    podSecurityContext:
-      runAsUser: 0
-      runAsGroup: 0
-      fsGroup: 0
-    nodeSelector:
-      intel.feature.node.kubernetes.io/gpu: "true"
-    resources:
-      requests:
-        gpu.intel.com/i915: 1
-        cpu: 100m
-        memory: 2000Mi
-      limits:
-        gpu.intel.com/i915: 1
-        memory: 10000Mi
-
+        advancedMounts:
+          main:
+            main:
+              - path: /transcode
