@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.1.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -25,11 +25,20 @@ spec:
     remediation:
       retries: 5
   values:
-    image:
-      repository: lscr.io/linuxserver/sabnzbd
-      tag: "4.1.0"
-    env:
-      TZ: "${TIMEZONE}"
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: lscr.io/linuxserver/sabnzbd
+              tag: "4.1.0"
+              env:
+                TZ: "${TIMEZONE}"
+              # to avoid permissions issues on volume
+              securityContext:
+                runAsUser: 0
+                runAsGroup: 0
+                fsGroup: 0
     service:
       main:
         ports:
@@ -51,20 +60,25 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
     persistence:
       config:
         enabled: true
         storageClass: longhorn
         existingClaim: pvc-sabnzbd
-        mountPath: /config
         retain: true
+        advancedMounts:
+          main:
+            main:
+              - path: /config
       downloads:
         enabled: true
         type: nfs
         server: "${NAS0_IP}"
         path: /volume1/downloads
-        mountPath: /downloads
-    podSecurityContext:
-      runAsUser: 0
-      runAsGroup: 0
-      fsGroup: 0
+        advancedMounts:
+          main:
+            main:
+              - path: /downloads
