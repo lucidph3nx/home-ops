@@ -5,7 +5,7 @@ metadata:
   name: cluster-apps-changedetection-io-browser
   namespace: flux-system
 spec:
-  path: ./kubernetes/cluster0/apps/monitoring/changedetection-io/app
+  path: ./kubernetes/cluster0/apps/monitoring/changedetection-io/browser
   prune: true
   sourceRef:
     kind: GitRepository
