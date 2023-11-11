@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.1.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -24,13 +24,22 @@ spec:
     remediation:
       retries: 5
   values:
-    image:
-      repository: lscr.io/linuxserver/prowlarr
-      tag: "1.9.4.4039-ls38"
-    env:
-      TZ: "${TIMEZONE}"
-      PUID: 0
-      PGID: 0
+    controllers:
+      main:
+        containers:
+          main:
+      image:
+        repository: lscr.io/linuxserver/prowlarr
+        tag: "1.9.4.4039-ls38"
+        env:
+          TZ: "${TIMEZONE}"
+          PUID: 0
+          PGID: 0
+        # to avoid permissions issues on volume
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+          fsGroup: 0
     service:
       main:
         ports:
@@ -50,15 +59,16 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
     persistence:
       config:
         enabled: true
         storageClass: longhorn
         existingClaim: pvc-prowlarr
-        mountPath: /config
         retain: true
-    # to avoid permissions issues on volume
-    podSecurityContext:
-      runAsUser: 0
-      runAsGroup: 0
-      fsGroup: 0
+        advancedMounts:
+          main:
+            main:
+              - path: /config
