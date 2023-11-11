@@ -41,6 +41,7 @@ spec:
           http:
             port: 8384
       listdisc:
+        controller: main
         enabled: true
         type: LoadBalancer
         annotations:
