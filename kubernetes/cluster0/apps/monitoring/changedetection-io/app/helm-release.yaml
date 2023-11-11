@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.1.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -24,38 +24,48 @@ spec:
     remediation:
       retries: 5
   values:
-    image:
-      repository: ghcr.io/dgtlmoon/changedetection.io
-      tag: "0.45"
-    env:
-      TZ: "${TIMEZONE}"
-      USE_X_SETTINGS: 1
-      PLAYWRIGHT_DRIVER_URL: ws://changedetection-browser.monitoring.svc.cluster.local:3000/?stealth=1&--disable-web-security=true&--user-data-dir=~/browserless-cache-123
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/dgtlmoon/changedetection.io
+              tag: "0.45"
+              env:
+                TZ: "${TIMEZONE}"
+                USE_X_SETTINGS: 1
+                PLAYWRIGHT_DRIVER_URL: ws://changedetection-browser.monitoring.svc.cluster.local:3000/?stealth=1&--disable-web-security=true&--user-data-dir=~/browserless-cache-123
     service:
       main:
         ports:
           http:
             port: 5000
     ingress:
-        main:
-          enabled: true
-          ingressClassName: "traefik"
-          annotations:
-            hajimari.io/enable: "true"
-            hajimari.io/icon: "swap-horizontal"
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
-            external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-            external-dns/is-public: "true"
-          hosts:
-            - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
-              paths:
-                - path: /
-                  pathType: Prefix
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "swap-horizontal"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+          external-dns/is-public: "true"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
     persistence:
       config:
         enabled: true
         storageClass: longhorn
         existingClaim: pvc-changedetection-io
-        mountPath: /datastore
         retain: true
+        advancedMounts:
+          main:
+            main:
+              - path: /datastore

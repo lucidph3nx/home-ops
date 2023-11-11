@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.1.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -21,20 +21,24 @@ spec:
     remediation:
       retries: 5
   values:
-    image:
-      repository: docker.io/browserless/chrome
-      tag: latest
-    env:
-      SCREEN_WIDTH: 1920
-      SCREEN_HEIGHT: 1024
-      SCREEN_DEPTH: 16
-      ENABLE_DEBUGGER: false
-      PREBOOT_CHROME: true
-      CONNECTION_TIMEOUT: 300000
-      MAX_CONCURRENT_SESSIONS: 10
-      CHROME_REFRESH_TIME: 600000
-      DEFAULT_BLOCK_ADS: true
-      DEFAULT_STEALTH: true
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: docker.io/browserless/chrome
+              tag: latest
+              env:
+                SCREEN_WIDTH: 1920
+                SCREEN_HEIGHT: 1024
+                SCREEN_DEPTH: 16
+                ENABLE_DEBUGGER: false
+                PREBOOT_CHROME: true
+                CONNECTION_TIMEOUT: 300000
+                MAX_CONCURRENT_SESSIONS: 10
+                CHROME_REFRESH_TIME: 600000
+                DEFAULT_BLOCK_ADS: true
+                DEFAULT_STEALTH: true
     service:
       main:
         ports:
