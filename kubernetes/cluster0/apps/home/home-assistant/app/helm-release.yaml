@@ -33,17 +33,17 @@ spec:
             image:
               repository: ghcr.io/home-assistant/home-assistant
               tag: 2023.11.2
-              env:
-                TZ: "${TIMEZONE}"
-                POSTGRESQL_PASSWORD:
-                  valueFrom:
-                    secretKeyRef:
-                      name: home-assistant-db-secrets
-                      key: password
-              resources:
-                requests:
-                  cpu: 47m
-                  memory: 1254M
+            env:
+              TZ: "${TIMEZONE}"
+              POSTGRESQL_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: home-assistant-db-secrets
+                    key: password
+            resources:
+              requests:
+                cpu: 47m
+                memory: 1254M
           codeserver:
             image:
               repository: ghcr.io/coder/code-server

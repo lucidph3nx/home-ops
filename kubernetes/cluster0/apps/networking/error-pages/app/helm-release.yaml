@@ -32,13 +32,13 @@ spec:
             image:
               repository: ghcr.io/tarampampam/error-pages
               tag: 2.25.0
-              env:
-                TEMPLATE_NAME: ghost
-                SHOW_DETAILS: "false"
-              resources:
-                requests:
-                  memory: 100Mi
-                  cpu: 100m
+            env:
+              TEMPLATE_NAME: ghost
+              SHOW_DETAILS: "false"
+            resources:
+              requests:
+                memory: 100Mi
+                cpu: 100m
     service:
       main:
         ports:

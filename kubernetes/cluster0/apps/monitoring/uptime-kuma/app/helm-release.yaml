@@ -31,10 +31,10 @@ spec:
             image:
               repository: louislam/uptime-kuma
               tag: "latest"
-              env:
-                TZ: "${TIMEZONE}"
-                UPTIME_KUMA_PORT: 3001
-                UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN: 0
+            env:
+              TZ: "${TIMEZONE}"
+              UPTIME_KUMA_PORT: 3001
+              UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN: 0
     service:
       main:
         ports:

@@ -31,13 +31,13 @@ spec:
             image:
               repository: ghcr.io/sct/overseerr
               tag: 1.33.2
-              env:
-                TZ: "${TIMEZONE}"
-                LOG_LEVEL: "info"
-              resources:
-                requests:
-                  cpu: 100m
-                  memory: 250Mi
+            env:
+              TZ: "${TIMEZONE}"
+              LOG_LEVEL: "info"
+            resources:
+              requests:
+                cpu: 100m
+                memory: 250Mi
     service:
       main:
         ports:

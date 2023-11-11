@@ -34,16 +34,16 @@ spec:
             image:
               repository: jellyfin/jellyfin
               tag: 10.8.12
-              env:
-                TZ: "${TIMEZONE}"
-                JELLYFIN_CACHE_DIR: /config/cache
-              resources:
-                requests:
-                  gpu.intel.com/i915: 1
-                  cpu: 100m
-                  memory: 1000Mi
-                limits:
-                  gpu.intel.com/i915: 1
+            env:
+              TZ: "${TIMEZONE}"
+              JELLYFIN_CACHE_DIR: /config/cache
+            resources:
+              requests:
+                gpu.intel.com/i915: 1
+                cpu: 100m
+                memory: 1000Mi
+              limits:
+                gpu.intel.com/i915: 1
     service:
       main:
         ports:

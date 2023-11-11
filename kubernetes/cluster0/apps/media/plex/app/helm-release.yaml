@@ -35,22 +35,22 @@ spec:
               # renovate: datasource=docker image=docker.io/plexinc/pms-docker
               repository: docker.io/plexinc/pms-docker
               tag: 1.32.5.7516-8f4248874
-              env:
-                TZ: "${TIMEZONE}"
-                PLEX_UID: 0
-                PLEX_GID: 0
-              # to avoid permissions issues on volume
-              securityContext:
-                runAsUser: 0
-                runAsGroup: 0
-                fsGroup: 0
-              resources:
-                requests:
-                  gpu.intel.com/i915: 1
-                  cpu: 100m
-                  memory: 2000Mi
-                limits:
-                  gpu.intel.com/i915: 1
+            env:
+              TZ: "${TIMEZONE}"
+              PLEX_UID: 0
+              PLEX_GID: 0
+            # to avoid permissions issues on volume
+            securityContext:
+              runAsUser: 0
+              runAsGroup: 0
+              fsGroup: 0
+            resources:
+              requests:
+                gpu.intel.com/i915: 1
+                cpu: 100m
+                memory: 2000Mi
+              limits:
+                gpu.intel.com/i915: 1
     service:
       main:
         type: LoadBalancer
