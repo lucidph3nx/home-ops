@@ -34,6 +34,7 @@ spec:
               env:
                 TZ: "${TIMEZONE}"
                 ZIGBEE2MQTT_DATA: /data
+                ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
               securityContext:
                 privileged: true
     service:
