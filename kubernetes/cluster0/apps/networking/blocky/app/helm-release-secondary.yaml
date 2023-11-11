@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.1.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -39,9 +39,24 @@ spec:
     keepHistory: false
   maxHistory: 3
   values:
-    image:
-      repository: ghcr.io/0xerr0r/blocky
-      tag: v0.22
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/0xerr0r/blocky
+              tag: v0.22
+              probes:
+                liveness:
+                  failureThreshold: 5
+                  periodSeconds: 10
+                readiness:
+                  failureThreshold: 5
+                  periodSeconds: 10
+                startup:
+                  initialDelaySeconds: 5
+                  failureThreshold: 30
+                  periodSeconds: 10
     service:
       main:
         enabled: true
@@ -50,6 +65,7 @@ spec:
             port: 4000
       dns:
         enabled: true
+        controller: main
         type: LoadBalancer
         annotations:
           # io.cilium/lb-ipam-ips: ${SECONDARY_DNS_IP}
@@ -74,22 +90,14 @@ spec:
             path: /metrics
             port: http
             scrapeTimeout: 10s
-    probes:
-      liveness:
-        failureThreshold: 5
-        periodSeconds: 10
-      readiness:
-        failureThreshold: 5
-        periodSeconds: 10
-      startup:
-        initialDelaySeconds: 5
-        failureThreshold: 30
-        periodSeconds: 10
     persistence:
       config:
         enabled: true
         type: configMap
         name: blocky
-        subPath: config.yml
-        mountPath: /app/config.yml
         readOnly: true
+        advancedMounts:
+          main:
+            main:
+              - path: /app/config.yml
+                subPath: config.yml
