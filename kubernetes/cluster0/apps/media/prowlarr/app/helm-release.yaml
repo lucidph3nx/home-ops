@@ -28,18 +28,18 @@ spec:
       main:
         containers:
           main:
-      image:
-        repository: lscr.io/linuxserver/prowlarr
-        tag: "1.9.4.4039-ls38"
-        env:
-          TZ: "${TIMEZONE}"
-          PUID: 0
-          PGID: 0
-        # to avoid permissions issues on volume
-        securityContext:
-          runAsUser: 0
-          runAsGroup: 0
-          fsGroup: 0
+            image:
+              repository: lscr.io/linuxserver/prowlarr
+              tag: "1.9.4.4039-ls38"
+              env:
+                TZ: "${TIMEZONE}"
+                PUID: 0
+                PGID: 0
+              # to avoid permissions issues on volume
+              securityContext:
+                runAsUser: 0
+                runAsGroup: 0
+                fsGroup: 0
     service:
       main:
         ports:
