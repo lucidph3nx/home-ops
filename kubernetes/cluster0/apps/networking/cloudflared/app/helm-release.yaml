@@ -1,0 +1,103 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cloudflared
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.3.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  values:
+    controllers:
+      main:
+        replicas: 2
+        strategy: RollingUpdate
+        pod:
+          # don't schedule more than one cloudflared tunnel per node
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: DoNotSchedule
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: cloudflared
+        containers:
+          main:
+            image:
+              repository: docker.io/cloudflare/cloudflared
+              tag: 2023.10.0
+            args:
+              - tunnel
+              - --config
+              - /etc/cloudflared/config/config.yaml
+              - run
+              - "$(TUNNEL_ID)"
+            env:
+              NO_AUTOUPDATE: "true"
+              TUNNEL_CRED_FILE: /etc/cloudflared/creds/credentials.json
+              TUNNEL_METRICS: 0.0.0.0:8080
+              TUNNEL_TRANSPORT_PROTOCOL: auto
+              TUNNEL_ID:
+                valueFrom:
+                  secretKeyRef:
+                    name: cloudflared-secret
+                    key: TunnelID
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ready
+                    port: 8080
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ready
+                    port: 8080
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ready
+                    port: 8080
+                  failureThreshold: 30
+                  periodSeconds: 10
+            resources:
+              requests:
+                cpu: 6m
+                memory: 105Mi
+              limits:
+                memory: 105Mi
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+
+    persistence:
+      creds:
+        type: secret
+        name: cloudflared-secret
+        globalMounts:
+          - path: /etc/cloudflared/creds/credentials.json
+            subPath: credentials.json
+            readOnly: true
