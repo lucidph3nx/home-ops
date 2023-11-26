@@ -11,4 +11,4 @@ resources:
   - ./traefik/ks.yaml
   - ./error-pages/ks.yaml
   - ./metallb/ks.yaml
-  - ./cloudflared/ks.yaml
+  # - ./cloudflared/ks.yaml
