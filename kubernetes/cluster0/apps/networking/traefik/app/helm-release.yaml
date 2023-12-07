@@ -40,9 +40,9 @@ spec:
         minVersion: VersionTLS12
         maxVersion: VersionTLS13
         sniStrict: true
-    experimental:
-      plugins:
-        enabled: true
+    # experimental:
+    #   plugins:
+    #     enabled: true
     rbac:
       enabled: true
     ingressClass:
