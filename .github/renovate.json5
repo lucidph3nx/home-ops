@@ -13,7 +13,6 @@
   "schedule": [
     "every weekend"
   ],
-  "assigneesFromCodeOwners": true,
   "pre-commit": {
     "enabled": true
   },
