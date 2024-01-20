@@ -28,7 +28,7 @@ spec:
     image:
       registry: docker.io
       repository: bitnami/postgresql
-      tag: 16.1.0-debian-11-r21
+      tag: 15.4.0-debian-11-r21
     auth:
       database: hass
       username: hass
