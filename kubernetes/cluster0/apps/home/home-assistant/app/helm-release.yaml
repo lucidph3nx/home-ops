@@ -14,7 +14,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.5.0
+      version: 2.6.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -32,7 +32,7 @@ spec:
           main:
             image:
               repository: ghcr.io/home-assistant/home-assistant
-              tag: 2024.1.5
+              tag: 2024.2.1
             env:
               TZ: "${TIMEZONE}"
               POSTGRESQL_PASSWORD:
@@ -47,7 +47,7 @@ spec:
           codeserver:
             image:
               repository: ghcr.io/coder/code-server
-              tag: 4.20.0
+              tag: 4.21.1
             env:
               TZ: "${TIMEZONE}"
             args:
