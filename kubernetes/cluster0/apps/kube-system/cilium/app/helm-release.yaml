@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: cilium
-      version: 1.14.7
+      version: 1.15.1
       sourceRef:
         kind: HelmRepository
         name: cilium
@@ -40,6 +40,8 @@ spec:
     containerRuntime:
       integration: containerd
       socketPath: /var/run/k3s/containerd/containerd.sock
+    devices: enp+
+    enableRuntimeDeviceDetection: true
     endpointRoutes:
       enabled: true
     hubble:
@@ -94,8 +96,8 @@ spec:
       leaseRenewDeadline: 60s
       leaseRetryPeriod: 1s
     loadBalancer:
-      algorithm: "maglev"
-      mode: "dsr"
+      algorithm: maglev
+      mode: dsr
     localRedirectPolicy: true
     operator:
       rollOutPods: true
@@ -117,6 +119,22 @@ spec:
       annotations:
         grafana_folder: Cilium
     rollOutCiliumPods: true
+    routingMode: native
     securityContext:
-      privileged: true
-    tunnel: disabled
+      capabilities:
+        ciliumAgent:
+          - CHOWN
+          - KILL
+          - NET_ADMIN
+          - NET_RAW
+          - IPC_LOCK
+          - SYS_ADMIN
+          - SYS_RESOURCE
+          - DAC_OVERRIDE
+          - FOWNER
+          - SETGID
+          - SETUID
+        cleanCiliumState:
+          - NET_ADMIN
+          - SYS_ADMIN
+          - SYS_RESOURCE
