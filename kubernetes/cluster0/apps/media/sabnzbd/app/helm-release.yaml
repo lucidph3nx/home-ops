@@ -31,7 +31,7 @@ spec:
           main:
             image:
               repository: lscr.io/linuxserver/sabnzbd
-              tag: "4.2.2"
+              tag: "4.2.3"
             env:
               TZ: "${TIMEZONE}"
             # to avoid permissions issues on volume
