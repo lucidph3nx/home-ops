@@ -99,6 +99,9 @@ spec:
     loadBalancer:
       algorithm: maglev
       mode: dsr
+    k8sClientRateLimit:
+      qps: 20
+      burst: 40
     localRedirectPolicy: true
     operator:
       rollOutPods: true
