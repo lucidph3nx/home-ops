@@ -33,11 +33,9 @@ spec:
     bpf:
       masquerade: true
     bgp:
-      enabled: false
-    hostPort:
       enabled: true
-    socketLB:
-      enabled: true
+      announce:
+        loadbalancerIP: true
     cluster:
       name: ${CLUSTER_NAME}
       id: 1
