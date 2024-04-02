@@ -68,8 +68,8 @@ spec:
         controller: main
         type: LoadBalancer
         annotations:
-          io.cilium/lb-ipam-ips: ${SECONDARY_DNS_IP}
-          # metallb.universe.tf/loadBalancerIPs: ${SECONDARY_DNS_IP}
+          # io.cilium/lb-ipam-ips: ${SECONDARY_DNS_IP}
+          metallb.universe.tf/loadBalancerIPs: ${SECONDARY_DNS_IP}
         externalTrafficPolicy: Local # aparently, quite important
         ports:
           dns-tcp:

@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: cilium
-      version: 1.15.2
+      version: 1.15.3
       sourceRef:
         kind: HelmRepository
         name: cilium
@@ -34,8 +34,6 @@ spec:
       masquerade: true
     bgp:
       enabled: false
-      announce:
-        loadbalancerIP: true
     cluster:
       name: ${CLUSTER_NAME}
       id: 1
@@ -92,7 +90,7 @@ spec:
     kubeProxyReplacement: true
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     l2announcements:
-      enabled: true
+      enabled: false # only works with bgp which unifi doesnt support
       leaseDuration: 120s
       leaseRenewDeadline: 60s
       leaseRetryPeriod: 1s

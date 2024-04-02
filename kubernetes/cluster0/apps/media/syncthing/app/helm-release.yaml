@@ -45,8 +45,8 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          io.cilium/lb-ipam-ips: ${SYNC_ENDPOINT}
-          # metallb.universe.tf/loadBalancerIPs: ${SYNC_ENDPOINT}
+          # io.cilium/lb-ipam-ips: ${SYNC_ENDPOINT}
+          metallb.universe.tf/loadBalancerIPs: ${SYNC_ENDPOINT}
         ports:
           discovery:
             enabled: true

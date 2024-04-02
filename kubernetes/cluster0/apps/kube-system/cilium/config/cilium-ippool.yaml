@@ -5,6 +5,6 @@ kind: CiliumLoadBalancerIPPool
 metadata:
   name: pool
 spec:
-  disabled: false # temporarily disable due to instability
+  disabled: true # doesnt work without bgp which unifi doesnt support
   blocks:
     - cidr: ${LOADBALANCER_IP_POOL}
