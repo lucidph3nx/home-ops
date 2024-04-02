@@ -5,6 +5,6 @@ kind: CiliumLoadBalancerIPPool
 metadata:
   name: pool
 spec:
-  disabled: true # temporarily disable due to instability
-  cidrs:
+  disabled: false # temporarily disable due to instability
+  blocks:
     - cidr: ${LOADBALANCER_IP_POOL}
