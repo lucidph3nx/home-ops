@@ -5,7 +5,7 @@ kind: CiliumL2AnnouncementPolicy
 metadata:
   name: policy
 spec:
-  loadBalancerIPs: true # temporarily disable due to instability
+  loadBalancerIPs: true
   interfaces:
     - ^enp.*
     - ^eno[0-9]+

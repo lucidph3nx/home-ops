@@ -33,7 +33,7 @@ spec:
     bpf:
       masquerade: true
     bgp:
-      enabled: false
+      enabled: false # unifi gateway does not support this
       announce:
         loadbalancerIP: true
     cluster:
