@@ -37,8 +37,8 @@ spec:
       main:
         type: LoadBalancer
         annotations:
-          # io.cilium/lb-ipam-ips: ${MOSQUITTO_IP}
-          metallb.universe.tf/loadBalancerIPs: ${MOSQUITTO_IP}
+          io.cilium/lb-ipam-ips: ${MOSQUITTO_IP}
+          # metallb.universe.tf/loadBalancerIPs: ${MOSQUITTO_IP}
         externalTrafficPolicy: Cluster
         ports:
           http:

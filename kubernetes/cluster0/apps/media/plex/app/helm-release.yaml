@@ -53,8 +53,8 @@ spec:
       main:
         type: LoadBalancer
         annotations:
-          # io.cilium/lb-ipam-ips: ${PLEX_IP}
-          metallb.universe.tf/loadBalancerIPs: ${PLEX_IP}
+          io.cilium/lb-ipam-ips: ${PLEX_IP}
+          # metallb.universe.tf/loadBalancerIPs: ${PLEX_IP}
           traefik.ingress.kubernetes.io/service.serversscheme: https
         externalTrafficPolicy: Cluster
         ports:
