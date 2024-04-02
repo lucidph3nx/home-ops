@@ -10,5 +10,5 @@ resources:
   - ./external-dns/ks.yaml
   - ./traefik/ks.yaml
   - ./error-pages/ks.yaml
-  - ./metallb/ks.yaml
+  # - ./metallb/ks.yaml
   # - ./cloudflared/ks.yaml
