@@ -34,6 +34,10 @@ spec:
       masquerade: true
     bgp:
       enabled: false
+    hostPort:
+      enabled: true
+    socketLB:
+      enabled: true
     cluster:
       name: ${CLUSTER_NAME}
       id: 1
