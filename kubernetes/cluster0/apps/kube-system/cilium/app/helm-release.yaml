@@ -33,7 +33,7 @@ spec:
     bpf:
       masquerade: true
     bgp:
-      enabled: true
+      enabled: false
       announce:
         loadbalancerIP: true
     cluster:
