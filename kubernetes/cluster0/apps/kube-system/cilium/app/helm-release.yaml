@@ -99,10 +99,6 @@ spec:
     loadBalancer:
       algorithm: maglev
       mode: dsr
-    devices:
-      - eth+
-      - eno+
-      - enp+
     k8sClientRateLimit:
       qps: 20
       burst: 40
