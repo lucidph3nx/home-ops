@@ -96,7 +96,7 @@ spec:
       config:
         enabled: true
         type: configMap
-        name: *app
+        name: blocky
         globalMounts:
           - path: /app/config.yml
             subPath: config.yml
