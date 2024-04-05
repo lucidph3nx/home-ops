@@ -96,8 +96,7 @@ spec:
       config:
         enabled: true
         type: configMap
-        name: blocky
-        readOnly: true
+        name: *app
         advancedMounts:
           main:
             main:
