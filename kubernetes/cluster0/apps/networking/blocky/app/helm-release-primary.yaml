@@ -97,8 +97,7 @@ spec:
         enabled: true
         type: configMap
         name: *app
-        advancedMounts:
-          main:
-            main:
-              - path: /app/config.yml
-                subPath: config.yml
+        globalMounts:
+          - path: /app/config.yml
+            subPath: config.yml
+            readOnly: true
