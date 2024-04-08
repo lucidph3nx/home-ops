@@ -46,6 +46,10 @@ spec:
             image:
               repository: ghcr.io/0xerr0r/blocky
               tag: v0.23
+            resources:
+              requests:
+                cpu: 50m
+                memory: 200Mi
             probes:
               liveness:
                 enabled: true
@@ -77,9 +81,9 @@ spec:
         annotations:
           io.cilium/lb-ipam-ips: ${PRIMARY_DNS_IP}
         ports:
-          # dns-tcp:
-          #   port: *port
-          #   protocol: TCP
+          dns-tcp:
+            port: *port
+            protocol: TCP
           dns-udp:
             port: *port
             protocol: UDP

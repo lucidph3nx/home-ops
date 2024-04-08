@@ -1,9 +1,17 @@
 ---
+
+ports:
+  dns: 53
+  http: 4000
+logLevel: info
+
 # https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-tls/#how-it-works
-upstream:
-  default:
-    - tcp-tls:one.one.one.one:853
-    - tcp-tls:dns.quad9.net:853
+upstreams:
+  strategy: parallel_best
+  groups:
+    default:
+      - tcp-tls:one.one.one.one:853
+      - tcp-tls:dns.quad9.net:853
 
 bootstrapDns: tcp+udp:1.1.1.1
 
@@ -77,6 +85,3 @@ prometheus:
   enable: true
   path: /metrics
 
-ports:
-  http: 4000
-logLevel: info
