@@ -3,7 +3,8 @@
 ports:
   dns: 53
   http: 4000
-logLevel: info
+# logLevel: info
+logLevel: debug
 
 # https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-tls/#how-it-works
 upstreams:
