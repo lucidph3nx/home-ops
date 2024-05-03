@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.1.0
       interval: 30m
       sourceRef:
         kind: HelmRepository
@@ -17,7 +17,7 @@ spec:
         namespace: flux-system
   values:
     controllers:
-      main:
+      cloudflared:
         replicas: 2
         strategy: RollingUpdate
         pod:
@@ -30,7 +30,7 @@ spec:
                 matchLabels:
                   app.kubernetes.io/name: cloudflared
         containers:
-          main:
+          app:
             image:
               repository: docker.io/cloudflare/cloudflared
               tag: 2024.4.1
@@ -89,7 +89,8 @@ spec:
               limits:
                 memory: 105Mi
     service:
-      main:
+      app:
+        controller: cloudflared
         ports:
           http:
             port: 8080

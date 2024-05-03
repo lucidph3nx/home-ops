@@ -1,0 +1,10 @@
+---
+ingress:
+  - hostname: "${SECRET_DOMAIN}"
+    service: https://traefik.network.svc.cluster.local:443
+    originRequest:
+      originServerName: tun.${SECRET_DOMAIN}
+  - hostname: "*.${SECRET_DOMAIN}"
+    service: https://traefik.network.svc.cluster.local:443
+    originRequest:
+      originServerName: tun.${SECRET_DOMAIN}

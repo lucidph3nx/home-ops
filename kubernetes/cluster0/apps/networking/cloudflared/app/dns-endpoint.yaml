@@ -8,4 +8,4 @@ spec:
   endpoints:
     - dnsName: tun.${SECRET_PUBLIC_DOMAIN}
       recordType: CNAME
-      targets: ["d04f8a32-0525-4530-ba8b-6b907817ff9e.cfargotunnel.com"]
+      targets: ["4b56659c-65f1-48f2-94ba-6cb395db16a8.cfargotunnel.com"]
