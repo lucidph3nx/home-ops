@@ -95,25 +95,24 @@ spec:
           http:
             port: 8080
     configMaps:
-      cloudflared-configmap:
+      config:
         data:
           config.yaml: |
-            ---
             ingress:
-              - hostname: "${SECRET_DOMAIN}"
+              - hostname: "${SECRET_PUBLIC_DOMAIN}"
                 service: https://traefik.network.svc.cluster.local:443
                 originRequest:
-                  originServerName: tun.${SECRET_DOMAIN}
-              - hostname: "*.${SECRET_DOMAIN}"
+                  originServerName: tun.${SECRET_PUBLIC_DOMAIN}
+              - hostname: "*.${SECRET_PUBLIC_DOMAIN}"
                 service: https://traefik.network.svc.cluster.local:443
                 originRequest:
-                  originServerName: tun.${SECRET_DOMAIN}
+                  originServerName: tun.${SECRET_PUBLIC_DOMAIN}
               - service: http_status:404
 
     persistence:
       config:
         type: configMap
-        name: cloudflared-configmap
+        name: cloudflared-config
         globalMounts:
           - path: /etc/cloudflared/config/config.yaml
             subPath: config.yaml
