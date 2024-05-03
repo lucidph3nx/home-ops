@@ -43,8 +43,6 @@ spec:
     # experimental:
     #   plugins:
     #     enabled: true
-    core:
-      defaultRuleSyntax: v2
     rbac:
       enabled: true
     ingressClass:
