@@ -96,18 +96,19 @@ spec:
             port: 8080
     configMaps:
       cloudflared-configmap:
-        config/config.yaml: |
-          ---
-          ingress:
-            - hostname: "${SECRET_DOMAIN}"
-              service: https://traefik.network.svc.cluster.local:443
-              originRequest:
-                originServerName: tun.${SECRET_DOMAIN}
-            - hostname: "*.${SECRET_DOMAIN}"
-              service: https://traefik.network.svc.cluster.local:443
-              originRequest:
-                originServerName: tun.${SECRET_DOMAIN}
-            - service: http_status:404
+        data:
+          config.yaml: |
+            ---
+            ingress:
+              - hostname: "${SECRET_DOMAIN}"
+                service: https://traefik.network.svc.cluster.local:443
+                originRequest:
+                  originServerName: tun.${SECRET_DOMAIN}
+              - hostname: "*.${SECRET_DOMAIN}"
+                service: https://traefik.network.svc.cluster.local:443
+                originRequest:
+                  originServerName: tun.${SECRET_DOMAIN}
+              - service: http_status:404
 
     persistence:
       config:
