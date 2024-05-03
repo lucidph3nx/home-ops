@@ -8,3 +8,4 @@ ingress:
     service: https://traefik.network.svc.cluster.local:443
     originRequest:
       originServerName: tun.${SECRET_DOMAIN}
+  - service: http_status:404
