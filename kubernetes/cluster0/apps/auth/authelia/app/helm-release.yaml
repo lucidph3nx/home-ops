@@ -96,9 +96,9 @@ spec:
       notifier:
         smtp:
           enabled: true
-          enabledSecret: true
+          # enabledSecret: true
           host: "${SECRET_SMTP_HOST}"
-          port: 465
+          port: 587
           identifier: "${SECRET_PUBLIC_DOMAIN}"
           username: "${SECRET_ADMIN_EMAIL}"
           sender: "${SECRET_NOTIFICATION_EMAIL}"
