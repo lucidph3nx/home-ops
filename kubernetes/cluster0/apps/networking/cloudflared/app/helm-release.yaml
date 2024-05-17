@@ -100,11 +100,11 @@ spec:
           config.yaml: |
             ingress:
               - hostname: "${SECRET_PUBLIC_DOMAIN}"
-                service: https://traefik.network.svc.cluster.local:443
+                service: https://traefik.networking.svc.cluster.local:443
                 originRequest:
                   originServerName: tun.${SECRET_PUBLIC_DOMAIN}
               - hostname: "*.${SECRET_PUBLIC_DOMAIN}"
-                service: https://traefik.network.svc.cluster.local:443
+                service: https://traefik.networking.svc.cluster.local:443
                 originRequest:
                   originServerName: tun.${SECRET_PUBLIC_DOMAIN}
               - service: http_status:404
