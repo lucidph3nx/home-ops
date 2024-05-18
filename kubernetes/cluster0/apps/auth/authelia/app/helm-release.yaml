@@ -89,6 +89,8 @@ spec:
           username: authelia
           database: authelia
           schema: public
+          tls:
+            enabled: false
       notifier:
         smtp:
           enabled: true
