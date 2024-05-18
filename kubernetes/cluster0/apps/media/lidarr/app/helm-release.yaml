@@ -65,7 +65,7 @@ spec:
         existingClaim: pvc-lidarr
         advancedMounts:
           main:
-            main:
+            app:
               - path: /config
       music:
         type: nfs
@@ -73,7 +73,7 @@ spec:
         path: /volume1/Music
         advancedMounts:
           main:
-            main:
+            app:
               - path: /music
       downloads:
         type: nfs
@@ -81,5 +81,5 @@ spec:
         path: /volume1/downloads
         advancedMounts:
           main:
-            main:
+            app:
               - path: /downloads
