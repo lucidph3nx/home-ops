@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: home-assistant
@@ -56,7 +56,6 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-          external-dns/is-public: "true"
         hosts:
           - host: home-assistant.${SECRET_PUBLIC_DOMAIN}
             paths:
@@ -67,7 +66,11 @@ spec:
                   port: http
     persistence:
       config:
+        storageClass: longhorn
         existingClaim: pvc-home-assistant
-        globalMounts:
-          - path: /config
-            readyOnly: false
+        retain: true
+        enabled: true
+        advancedMounts:
+          app:
+            app:
+              - path: /config
