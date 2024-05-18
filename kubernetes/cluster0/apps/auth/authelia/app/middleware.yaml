@@ -29,7 +29,7 @@ apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: chain-authelia
-namespace: auth
+  namespace: auth
 spec:
   chain:
     middlewares:
@@ -40,7 +40,7 @@ apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: headers-authelia
-namespace: auth
+  namespace: auth
 spec:
   headers:
     browserXssFilter: true
