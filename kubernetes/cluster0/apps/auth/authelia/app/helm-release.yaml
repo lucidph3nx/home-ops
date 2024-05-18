@@ -3,6 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app authelia
+  namespace: auth
 spec:
   interval: 30m
   chart:
@@ -22,8 +23,14 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: glauth
-      namespace: default
+    - name: openldap
+      namespace: auth
+    - name: authelia-redis
+      namespace: auth
+    - name: authelia-postgresql
+      namespace: auth
+    - name: traefik
+      namespace: networking
   values:
     controllers:
       authelia:
