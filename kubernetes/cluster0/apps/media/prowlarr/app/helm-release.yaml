@@ -62,9 +62,7 @@ spec:
                   port: http
     persistence:
       config:
-        storageClass: longhorn
         existingClaim: pvc-prowlarr
-        retain: true
         advancedMounts:
           main:
             main:
