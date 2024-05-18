@@ -70,3 +70,4 @@ spec:
         existingClaim: pvc-home-assistant
         globalMounts:
           - path: /config
+            readyOnly: false
