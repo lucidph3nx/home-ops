@@ -30,10 +30,10 @@ spec:
             image:
               repository: syncthing/syncthing
               tag: 1.27.7
-              resources:
-                requests:
-                  cpu: 15m
-                  memory: 249Mi
+    resources:
+      requests:
+        cpu: 15m
+        memory: 249Mi
     service:
       app:
         controller: main
