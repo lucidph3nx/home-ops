@@ -44,17 +44,6 @@ spec:
         disableIngressRoute: false
         apiGroupOverride: 'traefik.io'
         apiVersionOverride: 'v1alpha1'
-        rulesOverride:
-        - host: auth.${SECRET_PUBLIC_DOMAIN}
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: authelia
-                    port:
-                      number: 80
         entryPoints: 
           - websecure
     pod:
@@ -91,6 +80,8 @@ spec:
         #     - "*.${SECRET_PUBLIC_DOMAIN}"
       session:
         name: "${SECRET_PUBLIC_DOMAIN}_auth_session"
+        cookies:
+        - domain: "${SECRET_PUBLIC_DOMAIN}"
         redis:
           enabled: true
           enabledSecret: true
