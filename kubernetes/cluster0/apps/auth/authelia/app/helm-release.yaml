@@ -63,7 +63,7 @@ spec:
         ldap:
           enabled: true
           implementation: custom
-          url: ldap://openldap.auth.svc.cluster.local:389
+          address: ldap://openldap.auth.svc.cluster.local:389
           base_dn: "${SECRET_LDAP_BASE_DN}"
           username_attribute: uid
           additional_users_dn: ou=people
