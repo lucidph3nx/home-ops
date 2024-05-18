@@ -44,13 +44,10 @@ spec:
             port: 8080
     ingress:
       main:
-        enabled: true
-        ingressClassName: "traefik"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-          external-dns/is-public: "true"
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
             paths:
@@ -96,15 +93,3 @@ spec:
                 operator: In
                 values:
                 - zigbee-controller
-
- # !!! note to future ben, or anyone else !!!
- # trying to get the ConBee to appear as a readable ttyACM0 interface is a nightmare
- # this is mostly because I am using cloud init Ubuntu 20.04 images which are missing important usb things
- # find out the kernel version with `uname -a` then install extra modules
- # sudo apt install linux-modules-extra-5.4.0-124-generic
- # https://arduino.stackexchange.com/questions/48583/no-ttyacm0-nor-ttyusb0
- # never forget the hours you spent, on more than one occasion, to fix this!!!
-
- # this also includes when the kernel updates, you need to install the newer modules
- # probably should look for a long term fix...
- 
