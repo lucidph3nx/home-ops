@@ -51,7 +51,7 @@ spec:
               X_AUTHELIA_CONFIG_FILTERS: expand-env
             envFrom:
               - secretRef:
-                  name: authelia-secret
+                  name: authelia-secrets
             probes:
               liveness: &probes
                 enabled: true
