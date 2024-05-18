@@ -8,13 +8,12 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
   install:
-    createNamespace: true
     remediation:
       retries: 5
   upgrade:
@@ -24,7 +23,7 @@ spec:
     controllers:
       main:
         containers:
-          main:
+          app:
             image:
               repository: docker.io/browserless/chrome
               tag: latest
@@ -40,7 +39,8 @@ spec:
               DEFAULT_BLOCK_ADS: true
               DEFAULT_STEALTH: true
     service:
-      main:
+      app:
+        identifier: app
         ports:
           http:
             port: 3000
