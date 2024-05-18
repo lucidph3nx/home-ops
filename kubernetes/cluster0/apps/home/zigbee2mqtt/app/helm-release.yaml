@@ -72,18 +72,12 @@ spec:
       #        - path: /app/data/configuration.yaml"
       #          subPath: "configuration.yaml"
       data:
-        enabled: true
-        storageClass: longhorn
         existingClaim: pvc-zigbee2mqtt
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        retain: true
         advancedMounts:
           main:
             main:
               - path: /data
       usb:
-        enabled: true
         type: hostPath
         hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
         advancedMounts:
