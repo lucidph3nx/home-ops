@@ -14,7 +14,7 @@ spec:
 
 ---
 # Redirect to https
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: unifi-redirectscheme
@@ -25,7 +25,7 @@ spec:
     permanent: true
 ---
 # headers specific to unifi cloud key
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: unifi-headers
@@ -44,7 +44,7 @@ spec:
       X-Forwarded-Proto: https
 ---
 # the equivelant of insecureskipverify for just this ingress
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: ServersTransport
 metadata:
   name: unifi-skip-verify-transport
@@ -55,7 +55,7 @@ spec:
 
 
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: unifi-externalroute
