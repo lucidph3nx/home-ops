@@ -41,9 +41,9 @@ spec:
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
       traefikCRD:
         enabled: true
-        disableIngressRoute: true
-        # apiGroupOverride: 'traefik.io'
-        # apiVersionOverride: 'v1alpha1'
+        disableIngressRoute: false
+        apiGroupOverride: 'traefik.io'
+        apiVersionOverride: 'v1alpha1'
         entryPoints: 
           - websecure
     pod:
