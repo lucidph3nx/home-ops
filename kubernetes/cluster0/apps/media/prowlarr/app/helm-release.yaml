@@ -65,5 +65,5 @@ spec:
         existingClaim: pvc-prowlarr
         advancedMounts:
           main:
-            main:
+            app:
               - path: /config
