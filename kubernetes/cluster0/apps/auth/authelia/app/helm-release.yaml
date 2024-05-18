@@ -58,8 +58,7 @@ spec:
         ## Level of verbosity for logs: info, debug, trace.
         level: info
       theme: dark
-      totp:
-        issuer: "${SECRET_PUBLIC_DOMAIN}"
+      default_2fa_method: totp
       authentication_backend:
         ldap:
           enabled: true
@@ -74,10 +73,6 @@ spec:
           group_name_attribute: cn
       access_control:
         default_policy: two_factor
-        # networks:
-        #   - name: all
-        #     networks:
-        #     - "*.${SECRET_PUBLIC_DOMAIN}"
       session:
         name: "${SECRET_PUBLIC_DOMAIN}_auth_session"
         cookies:
@@ -107,19 +102,3 @@ spec:
           startup_check_address: "${SECRET_TEST_EMAIL}"
     secret:
       existingSecret: authelia-secrets
-      jwt:
-        key: authelia_jwt
-      ldap:
-        key: LDAP_ADMIN_PASSWORD
-      session:
-        key: session_encryption_key
-      redis:
-        key: redis_password
-      redisSentinel:
-        key: redis_password
-      storage:
-        key: postgresql_password # think this works? not clear from docs
-      storageEncryptionKey:
-        key: storage_encryption_key
-      smtp:
-        key: smtp_password
