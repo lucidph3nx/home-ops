@@ -40,7 +40,7 @@ spec:
               runAsGroup: 0
               fsGroup: 0
     service:
-      main:
+      app:
         controller: main
         ports:
           http:
