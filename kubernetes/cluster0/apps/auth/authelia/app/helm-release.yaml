@@ -93,12 +93,13 @@ spec:
       notifier:
         smtp:
           enabled: true
-          host: "${SECRET_SMTP_HOST}"
-          port: 587
-          identifier: "${SECRET_PUBLIC_DOMAIN}"
-          username: "${SECRET_ADMIN_EMAIL}"
+          address: "submission://${SECRET_SMTP_HOST}:587"
           sender: "${SECRET_NOTIFICATION_EMAIL}"
+          identifier: "${SECRET_PUBLIC_DOMAIN}"
           subject: "[${SECRET_PUBLIC_DOMAIN} auth] {title}"
           startup_check_address: "${SECRET_TEST_EMAIL}"
+          username: "${SECRET_ADMIN_EMAIL}"
+          password:
+            disabled: true
     secret:
       existingSecret: authelia-secrets
