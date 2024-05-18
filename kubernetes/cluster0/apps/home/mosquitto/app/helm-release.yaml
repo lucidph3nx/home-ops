@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -27,14 +27,15 @@ spec:
     controllers:
       main:
         containers:
-          main:
+          app:
             image:
               repository: eclipse-mosquitto
               tag: 2.0.18
             env:
               TZ: "${TIMEZONE}"
     service:
-      main:
+      app:
+        controller: main
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: ${MOSQUITTO_IP}
