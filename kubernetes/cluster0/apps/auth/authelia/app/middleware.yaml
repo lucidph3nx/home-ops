@@ -24,4 +24,28 @@ spec:
       - Remote-Name
       - Remote-Email
       - Remote-Groups
-
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+namespace: auth
+metadata:
+  name: chain-authelia
+spec:
+  chain:
+    middlewares:
+      - name: headers-authelia
+        namespace: auth
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+namespace: auth
+metadata:
+  name: headers-authelia
+spec:
+  headers:
+    browserXssFilter: true
+    customFrameOptionsValue: "SAMEORIGIN"
+    customResponseHeaders:
+      Cache-Control: "no-store"
+      Pragma: "no-cache"
+---
