@@ -59,11 +59,10 @@ spec:
             connection_messages false
     persistence:
       config:
-        enabled: true
         type: configMap
         name: mosquitto-config
         advancedMounts:
           main:
-            main:
+            app:
               - path: /mosquitto/config/mosquitto.conf
                 subPath: mosquitto.conf
