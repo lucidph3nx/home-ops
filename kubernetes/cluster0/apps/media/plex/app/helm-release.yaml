@@ -76,10 +76,7 @@ spec:
                   port: http
     persistence:
       config:
-        storageClass: longhorn
         existingClaim: pvc-plex0
-        accessMode: ReadWriteOnce
-        size: 50Gi
         advancedMounts:
           main:
             main:
