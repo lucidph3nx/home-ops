@@ -68,7 +68,7 @@ spec:
         existingClaim: pvc-jellyfin
         advancedMounts:
           main:
-            main:
+            app:
               - path: /config
       movies:
         type: nfs
@@ -76,7 +76,7 @@ spec:
         path: /volume1/Films
         advancedMounts:
           main:
-            main:
+            app:
               - path: /movies
       tv:
         type: nfs
@@ -84,11 +84,11 @@ spec:
         path: /volume1/TV-Series
         advancedMounts:
           main:
-            main:
+            app:
               - path: /tv
       transcode:
         type: emptyDir
         advancedMounts:
           main:
-            main:
+            app:
               - path: /transcode
