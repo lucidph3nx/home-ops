@@ -72,14 +72,14 @@ spec:
         existingClaim: pvc-zigbee2mqtt
         advancedMounts:
           main:
-            main:
+            app:
               - path: /data
       usb:
         type: hostPath
         hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
         advancedMounts:
           main:
-            main:
+            app:
             - path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
     defaultPodOptions:
       affinity:
