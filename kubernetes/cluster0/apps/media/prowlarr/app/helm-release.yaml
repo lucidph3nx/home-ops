@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -27,7 +27,7 @@ spec:
     controllers:
       main:
         containers:
-          main:
+          app:
             image:
               repository: lscr.io/linuxserver/prowlarr
               tag: "1.9.4.4039-ls38"
@@ -41,30 +41,27 @@ spec:
               runAsGroup: 0
               fsGroup: 0
     service:
-      main:
+      app:
+        controller: main
         ports:
             http:
               port: 9696
     ingress:
       main:
-        enabled: true
-        ingressClassName: "traefik"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-          external-dns/is-public: "true"
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
     persistence:
       config:
-        enabled: true
         storageClass: longhorn
         existingClaim: pvc-prowlarr
         retain: true
