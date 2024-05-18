@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ./helm-release.yaml
   - ./secret.sops.yaml
+  - ./middleware.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: authelia

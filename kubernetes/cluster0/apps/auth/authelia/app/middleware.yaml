@@ -1,0 +1,26 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+namespace: auth
+metadata:
+  name: chain-authelia-auth
+spec:
+  chain:
+    middlewares:
+      - name: forwardauth-authelia
+        namespace: auth
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: forwardauth-authelia
+spec:
+  forwardAuth:
+    address: http://authelia.auth.svc.cluster.local/api/verify?rd=https://auth.${SECRET_PUBLIC_DOMAIN}/
+    trustForwardHeader: true
+    authResponseHeaders:
+      - Remote-User
+      - Remote-Name
+      - Remote-Email
+      - Remote-Groups
+
