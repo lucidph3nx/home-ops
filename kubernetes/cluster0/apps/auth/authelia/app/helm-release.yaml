@@ -98,7 +98,7 @@ spec:
           identifier: "${SECRET_PUBLIC_DOMAIN}"
           subject: "[${SECRET_PUBLIC_DOMAIN} auth] {title}"
           startup_check_address: "${SECRET_TEST_EMAIL}"
-          username: "${SECRET_ADMIN_EMAIL}"
+          # username: "${SECRET_ADMIN_EMAIL}"
           password:
             disabled: true
     secret:
