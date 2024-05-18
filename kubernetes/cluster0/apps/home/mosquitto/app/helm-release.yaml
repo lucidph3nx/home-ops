@@ -43,10 +43,6 @@ spec:
         externalTrafficPolicy: Cluster
         ports:
           http:
-            enabled: false
-          mqtt:
-            enabled: true
-            primary: true
             port: 1883
     resources:
       requests:
