@@ -75,5 +75,5 @@ spec:
         existingClaim: pvc-syncthing
         advancedMounts:
           main:
-            main:
+            app:
               - path: /var/syncthing
