@@ -40,7 +40,7 @@ spec:
               DEFAULT_STEALTH: true
     service:
       app:
-        identifier: app
+        controller: main
         ports:
           http:
             port: 3000
