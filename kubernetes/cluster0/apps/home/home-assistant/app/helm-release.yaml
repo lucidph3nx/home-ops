@@ -67,9 +67,6 @@ spec:
                   port: http
     persistence:
       config:
-        storageClass: longhorn
         existingClaim: pvc-home-assistant
-        retain: true
-        enabled: true
         globalMounts:
           - path: /config
