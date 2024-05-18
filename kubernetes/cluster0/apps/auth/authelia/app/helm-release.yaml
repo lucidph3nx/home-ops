@@ -39,20 +39,9 @@ spec:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-      rulesOverride:
-        - host: auth.${SECRET_PUBLIC_DOMAIN}
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: authelia
-                    port:
-                      number: 80
       traefikCRD:
         enabled: true
-        disableIngressRoute: true
+        disableIngressRoute: false
         apiGroupOverride: 'traefik.io'
         apiVersionOverride: 'v1alpha1'
         entryPoints: 
