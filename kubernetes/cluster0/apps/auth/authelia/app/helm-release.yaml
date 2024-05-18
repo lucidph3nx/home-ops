@@ -44,6 +44,17 @@ spec:
         disableIngressRoute: false
         apiGroupOverride: 'traefik.io'
         apiVersionOverride: 'v1alpha1'
+        rulesOverride:
+        - host: auth.${SECRET_PUBLIC_DOMAIN}
+          http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: authelia
+                    port:
+                      number: 80
         entryPoints: 
           - websecure
     pod:
