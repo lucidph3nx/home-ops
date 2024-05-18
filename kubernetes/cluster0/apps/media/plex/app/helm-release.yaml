@@ -79,14 +79,14 @@ spec:
         existingClaim: pvc-plex0
         advancedMounts:
           main:
-            main:
+            app:
               - path: /config
       tmp:
         type: emptyDir
         medium: Memory
         advancedMounts:
           main:
-            main:
+            app:
               - path: /tmp
       movies:
         type: nfs
@@ -94,7 +94,7 @@ spec:
         path: /volume1/Films
         advancedMounts:
           main:
-            main:
+            app:
               - path: /movies
       tv:
         type: nfs
@@ -102,7 +102,7 @@ spec:
         path: /volume1/TV-Series
         advancedMounts:
           main:
-            main:
+            app:
               - path: /tv
       music:
         type: nfs
@@ -110,11 +110,11 @@ spec:
         path: /volume1/Music
         advancedMounts:
           main:
-            main:
+            app:
               - path: /music
       transcode:
         type: emptyDir
         advancedMounts:
           main:
-            main:
+            app:
               - path: /transcode
