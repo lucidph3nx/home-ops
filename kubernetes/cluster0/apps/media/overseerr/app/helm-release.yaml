@@ -62,5 +62,5 @@ spec:
         existingClaim: pvc-overseerr
         advancedMounts:
           main:
-            main:
+            app:
               - path: /app/config
