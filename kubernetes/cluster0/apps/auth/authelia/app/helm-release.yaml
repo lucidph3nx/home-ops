@@ -85,8 +85,7 @@ spec:
       storage:
         postgres:
           enabled: true
-          address: 'tcp://authelia-postgresql.auth.svc.cluster.local'
-          port: 5432
+          address: 'tcp://authelia-postgresql.auth.svc.cluster.local:5432'
           username: authelia
           database: authelia
           schema: public
