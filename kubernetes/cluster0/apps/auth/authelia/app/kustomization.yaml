@@ -8,3 +8,10 @@ labels:
   - pairs:
       app.kubernetes.io/name: authelia
       app.kubernetes.io/instance: authelia
+configMapGenerator:
+  - name: authelia-configmap
+    namespace: auth
+    files:
+      - configuration.yaml=./config/configuration.yaml
+generatorOptions:
+  disableNameSuffixHash: true
