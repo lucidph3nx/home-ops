@@ -87,6 +87,124 @@ spec:
           labelSelector:
             matchLabels:
               app.kubernetes.io/name: *app
+    configmaps:
+      config:
+        data:
+          configuration.yaml: |
+            theme: 'dark'
+            default_2fa_method: 'totp'
+            log:
+              level: 'info'
+              format: 'text'
+              file_path: ''
+              keep_stdout: true
+            telemetry:
+              metrics:
+                enabled: false
+            identity_validation:
+              elevated_session:
+                code_lifespan: '5 minutes'
+                elevation_lifespan: '10 minutes'
+                require_second_factor: false
+                skip_second_factor: false
+              reset_password:
+                jwt_lifespan: '5 minutes'
+                jwt_algorithm: 'HS256'
+            totp:
+              disable: false
+              issuer: 'Authelia'
+              skew: 1
+              secret_size: 32
+              algorithm: 'SHA1'
+              digits: 6
+              period: 30
+              allowed_algorithms:
+                - 'SHA1'
+              allowed_digits:
+                - 6
+              allowed_periods:
+                - 30
+            webauthn:
+              disable: false
+              display_name: 'Authelia'
+              attestation_conveyance_preference: 'indirect'
+              user_verification: 'preferred'
+              timeout: '60 seconds'
+            ntp:
+              address: 'udp://time.cloudflare.com:123'
+              version: 4
+              max_desync: '3 seconds'
+              disable_startup_check: false
+              disable_failure: false
+            authentication_backend:
+              password_reset:
+                disable: false
+              ldap:
+                implementation: 'custom'
+                address: 'ldap://openldap.auth.svc.cluster.local:389'
+                timeout: '5 seconds'
+                start_tls: false
+                base_dn: '${SECRET_LDAP_BASE_DN}'
+                additional_users_dn: 'ou=people'
+                users_filter: '(&({username_attribute}={input})(objectClass=posixAccount))'
+                additional_groups_dn: 'OU=Groups'
+                groups_filter: '(&(member={dn})(objectclass=posixGroup))'
+                permit_referrals: false
+                permit_unauthenticated_bind: false
+                permit_feature_detection_failure: false
+                user: 'cn=admin,${SECRET_LDAP_BASE_DN}'
+            password_policy:
+              standard:
+                enabled: false
+                min_length: 8
+                max_length: 0
+                require_uppercase: false
+                require_lowercase: false
+                require_number: false
+                require_special: false
+              zxcvbn:
+                enabled: false
+                min_score: 0
+            session:
+              name: '${SECRET_PUBLIC_DOMAIN}_auth_session'
+              same_site: 'lax'
+              inactivity: '5 minutes'
+              expiration: '1 hour'
+              remember_me: '5 minutes'
+              cookies:
+                - domain: '${SECRET_PUBLIC_DOMAIN}'
+                  authelia_url: 'https://${SECRET_PUBLIC_DOMAIN}'
+              redis:
+                host: 'authelia-redis-master.auth.svc.cluster.local'
+                port: 6379
+                database_index: 0
+                maximum_active_connections: 8
+                minimum_idle_connections: 0
+            regulation:
+              max_retries: 3
+              find_time: '2 minutes'
+              ban_time: '5 minutes'
+            storage:
+              postgres:
+                address: 'tcp://authelia-postgresql.auth.svc.cluster.local:5432'
+                timeout: '5 seconds'
+                database: 'authelia'
+                schema: 'public'
+                username: 'authelia'
+            notifier:
+              disable_startup_check: false
+              smtp:
+                address: 'submission://smtp-relay.gmail.com:587'
+                timeout: '5 seconds'
+                sender: '${SECRET_NOTIFICATION_EMAIL}'
+                identifier: '${SECRET_PUBLIC_DOMAIN}'
+                subject: '[${SECRET_PUBLIC_DOMAIN} auth] {title}'
+                startup_check_address: '${SECRET_TEST_EMAIL}'
+                disable_html_emails: false
+                disable_require_tls: false
+                disable_starttls: false
+            access_control:
+              default_policy: 'two_factor'
     service:
       app:
         controller: authelia
