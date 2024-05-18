@@ -27,7 +27,7 @@ spec:
       retries: 5
   values:
     controllers:
-      app:
+      main:
         containers:
           app:
             image:
@@ -46,7 +46,7 @@ spec:
                 memory: 1254M
     service:
       app:
-        controller: app
+        controller: main
         ports:
           http:
             port: 8123
@@ -66,11 +66,8 @@ spec:
                   port: http
     persistence:
       config:
-        storageClass: longhorn
         existingClaim: pvc-home-assistant
-        retain: true
-        enabled: true
         advancedMounts:
-          app:
+          main:
             app:
               - path: /config
