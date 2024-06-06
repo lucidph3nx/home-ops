@@ -81,7 +81,7 @@ session:
   remember_me: '5 minutes'
   cookies:
     - domain: '${SECRET_PUBLIC_DOMAIN}'
-      authelia_url: 'https://${SECRET_PUBLIC_DOMAIN}'
+      authelia_url: 'https://auth.${SECRET_PUBLIC_DOMAIN}'
   redis:
     host: 'authelia-redis-master.auth.svc.cluster.local'
     port: 6379
