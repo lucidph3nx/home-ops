@@ -8,7 +8,7 @@ telemetry:
     enabled: false
 totp:
   disable: false
-  issuer: auth.${SECRET_PUBLIC_DOMAIN}
+  issuer: "auth.${SECRET_PUBLIC_DOMAIN}"
 webauthn:
   disable: false
   display_name: Authelia
@@ -29,15 +29,15 @@ authentication_backend:
     address: ldap://openldap.auth.svc.cluster.local:389
     timeout: 5 seconds
     start_tls: false
-    base_dn: ${SECRET_LDAP_BASE_DN}
+    base_dn: "${SECRET_LDAP_BASE_DN}"
     additional_users_dn: ou=people
-    users_filter: (&({username_attribute}={input})(objectClass=posixAccount))
-    additional_groups_dn: OU=Groups
-    groups_filter: (&(member={dn})(objectclass=posixGroup))
+    users_filter: "(&({username_attribute}={input})(objectClass=posixAccount))"
+    additional_groups_dn: "OU=Groups"
+    groups_filter: "(&(member={dn})(objectclass=posixGroup))"
     permit_referrals: false
     permit_unauthenticated_bind: false
     permit_feature_detection_failure: false
-    user: cn=admin,${SECRET_LDAP_BASE_DN}
+    user: "cn=admin,${SECRET_LDAP_BASE_DN}"
 password_policy:
   standard:
     enabled: false
@@ -52,15 +52,15 @@ password_policy:
     min_score: 0
 session:
   same_site: lax
-  name: ${SECRET_PUBLIC_DOMAIN}_auth_session
+  name: "${SECRET_PUBLIC_DOMAIN}_auth_session"
   same_site: lax
   inactivity: 5m
   expiration: 1h
   remember_me: 1M
   cookies:
     - name: authelia-home-ops
-      domain: ${SECRET_PUBLIC_DOMAIN}
-      authelia_url: https://auth.${SECRET_PUBLIC_DOMAIN}
+      domain: "${SECRET_PUBLIC_DOMAIN}"
+      authelia_url: "https://auth.${SECRET_PUBLIC_DOMAIN}"
   redis:
     host: authelia-redis-master.auth.svc.cluster.local
     port: 6379
@@ -81,10 +81,10 @@ notifier:
   smtp:
     address: submission://smtp-relay.gmail.com:587
     timeout: 5 seconds
-    sender: ${SECRET_NOTIFICATION_EMAIL}
-    identifier: ${SECRET_PUBLIC_DOMAIN}
-    subject: [${SECRET_PUBLIC_DOMAIN} auth] {title}
-    startup_check_address: ${SECRET_TEST_EMAIL}
+    sender: "${SECRET_NOTIFICATION_EMAIL}"
+    identifier: "${SECRET_PUBLIC_DOMAIN}"
+    subject: "[${SECRET_PUBLIC_DOMAIN} auth] {title}"
+    startup_check_address: "${SECRET_TEST_EMAIL}"
     disable_html_emails: false
     disable_require_tls: false
     disable_starttls: false
