@@ -2,7 +2,7 @@
 theme: dark
 default_2fa_method: totp
 log:
-  level: info
+  level: "info"
 telemetry:
   metrics:
     enabled: false
@@ -15,12 +15,6 @@ webauthn:
   attestation_conveyance_preference: indirect
   user_verification: preferred
   timeout: 60 seconds
-ntp:
-  address: udp://time.cloudflare.com:123
-  version: 4
-  max_desync: 3 seconds
-  disable_startup_check: false
-  disable_failure: false
 authentication_backend:
   password_reset:
     disable: false
@@ -53,7 +47,6 @@ password_policy:
 session:
   same_site: lax
   name: "${SECRET_PUBLIC_DOMAIN}_auth_session"
-  same_site: lax
   inactivity: 5m
   expiration: 1h
   remember_me: 1M
@@ -71,7 +64,7 @@ regulation:
   ban_time: 5m
 storage:
   postgres:
-    address: tcp://authelia-postgresql.auth.svc.cluster.local:5432
+    address: "tcp://authelia-postgresql.auth.svc.cluster.local:5432"
     timeout: 5s
     database: authelia
     schema: public
@@ -79,8 +72,8 @@ storage:
 notifier:
   disable_startup_check: false
   smtp:
-    address: submission://smtp-relay.gmail.com:587
-    timeout: 5 seconds
+    address: "submission://smtp-relay.gmail.com:587"
+    timeout: 5s
     sender: "${SECRET_NOTIFICATION_EMAIL}"
     identifier: "${SECRET_PUBLIC_DOMAIN}"
     subject: "[${SECRET_PUBLIC_DOMAIN} auth] {title}"
@@ -89,4 +82,4 @@ notifier:
     disable_require_tls: false
     disable_starttls: false
 access_control:
-  default_policy: two_factor
+  default_policy: "two_factor"
