@@ -11,33 +11,33 @@ totp:
   issuer: auth.${SECRET_PUBLIC_DOMAIN}
 webauthn:
   disable: false
-  display_name: 'Authelia'
-  attestation_conveyance_preference: 'indirect'
-  user_verification: 'preferred'
-  timeout: '60 seconds'
+  display_name: Authelia
+  attestation_conveyance_preference: indirect
+  user_verification: preferred
+  timeout: 60 seconds
 ntp:
-  address: 'udp://time.cloudflare.com:123'
+  address: udp://time.cloudflare.com:123
   version: 4
-  max_desync: '3 seconds'
+  max_desync: 3 seconds
   disable_startup_check: false
   disable_failure: false
 authentication_backend:
   password_reset:
     disable: false
   ldap:
-    implementation: 'custom'
-    address: 'ldap://openldap.auth.svc.cluster.local:389'
-    timeout: '5 seconds'
+    implementation: custom
+    address: ldap://openldap.auth.svc.cluster.local:389
+    timeout: 5 seconds
     start_tls: false
-    base_dn: '${SECRET_LDAP_BASE_DN}'
-    additional_users_dn: 'ou=people'
-    users_filter: '(&({username_attribute}={input})(objectClass=posixAccount))'
-    additional_groups_dn: 'OU=Groups'
-    groups_filter: '(&(member={dn})(objectclass=posixGroup))'
+    base_dn: ${SECRET_LDAP_BASE_DN}
+    additional_users_dn: ou=people
+    users_filter: (&({username_attribute}={input})(objectClass=posixAccount))
+    additional_groups_dn: OU=Groups
+    groups_filter: (&(member={dn})(objectclass=posixGroup))
     permit_referrals: false
     permit_unauthenticated_bind: false
     permit_feature_detection_failure: false
-    user: 'cn=admin,${SECRET_LDAP_BASE_DN}'
+    user: cn=admin,${SECRET_LDAP_BASE_DN}
 password_policy:
   standard:
     enabled: false
@@ -52,8 +52,8 @@ password_policy:
     min_score: 0
 session:
   same_site: lax
-  name: '${SECRET_PUBLIC_DOMAIN}_auth_session'
-  same_site: 'lax'
+  name: ${SECRET_PUBLIC_DOMAIN}_auth_session
+  same_site: lax
   inactivity: 5m
   expiration: 1h
   remember_me: 1M
@@ -62,7 +62,7 @@ session:
       domain: ${SECRET_PUBLIC_DOMAIN}
       authelia_url: https://auth.${SECRET_PUBLIC_DOMAIN}
   redis:
-    host: 'authelia-redis-master.auth.svc.cluster.local'
+    host: authelia-redis-master.auth.svc.cluster.local
     port: 6379
     database_index: 0
 regulation:
@@ -71,22 +71,22 @@ regulation:
   ban_time: 5m
 storage:
   postgres:
-    address: 'tcp://authelia-postgresql.auth.svc.cluster.local:5432'
-    timeout: '5 seconds'
-    database: 'authelia'
-    schema: 'public'
-    username: 'authelia'
+    address: tcp://authelia-postgresql.auth.svc.cluster.local:5432
+    timeout: 5s
+    database: authelia
+    schema: public
+    username: authelia
 notifier:
   disable_startup_check: false
   smtp:
-    address: 'submission://smtp-relay.gmail.com:587'
-    timeout: '5 seconds'
-    sender: '${SECRET_NOTIFICATION_EMAIL}'
-    identifier: '${SECRET_PUBLIC_DOMAIN}'
-    subject: '[${SECRET_PUBLIC_DOMAIN} auth] {title}'
-    startup_check_address: '${SECRET_TEST_EMAIL}'
+    address: submission://smtp-relay.gmail.com:587
+    timeout: 5 seconds
+    sender: ${SECRET_NOTIFICATION_EMAIL}
+    identifier: ${SECRET_PUBLIC_DOMAIN}
+    subject: [${SECRET_PUBLIC_DOMAIN} auth] {title}
+    startup_check_address: ${SECRET_TEST_EMAIL}
     disable_html_emails: false
     disable_require_tls: false
     disable_starttls: false
 access_control:
-  default_policy: 'two_factor'
+  default_policy: two_factor
