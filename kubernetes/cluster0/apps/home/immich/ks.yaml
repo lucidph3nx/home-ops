@@ -49,7 +49,7 @@ spec:
     - name: cluster-apps-longhorn
     - name: cluster-apps-immich-db
     - name: cluster-apps-immich-shared
-  path: ./kubernetes/cluster0/apps/home/immich/server
+  path: ./kubernetes/cluster0/apps/home/immich/redis
   prune: true
   sourceRef:
     kind: GitRepository
