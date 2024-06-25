@@ -1,0 +1,41 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: immich-db
+  namespace: home
+spec:
+  dependsOn:
+  - name: longhorn
+    namespace: longhorn-system
+  interval: 5m
+  chart:
+    spec:
+      chart: postgresql
+      version: 15.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    image:
+      registry: docker.io
+      repository: bitnami/postgresql
+      tag: 16.1.0-debian-11-r21
+    auth:
+      database: immich
+      username: immich
+      existingSecret: immich-db-secrets
+    primary:
+      persistence:
+        enabled: true
+        storageClass: longhorn
+        existingClaim: pvc-immich-db0
+        size: 10Gi
