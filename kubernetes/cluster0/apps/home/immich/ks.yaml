@@ -74,7 +74,7 @@ spec:
     - name: cluster-apps-immich-db
     - name: cluster-apps-immich-shared
     - name: cluster-apps-immich-redis
-  path: ./kubernetes/cluster0/apps/home/immich/server
+  path: ./kubernetes/cluster0/apps/home/immich/microservices
   prune: true
   sourceRef:
     kind: GitRepository
