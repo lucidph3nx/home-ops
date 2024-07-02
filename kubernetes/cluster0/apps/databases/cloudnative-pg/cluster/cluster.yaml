@@ -40,4 +40,4 @@ spec:
       database: immich
       owner: immich
       secret:
-        name: immich
+        name: immich-db
