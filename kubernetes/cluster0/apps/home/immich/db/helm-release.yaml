@@ -39,7 +39,7 @@ spec:
               - name: POSTGRES_USER
                 valueFrom:
                   configMapKeyRef:
-                    name: immich-secret
+                    name: immich-config
                     key: DB_USERNAME
               - name: POSTGRES_PASSWORD
                 valueFrom:
