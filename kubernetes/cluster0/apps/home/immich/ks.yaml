@@ -15,30 +15,6 @@ spec:
   timeout: 3m
 
 ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1
-# kind: Kustomization
-# metadata:
-#   name: cluster-apps-immich-db
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: cluster-apps-longhorn
-#     - name: cluster-apps-immich-shared
-#   path: ./kubernetes/cluster0/apps/home/immich/db
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-ops-cluster0
-#   healthChecks:
-#     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-#       kind: HelmRelease
-#       name: immich-db
-#       namespace: home
-#   interval: 30m
-#   retryInterval: 1m
-#   timeout: 3m
-
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -47,7 +23,6 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-longhorn
-    # - name: cluster-apps-immich-db
     - name: cluster-apps-cloudnative-pg-cluster
     - name: cluster-apps-immich-shared
   path: ./kubernetes/cluster0/apps/home/immich/redis
@@ -72,7 +47,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    # - name: cluster-apps-immich-db
     - name: cluster-apps-cloudnative-pg-cluster
     - name: cluster-apps-immich-shared
     - name: cluster-apps-immich-redis
@@ -98,7 +72,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    # - name: cluster-apps-immich-db
     - name: cluster-apps-cloudnative-pg-cluster
     - name: cluster-apps-immich-redis
     - name: cluster-apps-immich-shared

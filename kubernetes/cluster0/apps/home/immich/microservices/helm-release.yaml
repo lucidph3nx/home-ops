@@ -32,8 +32,7 @@ spec:
               repository: ghcr.io/immich-app/immich-server
               tag: v1.106.4
             command: /bin/sh
-            args:
-              - ./start-microservices.sh
+            args: ["start.sh", "microservices"]
             resources:
               requests:
                 cpu: 100m
