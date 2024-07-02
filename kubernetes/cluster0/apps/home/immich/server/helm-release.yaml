@@ -31,7 +31,7 @@ spec:
             image:
               repository: ghcr.io/immich-app/immich-server
               tag: v1.106.4
-            args: ["start.sh", "immich"]
+            # args: ["start.sh", "immich"]
             resources:
               requests:
                 cpu: 100m
