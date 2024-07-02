@@ -65,6 +65,7 @@ spec:
     persistence:
       cache:
         type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
         size: 10Gi
         globalMounts:
           - path: /cache
