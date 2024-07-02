@@ -46,7 +46,6 @@ spec:
               readiness:
                 enabled: true
             env:
-              IMMICH_MEDIA_LOCATION: "/photos"
               MACHINE_LEARNING_HOST: 0.0.0.0
               MACHINE_LEARNING_PORT: &port 3003
               MACHINE_LEARNING_CACHE_FOLDER: /cache
