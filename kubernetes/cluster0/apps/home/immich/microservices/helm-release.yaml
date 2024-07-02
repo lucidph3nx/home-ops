@@ -27,7 +27,7 @@ spec:
     controllers:
       main:
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/immich-app/immich-server
               tag: v1.106.4
