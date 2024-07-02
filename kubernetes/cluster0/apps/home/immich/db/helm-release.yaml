@@ -57,8 +57,8 @@ spec:
           - accessMode: ReadWriteOnce
             globalMounts:
             - path: /var/lib/postgresql
-            name: pgdata
-            size: 1Mi
+            name: immich-db
+            size: 100Gi
         type: statefulset  
     service:
       app:
