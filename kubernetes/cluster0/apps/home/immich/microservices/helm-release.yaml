@@ -46,8 +46,6 @@ spec:
                 enabled: true
               readiness:
                 enabled: true
-            env:
-              UPLOAD_LOCATION: "/photos"
             envFrom:
               - secretRef:
                   name: immich-secret

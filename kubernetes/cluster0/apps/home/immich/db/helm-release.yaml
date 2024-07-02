@@ -60,7 +60,7 @@ spec:
             globalMounts:
             - path: /var/lib/postgresql
             name: immich-db
-            size: 100Gi
+            size: 10Gi
         type: statefulset  
     service:
       app:

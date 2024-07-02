@@ -6,12 +6,11 @@ metadata:
   labels:
     app.kubernetes.io/name: immich
 data:
-  TZ: "${TIMEZONE}"
-  #IMMICH_WEB_URL: http://immich-web.home.svc.cluster.local:3000
-  IMMICH_SERVER_URL: http://immich-server.home.svc.cluster.local:3001
+  DB_DATABASE_NAME: immich
   DB_HOSTNAME: immich-db.home.svc.cluster.local
   DB_USERNAME: immich
-  DB_DATABASE_NAME: immich
+  IMMICH_SERVER_URL: http://immich-server.home.svc.cluster.local:3001
+  PUBLIC_IMMICH_SERVER_URL: https://photos.${SECRET_PUBLIC_DOMAIN}
   REDIS_HOSTNAME: immich-redis-master.home.svc.cluster.local
   REDIS_PORT: "6379"
-
+  TZ: "${TIMEZONE}"
