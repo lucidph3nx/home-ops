@@ -35,3 +35,9 @@ spec:
     podMonitorMetricRelabelings:
       - { sourceLabels: ["cluster"], targetLabel: cnpg_cluster, action: replace }
       - { regex: cluster, action: labeldrop }
+  bootstrap:
+    initdb:
+      database: immich
+      owner: immich
+      secret:
+        name: immich
