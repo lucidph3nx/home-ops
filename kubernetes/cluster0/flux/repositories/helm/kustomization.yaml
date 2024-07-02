@@ -6,6 +6,7 @@ resources:
   - bitnami-charts.yaml
   - bjw-s-charts.yaml
   - cilium-charts.yaml
+  - cloudnative-pg-charts.yaml
   - coredns-charts.yaml
   - emberstack-charts.yaml
   - external-dns-charts.yaml
