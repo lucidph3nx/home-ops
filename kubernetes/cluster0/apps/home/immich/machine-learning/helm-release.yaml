@@ -73,7 +73,5 @@ spec:
         type: nfs
         server: "${NAS0_IP}"
         path: /volume1/photos
-        advancedMounts:
-          main:
-            app:
-              - path: /photos
+        globalMounts:
+          - path: /usr/src/app/upload

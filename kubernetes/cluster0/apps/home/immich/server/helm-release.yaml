@@ -46,8 +46,6 @@ spec:
                 enabled: true
               readiness:
                 enabled: true
-            env:
-              UPLOAD_LOCATION: "/photos"
             envFrom:
               - secretRef:
                   name: immich-secret
@@ -78,7 +76,5 @@ spec:
         type: nfs
         server: "${NAS0_IP}"
         path: /volume1/photos
-        advancedMounts:
-          main:
-            app:
-              - path: /photos
+        globalMounts:
+          - path: /usr/src/app/upload
