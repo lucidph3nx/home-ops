@@ -68,7 +68,7 @@ spec:
         hosts:
           - host: &host photos.${SECRET_PUBLIC_DOMAIN}
             paths:
-              - path: /api
+              - path: /
                 pathType: Prefix
                 service:
                   identifier: app
