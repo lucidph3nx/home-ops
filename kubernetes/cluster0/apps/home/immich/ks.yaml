@@ -72,7 +72,8 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-immich-db
+    # - name: cluster-apps-immich-db
+    - name: cluster-apps-cloudnative-pg-cluster
     - name: cluster-apps-immich-shared
     - name: cluster-apps-immich-redis
   path: ./kubernetes/cluster0/apps/home/immich/microservices
@@ -97,7 +98,8 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-immich-db
+    # - name: cluster-apps-immich-db
+    - name: cluster-apps-cloudnative-pg-cluster
     - name: cluster-apps-immich-redis
     - name: cluster-apps-immich-shared
   path: ./kubernetes/cluster0/apps/home/immich/server
