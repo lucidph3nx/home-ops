@@ -61,6 +61,8 @@ spec:
         allowExternalNameServices: true
         allowCrossNamespace: true
         ingressClass: traefik
+        ingressEndpoint:
+          ip: ${TRAEFIK_IP}
     globalArguments:
       - "--api.insecure=true"
       - "--serversTransport.insecureSkipVerify=true"
