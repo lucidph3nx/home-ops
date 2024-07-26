@@ -68,7 +68,7 @@ spec:
       - "--serversTransport.insecureSkipVerify=true"
       - "--providers.kubernetesingress.ingressclass=traefik"
     additionalArguments:
-      - "--providers.kubernetesingress.ingressendpoint.ip=${TRAEFIK_ENDPOINT}"
+      - "--providers.kubernetesingress.ingressendpoint.ip=${TRAEFIK_IP}"
       - "--providers.kubernetescrd.allowexternalnameservices=true"
     ports:
       web:
