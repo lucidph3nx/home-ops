@@ -1,6 +1,16 @@
----
+keys:
+  - &home-ops-cluster0 age1582vh25trj6w7klwt38d44n5nr8njr8rrxxx5kcfu3y2ezx9ss3s6j24ex
+  - &ben age185kanaq3uw2gjx5enu2v69nk9ner3lamdevrfgx3wqucsl9ewa2qlt2gf7
 creation_rules:
-  - path_regex: kubernetes/cluster0/.*\.ya?ml
+  - path_regex: kubernetes/cluster0/.*\.sops\.ya?ml
     encrypted_regex: "^(data|stringData)$"
-    age: >-
-      age1582vh25trj6w7klwt38d44n5nr8njr8rrxxx5kcfu3y2ezx9ss3s6j24ex
+    key_groups:
+      - age:
+        - *home-ops-cluster0
+        - *ben
+  - path_regex: archive/.*\.sops\.ya?ml
+    encrypted_regex: "^(data|stringData)$"
+    key_groups:
+      - age:
+        - *home-ops-cluster0
+        - *ben
