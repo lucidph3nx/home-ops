@@ -4,6 +4,7 @@ resources:
   - ./helm-release.yaml
 configMapGenerator:
   - name: searxng-config
+    namespace: home
     files:
       - settings.yml=./settings.yml
       - limiter.toml=./limiter.toml
