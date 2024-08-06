@@ -1,16 +1,5 @@
 general:
-  # Debug mode, only for development. Is overwritten by ${SEARXNG_DEBUG}
   debug: false
-  # displayed name
-  instance_name: 'searxng'
-  # For example: https://example.com/privacy
-  privacypolicy_url: false
-  # use true to use your own donation page written in searx/info/en/donate.md
-  # use false to disable the donation link
-  donation_url: false
-  # mailto:contact@example.com
-  contact_url: false
-  # record stats
   enable_metrics: true
 
 brand:
@@ -19,12 +8,6 @@ brand:
   public_instances: https://searx.space
   wiki_url: https://github.com/searxng/searxng/wiki
   issue_url: https://github.com/searxng/searxng/issues
-  # custom:
-  #   maintainer: "Jon Doe"
-  #   # Custom entries in the footer: [title]: [link]
-  #   links:
-  #     Uptime: https://uptime.searxng.org/history/darmarit-org
-  #     About: "https://searxng.org"
 
 search:
   # Filter results. 0: None, 1: Moderate, 2: Strict
@@ -73,23 +56,9 @@ search:
     - json
 
 server:
-  # Is overwritten by ${SEARXNG_PORT} and ${SEARXNG_BIND_ADDRESS}
-  port: 8888
-  bind_address: '127.0.0.1'
-  # public URL of the instance, to ensure correct inbound links. Is overwritten
-  # by ${SEARXNG_URL}.
-  base_url: / # "http://example.com/location"
-  limiter: false # rate limit the number of request on the instance, block some bots
-  public_instance: false # enable features designed only for public instances
-
   # If your instance owns a /etc/searxng/settings.yml file, then set the following
-  # values there.
-
-  secret_key: 'a2fb23f1b02e6ee83875b09826990de0f6bd908b6638e8c10277d415f6ab852b' # Is overwritten by ${SEARXNG_SECRET}
   # Proxying image results through searx
   image_proxy: false
-  # 1.0 and 1.1 are supported
-  http_protocol_version: '1.0'
   # POST queries are more secure as they don't show up in history but may cause
   # problems when using Firefox containers
   method: 'POST'
@@ -99,31 +68,16 @@ server:
     X-Robots-Tag: noindex, nofollow
     Referrer-Policy: no-referrer
 
-redis:
-  # URL to connect redis database. Is overwritten by ${SEARXNG_REDIS_URL}.
-  # https://docs.searxng.org/admin/settings/settings_redis.html#settings-redis
-  url: false
-
 ui:
-  # Custom static path - leave it blank if you didn't change
-  static_path: ''
-  static_use_hash: false
-  # Custom templates path - leave it blank if you didn't change
-  templates_path: ''
-  # query_in_title: When true, the result page's titles contains the query
-  # it decreases the privacy, since the browser can records the page titles.
-  query_in_title: false
-  # infinite_scroll: When true, automatically loads the next page when scrolling to bottom of the current page.
+  query_in_title: true
   infinite_scroll: false
   # ui theme
   default_theme: simple
-  # center the results ?
-  center_alignment: false
   # URL prefix of the internet archive, don't forget trailing slash (if needed).
-  # cache_url: "https://webcache.googleusercontent.com/search?q=cache:"
+  cache_url: "https://webcache.googleusercontent.com/search?q=cache:"
   # Default interface locale - leave blank to detect from browser information or
   # use codes from the 'locales' config section
-  default_locale: ''
+  default_locale: 'en-NZ'
   # Open result links in a new tab by default
   # results_on_new_tab: false
   theme_args:
@@ -145,63 +99,15 @@ ui:
 #     - method
 #     - query_in_title
 
-# searx supports result proxification using an external service:
-# https://github.com/asciimoo/morty uncomment below section if you have running
-# morty proxy the key is base64 encoded (keep the !!binary notation)
-# Note: since commit af77ec3, morty accepts a base64 encoded key.
-#
-# result_proxy:
-#   url: http://127.0.0.1:3000/
-#   # the key is a base64 encoded string, the YAML !!binary prefix is optional
-#   key: !!binary "your_morty_proxy_key"
-#   # [true|false] enable the "proxy" button next to each result
-#   proxify_results: true
-
 # communication with search engines
 #
 outgoing:
   # default timeout in seconds, can be override by engine
   request_timeout: 3.0
-  # the maximum timeout in seconds
-  # max_request_timeout: 10.0
-  # suffix of searx_useragent, could contain information like an email address
-  # to the administrator
   useragent_suffix: ''
-  # The maximum number of concurrent connections that may be established.
   pool_connections: 100
-  # Allow the connection pool to maintain keep-alive connections below this
-  # point.
   pool_maxsize: 20
-  # See https://www.python-httpx.org/http2/
   enable_http2: true
-  # uncomment below section if you want to use a custom server certificate
-  # see https://www.python-httpx.org/advanced/#changing-the-verification-defaults
-  # and https://www.python-httpx.org/compatibility/#ssl-configuration
-  #  verify: ~/.mitmproxy/mitmproxy-ca-cert.cer
-  #
-  # uncomment below section if you want to use a proxyq see: SOCKS proxies
-  #   https://2.python-requests.org/en/latest/user/advanced/#proxies
-  # are also supported: see
-  #   https://2.python-requests.org/en/latest/user/advanced/#socks
-  #
-  #  proxies:
-  #    all://:
-  #      - http://proxy1:8080
-  #      - http://proxy2:8080
-  #
-  #  using_tor_proxy: true
-  #
-  # Extra seconds to add in order to account for the time taken by the proxy
-  #
-  #  extra_proxy_timeout: 10.0
-  #
-  # uncomment below section only if you have more than one network interface
-  # which can be the source of outgoing search requests
-  #
-  #  source_ips:
-  #    - 1.1.1.1
-  #    - 1.1.1.2
-  #    - fe80::/126
 
 # External plugin configuration, for more details see
 #   https://docs.searxng.org/dev/plugins.html
