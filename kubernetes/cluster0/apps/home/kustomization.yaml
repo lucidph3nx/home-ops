@@ -10,3 +10,4 @@ resources:
   # - ./immich/ks.yaml
   - ./mosquitto/ks.yaml
   - ./zigbee2mqtt/ks.yaml
+  - ./searxng/ks.yaml
