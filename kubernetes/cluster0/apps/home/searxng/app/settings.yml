@@ -81,7 +81,7 @@ ui:
   cache_url: "https://webcache.googleusercontent.com/search?q=cache:"
   # Default interface locale - leave blank to detect from browser information or
   # use codes from the 'locales' config section
-  default_locale: 'en-NZ'
+  default_locale: ''
   # Open result links in a new tab by default
   # results_on_new_tab: false
   theme_args:
