@@ -2,6 +2,9 @@ general:
   debug: false
   enable_metrics: true
 
+# fallthrough for things not set here
+use_default_settings: true
+
 brand:
   new_issue_url: https://github.com/searxng/searxng/issues/new
   docs_url: https://docs.searxng.org/
