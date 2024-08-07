@@ -28,6 +28,8 @@ spec:
     global:
       storageClass: longhorn
     architecture: standalone
+    auth:
+      enabled: false
     master:
       persistence:
-        size: 500Mi
+        size: 100Mi
