@@ -49,7 +49,7 @@ spec:
           gluetun:
             image:
               repository: ghcr.io/qdm12/gluetun
-              tag: latest@sha256:7bcbd85223cbde536289fbbe2cd93f88a35abd9173e2c6f35bf4e82791279505
+              tag: latest@sha256:76eae37c8eca4aa4c0fe725c05c5262f7fbdee9597e47965564229946a32c072
             env:
               - name: FIREWALL_INPUT_PORTS
                 value: "8080"
