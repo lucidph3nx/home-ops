@@ -6,7 +6,9 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./cilium/ks.yaml
-  - ./coredns/ks.yaml
+  # I havent been able to figure out how to override the cusotm coredns addon
+  # I manged to with cilium, but when there is no coredns, things fall apart
+  # - ./coredns/ks.yaml
   - ./intel-device-plugin/ks.yaml
   - ./local-path-provisioner/ks.yaml
   - ./node-feature-discovery/ks.yaml
