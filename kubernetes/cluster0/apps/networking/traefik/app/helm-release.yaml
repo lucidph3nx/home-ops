@@ -81,6 +81,6 @@ spec:
           options: "default"
     logs:
       general:
-        level: debug
+        level: "INFO"
       access:
         enabled: true
