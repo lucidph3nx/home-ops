@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: cilium
-      version: v1.17.0-pre.0 # trying out prerelease to get udp/tcp working for blocky
+      version: 1.16.2
       sourceRef:
         kind: HelmRepository
         name: cilium
