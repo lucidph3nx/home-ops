@@ -81,9 +81,9 @@ spec:
         annotations:
           io.cilium/lb-ipam-ips: ${PRIMARY_DNS_IP}
         ports:
-          dns-tcp:
-            port: *port
-            protocol: TCP
+          # dns-tcp:
+          #   port: *port
+          #   protocol: TCP
           dns-udp:
             port: *port
             protocol: UDP
