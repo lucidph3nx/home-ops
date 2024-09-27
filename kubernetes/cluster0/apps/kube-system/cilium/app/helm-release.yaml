@@ -96,6 +96,8 @@ spec:
     loadBalancer:
       algorithm: maglev
       mode: dsr
+      protocolDifferentiation:
+        enabled: true
     k8sClientRateLimit:
       qps: 20
       burst: 40
