@@ -99,8 +99,8 @@ spec:
       protocolDifferentiation:
         enabled: true
     k8sClientRateLimit:
-      qps: 20
-      burst: 40
+      qps: 80
+      burst: 160
     localRedirectPolicy: true
     operator:
       rollOutPods: true
