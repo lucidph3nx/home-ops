@@ -4,8 +4,8 @@ ports:
   dns: 0.0.0.0:53
   http: 0.0.0.0:4000
 
-# logLevel: info
-logLevel: debug
+logLevel: info
+# logLevel: debug
 
 bootstrapDns:
   - tcp-tls:1.1.1.1:853
