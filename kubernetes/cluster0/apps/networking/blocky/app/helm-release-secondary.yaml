@@ -77,15 +77,12 @@ spec:
         annotations:
           io.cilium/lb-ipam-ips: ${SECONDARY_DNS_IP}
         ports:
-          # dns-tcp:
-          #   port: *port
-          #   protocol: TCP
-          # dns-udp:
-          #   port: *port
-          #   protocol: UDP
-          dns:
+          dns-tcp:
             port: *port
-            protocol: ANY
+            protocol: TCP
+          dns-udp:
+            port: *port
+            protocol: UDP
     serviceMonitor:
       main:
         serviceName: *app
