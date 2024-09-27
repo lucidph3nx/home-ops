@@ -39,9 +39,6 @@ spec:
     cluster:
       name: ${CLUSTER_NAME}
       id: 1
-    containerRuntime:
-      integration: containerd
-      socketPath: /var/run/k3s/containerd/containerd.sock
     enableRuntimeDeviceDetection: true
     endpointRoutes:
       enabled: true
