@@ -1,10 +1,15 @@
 ---
 
 ports:
-  dns: 53
-  http: 4000
+  dns: 0.0.0.0:53
+  http: 0.0.0.0:4000
+
 # logLevel: info
 logLevel: debug
+
+bootstrapDns:
+  - tcp-tls:1.1.1.1:853
+  - tcp-tls:1.0.0.1:853
 
 # https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-tls/#how-it-works
 upstreams:
@@ -14,14 +19,13 @@ upstreams:
       - tcp-tls:one.one.one.one:853
       - tcp-tls:dns.quad9.net:853
 
-bootstrapDns: tcp+udp:1.1.1.1
-
 customDNS:
   mapping: # some useful defaults
     unifi.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_IP}
     traefik.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_IP}
     longhorn.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_IP}
     auth.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_IP}
+    search.${SECRET_PUBLIC_DOMAIN}: ${TRAEFIK_IP}
 
 blocking:
   blackLists:
