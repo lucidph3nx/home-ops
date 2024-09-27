@@ -84,9 +84,12 @@ spec:
           # dns-tcp:
           #   port: *port
           #   protocol: TCP
-          dns-udp:
+          # dns-udp:
+          #   port: *port
+          #   protocol: UDP
+          dns:
             port: *port
-            protocol: UDP
+            protocol: ANY
     serviceMonitor:
       main:
         serviceName: *app
