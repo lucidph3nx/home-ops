@@ -78,6 +78,7 @@ spec:
       dns:
         controller: *app
         type: LoadBalancer
+        externalTrafficPolicy: Cluster
         annotations:
           io.cilium/lb-ipam-ips: ${PRIMARY_DNS_IP}
         ports:
