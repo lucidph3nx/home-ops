@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: eclipse-mosquitto
-              tag: 2.0.19
+              tag: 2.0.20
             env:
               TZ: "${TIMEZONE}"
     service:
