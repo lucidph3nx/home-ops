@@ -1,65 +1,76 @@
 {
-  "extends": [
-    "github>lucidph3nx/home-ops//.github/renovate/labels.json5"
+  extends: [
+    'github>lucidph3nx/home-ops//.github/renovate/labels.json5',
   ],
-  "platform": "github",
-  "enabled": true,
-  "semanticCommits": "enabled",
-  "dependencyDashboard": true,
-  "dependencyDashboardTitle": "Renovate Dashboard",
-  "suppressNotifications": ["prIgnoreNotification"],
-  "rebaseWhen": "conflicted",
-  "timezone": "Pacific/Auckland",
-  "schedule": [
-    "every weekend"
+  platform: 'github',
+  enabled: true,
+  semanticCommits: 'enabled',
+  dependencyDashboard: true,
+  dependencyDashboardTitle: 'Renovate Dashboard',
+  suppressNotifications: [
+    'prIgnoreNotification',
   ],
-  "pre-commit": {
-    "enabled": true
+  rebaseWhen: 'conflicted',
+  timezone: 'Pacific/Auckland',
+  schedule: [
+    'every weekend',
+  ],
+  'pre-commit': {
+    enabled: true,
   },
-  "flux": {
-    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+  flux: {
+    fileMatch: [
+      'kubernetes/.+\\.ya?ml$',
+    ],
   },
-  "helm-values": {
-    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+  'helm-values': {
+    fileMatch: [
+      'kubernetes/.+\\.ya?ml$',
+    ],
   },
-  "kubernetes": {
-    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+  kubernetes: {
+    fileMatch: [
+      'kubernetes/.+\\.ya?ml$',
+    ],
   },
-  "regexManagers": [
+  customManagers: [
     {
-      "description": "Process CRD dependencies",
-      "fileMatch": ["kubernetes/.+\\.ya?ml$"],
-      "matchStrings": [
-        // GitRepository where 'Git release/tag' matches 'Helm' version
-        "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
-        // Kustomization where 'GitHub release artifact URL' matches 'Docker image' version
-        "datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)\/(?<currentValue>[^/]+)\/[^/]+\n",
-        // Example: `k3s_release_version: "v1.27.3+k3s1"`
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n",
-        // Example: `- https://github.com/rancher/system-upgrade-controller/releases/download/v0.11.0/crd.yaml`
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?-\\s(.*?)\/(?<currentValue>[^/]+)\/[^/]+\n"
+      customType: 'regex',
+      description: 'Process CRD dependencies',
+      fileMatch: [
+        'kubernetes/.+\\.ya?ml$',
       ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}"
+      matchStrings: [
+        'registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n',
+        'datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)/(?<currentValue>[^/]+)/[^/]+\n',
+        'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?"(?<currentValue>.*)"\n',
+        'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?-\\s(.*?)/(?<currentValue>[^/]+)/[^/]+\n',
+      ],
+      datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}',
     },
     {
-      "description": "Process various dependencies",
-      "fileMatch": [
-        "kubernetes/.+\\.ya?ml$"
+      customType: 'regex',
+      description: 'Process various dependencies',
+      fileMatch: [
+        'kubernetes/.+\\.ya?ml$',
       ],
-      "matchStrings": [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
+      matchStrings: [
+        'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?"(?<currentValue>.*)"\n',
       ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+      datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}',
+      versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}',
     },
     {
-      "description": "Process raw GitHub URLs",
-      "fileMatch": ["kubernetes/.+\\.ya?ml$"],
-      "matchStrings": [
-        "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
+      customType: 'regex',
+      description: 'Process raw GitHub URLs',
+      fileMatch: [
+        'kubernetes/.+\\.ya?ml$',
       ],
-      "datasourceTemplate": "github-releases",
-      "versioningTemplate": "semver"
-    }
-  ]
+      matchStrings: [
+        'https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*',
+      ],
+      datasourceTemplate: 'github-releases',
+      versioningTemplate: 'semver',
+    },
+  ],
 }
