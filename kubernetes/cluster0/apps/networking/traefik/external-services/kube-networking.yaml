@@ -11,26 +11,50 @@ spec:
     port: 6443
   externalName: "${CONTROLPLANE_IP}"
 
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: k8s-externalroute
+#   namespace: networking
+#   annotations:
+#     traefik.ingress.kubernetes.io/router.entrypoints: web
+#     external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+#     external-dns/is-public: "true"
+# spec:
+#   ingressClassName: traefik
+#   rules:
+#     - host: k8s.${SECRET_PUBLIC_DOMAIN}
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: k8s-externalname
+#                 port:
+#                   number: 6443
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
 metadata:
   name: k8s-externalroute
   namespace: networking
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
-    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-    external-dns/is-public: "true"
+    kubernetes.io/ingress.class: traefik 
+    ingress.kubernetes.io/ssl-passthrough: "true"
 spec:
-  ingressClassName: traefik
-  rules:
-    - host: k8s.${SECRET_PUBLIC_DOMAIN}
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: k8s-externalname
-                port:
-                  number: 6443
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: "Host(`k8s.${SECRET_PUBLIC_DOMAIN}`)"
+      priority: 1
+      services:
+        - name: k8s-externalname
+          namespace: networking
+          kind: Service
+          port: 6443
+      tls:
+        passthrough: true
+
