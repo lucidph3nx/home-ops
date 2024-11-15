@@ -9,6 +9,3 @@ spec:
     - dnsName: tun.${SECRET_PUBLIC_DOMAIN}
       recordType: CNAME
       targets: ["4b56659c-65f1-48f2-94ba-6cb395db16a8.cfargotunnel.com"]
-    - dnsName: k8s.${SECRET_PUBLIC_DOMAIN}
-      recordType: CNAME
-      targets: ["4b56659c-65f1-48f2-94ba-6cb395db16a8.cfargotunnel.com"]
