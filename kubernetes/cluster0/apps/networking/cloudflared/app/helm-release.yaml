@@ -87,7 +87,7 @@ spec:
                 cpu: 6m
                 memory: 105Mi
               limits:
-                memory: 105Mi
+                memory: 256Mi
     service:
       app:
         controller: cloudflared
