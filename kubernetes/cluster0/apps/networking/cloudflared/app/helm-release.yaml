@@ -111,6 +111,7 @@ spec:
                 service: https://10.87.42.0.6443
                 originRequest:
                   noTLSVerify: true
+                  originServerName: k8s.${SECRET_PUBLIC_DOMAIN}
               - service: http_status:404
 
     persistence:
