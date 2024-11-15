@@ -107,6 +107,11 @@ spec:
                 service: https://traefik.networking.svc.cluster.local:443
                 originRequest:
                   originServerName: tun.${SECRET_PUBLIC_DOMAIN}
+              - hostname: "k8s.${SECRET_PUBLIC_DOMAIN}"
+                service: https://10.87.42.0.6443
+                originRequest:
+                  noTLSVerify: true
+                  originServerName: k8s.${SECRET_PUBLIC_DOMAIN}
               - service: http_status:404
 
     persistence:
