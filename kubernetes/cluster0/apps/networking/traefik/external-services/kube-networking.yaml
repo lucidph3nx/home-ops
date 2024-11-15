@@ -55,6 +55,6 @@ spec:
           namespace: networking
           kind: Service
           port: 6443
-      tls:
-        passthrough: true
+  tls:
+    passthrough: true
 
