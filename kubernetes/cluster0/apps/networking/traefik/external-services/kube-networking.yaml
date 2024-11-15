@@ -48,7 +48,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: "Host(`k8s.${SECRET_PUBLIC_DOMAIN}`)"
+    - match: "HostSNI(`k8s.${SECRET_PUBLIC_DOMAIN}`)"
       priority: 1
       services:
         - name: k8s-externalname
