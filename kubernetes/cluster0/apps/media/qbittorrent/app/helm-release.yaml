@@ -68,6 +68,7 @@ spec:
               - secretRef:
                   name: qbittorrent-secrets
             securityContext:
+              privileged: true
               capabilities:
                 add:
                   - NET_ADMIN
