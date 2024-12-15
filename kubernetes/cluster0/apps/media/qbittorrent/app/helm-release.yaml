@@ -103,37 +103,6 @@ spec:
               capabilities:
                 drop:
                   - ALL
-          # doh to avoid dns leaks
-          dnsdist:
-            image:
-              repository: docker.io/powerdns/dnsdist-18
-              tag: 1.8.4
-          # do the vpn thing
-          gluetun:
-            image:
-              repository: ghcr.io/qdm12/gluetun
-              tag: latest@sha256:aaaf6c7c108f7f7caae978499b4cb823a135324992ce7cea4acd405a29298141
-            env:
-              - name: FIREWALL_INPUT_PORTS
-                value: "8080"
-              - name: FIREWALL_OUTBOUND_SUBNETS
-                # Allow access to k8s subnets
-                value: "10.42.0.0/16,10.43.0.0/16"
-              - name: SHADOWSOCKS
-                value: "on"
-              - name: DOT
-                value: "off"
-              - name: DNS_PLAINTEXT_ADDRESS
-                value: "127.0.0.2"
-              - name: TZ
-                value: "${TIMEZONE}"
-            envFrom:
-              - secretRef:
-                  name: qbittorrent-secrets
-            securityContext:
-              capabilities:
-                add:
-                  - NET_ADMIN
           port-forward:
             image:
               repository: ghcr.io/bjw-s-labs/gluetun-qb-port-sync
