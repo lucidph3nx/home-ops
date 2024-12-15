@@ -102,6 +102,9 @@ spec:
           main:
             app:
               - path: /config
+      dev-net-tun:
+        type: hostPath
+        hostPath: /dev/net/tun
       downloads:
         type: nfs
         server: "${NAS0_IP}"
