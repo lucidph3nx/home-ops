@@ -57,7 +57,7 @@ spec:
               FIREWALL_OUTBOUND_SUBNETS: 10.96.0.0/12,10.244.0.0/16 # Allow access to k8s subnets
             envFrom:
               - secretRef:
-                  name: qbittorrent-secret
+                  name: qbittorrent-secrets
             # resources:
             #   limits:
             #     squat.ai/tun: "1"
