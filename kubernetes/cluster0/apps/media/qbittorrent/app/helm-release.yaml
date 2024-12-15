@@ -30,7 +30,7 @@ spec:
           securityContext:
             fsGroup: 2000
             fsGroupChangePolicy: "OnRootMismatch"
-            terminationGracePeriodSeconds: 120
+          terminationGracePeriodSeconds: 120
         initContainers:
           dnsdist:
             image:
