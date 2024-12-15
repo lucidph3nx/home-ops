@@ -68,10 +68,10 @@ spec:
               - secretRef:
                   name: qbittorrent-secrets
             securityContext:
+              privileged: true
               capabilities:
                 add:
-                  - NET_ADMIN   
-                  - SYS_ADMIN
+                  - NET_ADMIN
         pod:
           securityContext:
             runAsUser: 0
