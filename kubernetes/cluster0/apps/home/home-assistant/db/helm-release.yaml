@@ -39,3 +39,4 @@ spec:
         storageClass: longhorn
         # existingClaim: pvc-home-assistant-db0
         size: 100Gi
+
