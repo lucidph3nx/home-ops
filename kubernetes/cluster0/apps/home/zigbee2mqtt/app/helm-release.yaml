@@ -59,15 +59,11 @@ spec:
     persistence:
       config:
         enabled: true
-        type: "custom"
-        volumeSpec:
-          configMap:
-            name: zigbee2mqtt-settings
-        advancedMounts:
-          main:
-            main:
-             - path: /data/configuration.yaml"
-               subPath: "configuration.yaml"
+        type: configMap
+        name: zigbee2mqtt-settings
+        globalMounts:
+          - path: /data
+            subPath: configuration.yaml
       data:
         existingClaim: pvc-zigbee2mqtt
         advancedMounts:
