@@ -61,9 +61,11 @@ spec:
         enabled: true
         type: configMap
         name: zigbee2mqtt-settings
-        globalMounts:
-          - path: /app/data
-            subPath: configuration.yaml
+        advancedMounts:
+          main:
+            app:
+            - path: /app/data
+              subPath: configuration.yaml
       # data:
       #   existingClaim: pvc-zigbee2mqtt
       #   advancedMounts:
