@@ -33,7 +33,7 @@ spec:
               tag: 2.0.0
             env:
               TZ: "${TIMEZONE}"
-              ZIGBEE2MQTT_DATA: /data
+              # ZIGBEE2MQTT_DATA: /data
             securityContext:
               privileged: true
     service:
@@ -62,14 +62,14 @@ spec:
         type: configMap
         name: zigbee2mqtt-settings
         globalMounts:
-          - path: /data
+          - path: /app/data
             subPath: configuration.yaml
-      data:
-        existingClaim: pvc-zigbee2mqtt
-        advancedMounts:
-          main:
-            app:
-              - path: /data
+      # data:
+      #   existingClaim: pvc-zigbee2mqtt
+      #   advancedMounts:
+      #     main:
+      #       app:
+      #         - path: /data
       usb:
         type: hostPath
         hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2490275-if00
