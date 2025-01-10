@@ -8,8 +8,8 @@ data:
     advanced:
       homeassistant:
         enabled: true
-      homeassistant_discovery_topic: homeassistant
-      homeassistant_status_topic: homeassistant/status
+        disccovery_topic: homeassistant
+        status_topic: homeassistant/status
       last_seen: ISO_8601
       log_level: warn
       log_output:
