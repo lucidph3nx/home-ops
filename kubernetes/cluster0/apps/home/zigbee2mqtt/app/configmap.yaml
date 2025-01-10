@@ -6,6 +6,8 @@ metadata:
 data:
   configuration.yaml: |
     advanced:
+      homeassistant:
+        enabled: true
       homeassistant_discovery_topic: homeassistant
       homeassistant_status_topic: homeassistant/status
       last_seen: ISO_8601
