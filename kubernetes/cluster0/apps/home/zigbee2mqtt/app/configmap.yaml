@@ -9,7 +9,7 @@ data:
       homeassistant_discovery_topic: homeassistant
       homeassistant_status_topic: homeassistant/status
       last_seen: ISO_8601
-      log_level: debug
+      log_level: warn
       log_output:
         - console
       network_key:
@@ -48,10 +48,6 @@ data:
     devices:
       '0x001788010bdec001':
         friendly_name: hydro pump
-      '0x001788010bdf2f8a':
-        friendly_name: hydro growlights
-      '0x00178801011ea72f':
-        friendly_name: desk lightstrip
       '0x001788010bf2bfd2':
         friendly_name: kitchen lightstrip
       '0x0017880106914797':
@@ -82,6 +78,33 @@ data:
         friendly_name: hall sensor near
       '0xa4c13865001bffff':
         friendly_name: fan controller
+      '0x001788010c6b4605':
+        friendly_name: plantstand_left
+      '0x001788010c6b45f2':
+        friendly_name: plantstand_right
+      '0xa4c1385ce00cc685':
+        friendly_name: lounge lamp
+      '0xa4c138d4115bfb2a':
+        friendly_name: large growlight
+      '0xa4c13849ad90fd90':
+        friendly_name: nft growlight
+      '0xa4c138e4de2603fe':
+        friendly_name: cactus growlight
+      '0xa4c138d956499708':
+        friendly_name: light tower
+      '0xa4c1385b98fa36ae':
+        friendly_name: office heater
+      '0xa4c13815bf001417':
+        friendly_name: mini light tower
+      '0xa4c138027ac57ad2':
+        friendly_name: lounge heater
+      '0x00178801011ea72f':
+        friendly_name: desk lightstrip
     external_converters:
       - fan_controller.js
       - lilygo_light.js
+    availability:
+      active:
+        timeout: 15
+      passive:
+        timeout: 1500

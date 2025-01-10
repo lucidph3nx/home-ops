@@ -57,17 +57,17 @@ spec:
                   identifier: app
                   port: http
     persistence:
-      # config:
-      #   enabled: true
-      #   type: "custom"
-      #   volumeSpec:
-      #     configMap:
-      #       name: zigbee2mqtt-settings
-      #  advancedMounts:
-      #    main:
-      #      main:
-      #        - path: /app/data/configuration.yaml"
-      #          subPath: "configuration.yaml"
+      config:
+        enabled: true
+        type: "custom"
+        volumeSpec:
+          configMap:
+            name: zigbee2mqtt-settings
+        advancedMounts:
+          main:
+            main:
+             - path: /data/configuration.yaml"
+               subPath: "configuration.yaml"
       data:
         existingClaim: pvc-zigbee2mqtt
         advancedMounts:
