@@ -72,8 +72,11 @@ spec:
       - "--providers.kubernetescrd.allowexternalnameservices=true"
     ports:
       web:
-        redirectTo: 
-          port: websecure
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+            permanent: true
       websecure:
         exposedPort: 443  
         tls:
