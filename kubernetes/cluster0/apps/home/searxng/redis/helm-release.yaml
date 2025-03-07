@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: redis
-      version: 20.6.2
+      version: 20.11.2
       # note, don't upgrade until this is resolved
       # https://github.com/bitnami/charts/issues/32218
       sourceRef:
