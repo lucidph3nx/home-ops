@@ -18,6 +18,7 @@ resources:
   - kubernetes-dashboard-charts.yaml
   - longhorn-charts.yaml
   - metallb-charts.yaml
+  - metrics-server.yaml
   - node-feature-discovery.yaml
   - prometheus-community-charts.yaml
   - traefik-charts.yaml
