@@ -17,5 +17,5 @@ data:
   SYNC_ENDPOINT: "10.87.42.14"
   # external service IPs
   NAS0_IP: "10.87.1.200"
-  UNIFI_IP: "10.93.149.58"
+  UNIFI_IP: "10.93.0.1"
   OCTOPRINT_IP: "10.93.149.56"
