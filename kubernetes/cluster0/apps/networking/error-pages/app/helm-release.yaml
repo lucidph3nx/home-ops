@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: ghcr.io/tarampampam/error-pages
-              tag: 3.3.2
+              tag: 3.3.3
             env:
               TEMPLATE_NAME: ghost
               SHOW_DETAILS: "false"
