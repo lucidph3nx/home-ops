@@ -10,6 +10,8 @@ logLevel: info
 bootstrapDns:
   - tcp-tls:1.1.1.1:853
   - tcp-tls:1.0.0.1:853
+  - tcp-tls:9.9.9.9:853
+  - tcp-tls:8.8.8.8:853
 
 # https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-tls/#how-it-works
 upstreams:
