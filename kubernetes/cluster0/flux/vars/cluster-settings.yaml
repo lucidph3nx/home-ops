@@ -7,7 +7,7 @@ metadata:
 data:
   CLUSTER_NAME: "home-ops-cluster0"
   TIMEZONE: "Pacific/Auckland"
-  CONTROLPLANE_IP:  "10.87.42.0"
+  CONTROLPLANE_IP:  "10.87.42.2"
   LOADBALANCER_IP_POOL: "10.87.42.10/27"
   TRAEFIK_IP:       "10.87.42.10"
   PRIMARY_DNS_IP:   "10.87.42.11"
