@@ -42,6 +42,11 @@ spec:
     enableRuntimeDeviceDetection: true
     endpointRoutes:
       enabled: true
+    gatewayAPI:
+      enabled: true
+      enableAlpn: true
+      # adjust as needed
+      xffNumTrustedHops: 0
     hubble:
       enabled: true
       metrics:
