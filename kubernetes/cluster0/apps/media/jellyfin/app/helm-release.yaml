@@ -50,13 +50,13 @@ spec:
         ports:
           http:
             port: 8096
-    route:
-      app:
-        hostnames: ["{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"]
-        parentRefs:
-          - name: default-gateway
-            namespace: kube-system
-            sectionName: https
+    # route:
+    #   app:
+    #     hostnames: ["{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"]
+    #     parentRefs:
+    #       - name: default-gateway
+    #         namespace: kube-system
+    #         sectionName: https
     ingress:
       main:
         annotations:
