@@ -53,6 +53,8 @@ spec:
     route:
       app:
         hostnames: ["{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"]
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
         parentRefs:
           - name: default-gateway
             namespace: kube-system
