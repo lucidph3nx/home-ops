@@ -35,6 +35,14 @@ spec:
       - --crd-source-kind=DNSEndpoint
       - --cloudflare-proxied
       - --source=gateway-httproute
+    rbac:
+      additionalPermissions:
+        - apiGroups: [""]
+          resources: ["namespaces"]
+          verbs: ["get","watch","list"]
+        - apiGroups: ["gateway.networking.k8s.io"]
+          resources: ["gateways","httproutes","tlsroutes","tcproutes","udproutes"] 
+          verbs: ["get","watch","list"]
     policy: sync
     sources:
       - ingress
