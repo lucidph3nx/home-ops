@@ -28,4 +28,5 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
+            namespace: networking
             name: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
