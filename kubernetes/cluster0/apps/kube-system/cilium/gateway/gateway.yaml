@@ -5,6 +5,8 @@ kind: Gateway
 metadata:
   name: default-gateway
   namespace: kube-system
+  annotations:
+    external-dns.kubernetes.io/hostname: ipv4.tinfoilforest.nz
 spec:
   gatewayClassName: cilium
   addresses:
