@@ -99,8 +99,8 @@ spec:
     k8sServiceHost: ${CONTROLPLANE_IP}
     k8sServicePort: 6443
     kubeProxyReplacement: true
-    nodePort:
-      enabled: true
+    # nodePort:
+    #   enabled: true
     l2announcements:
       enabled: true
       leaseDuration: 120s
