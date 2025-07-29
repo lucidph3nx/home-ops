@@ -105,7 +105,7 @@ spec:
       leaseRetryPeriod: 1s
     loadBalancer:
       algorithm: maglev
-      mode: snat # switched from dsr to test
+      mode: dsr
       protocolDifferentiation:
         enabled: true
     k8sClientRateLimit:
