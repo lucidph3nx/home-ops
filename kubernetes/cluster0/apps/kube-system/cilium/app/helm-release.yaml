@@ -90,10 +90,7 @@ spec:
     k8sServicePort: 6443
     kubeProxyReplacement: true
     l2announcements:
-      enabled: true
-      leaseDuration: 120s
-      leaseRenewDeadline: 60s
-      leaseRetryPeriod: 1s
+      enabled: false
     localRedirectPolicy: true
     operator:
       dnsPolicy: "ClusterFirstWithHostNet"
@@ -116,8 +113,8 @@ spec:
       annotations:
         grafana_folder: Cilium
     rollOutCiliumPods: true
-    routingMode: "tunnel"
-    # autoDirectNodeRoutes: true # incompatible with tunnel routing mode, works with native
+    routingMode: "native"
+    autoDirectNodeRoutes: true # incompatible with tunnel routing mode, works with native
     securityContext:
       capabilities:
         ciliumAgent:
