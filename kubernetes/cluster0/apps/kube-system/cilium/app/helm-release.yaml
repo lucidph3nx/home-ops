@@ -38,8 +38,8 @@ spec:
     cluster:
       name: ${CLUSTER_NAME}
       id: 1
-    endpointRoutes:
-      enabled: true
+    # endpointRoutes:
+    #   enabled: true
     envoy:
       rollOutPods: true
       prometheus:
