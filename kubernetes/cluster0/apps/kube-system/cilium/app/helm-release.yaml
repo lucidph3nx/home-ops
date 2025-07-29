@@ -26,9 +26,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    # autoDirectNodeRoutes: true
-    bandwidthManager:
-      enabled: true
+    # bandwidthManager:
+    #   enabled: true
       # bbr: true needs kernel 5.18 or newer
     bpf:
       masquerade: true
@@ -136,6 +135,7 @@ spec:
         grafana_folder: Cilium
     rollOutCiliumPods: true
     routingMode: "tunnel"
+    # autoDirectNodeRoutes: true # incompatible with tunnel routing mode, works with native
     securityContext:
       capabilities:
         ciliumAgent:
