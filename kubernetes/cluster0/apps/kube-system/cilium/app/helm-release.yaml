@@ -42,6 +42,11 @@ spec:
     enableRuntimeDeviceDetection: true
     endpointRoutes:
       enabled: true
+    envoy:
+      rollOutPods: true
+      prometheus:
+         serviceMonitor:
+           enabled: true
     gatewayAPI:
       enabled: true
       enableAlpn: true
