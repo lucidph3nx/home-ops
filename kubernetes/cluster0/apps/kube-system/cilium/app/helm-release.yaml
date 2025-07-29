@@ -133,7 +133,7 @@ spec:
       annotations:
         grafana_folder: Cilium
     rollOutCiliumPods: true
-    routingMode: native
+    routingMode: "tunnel" # until I get BGP working
     securityContext:
       capabilities:
         ciliumAgent:
