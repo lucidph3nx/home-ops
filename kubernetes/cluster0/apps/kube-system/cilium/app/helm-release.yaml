@@ -111,9 +111,9 @@ spec:
     #   mode: snat
     #   protocolDifferentiation:
     #     enabled: true
-    k8sClientRateLimit:
-      qps: 80
-      burst: 160
+    # k8sClientRateLimit:
+    #   qps: 80
+    #   burst: 160
     localRedirectPolicy: true
     operator:
       rollOutPods: true
@@ -135,7 +135,7 @@ spec:
       annotations:
         grafana_folder: Cilium
     rollOutCiliumPods: true
-    routingMode: "native"
+    routingMode: "tunnel"
     securityContext:
       capabilities:
         ciliumAgent:
