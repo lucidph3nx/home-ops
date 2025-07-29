@@ -46,7 +46,7 @@ spec:
       enabled: true
       enableAlpn: true
       # adjust as needed
-      xffNumTrustedHops: 0
+      xffNumTrustedHops: 1
     hubble:
       enabled: true
       metrics:
