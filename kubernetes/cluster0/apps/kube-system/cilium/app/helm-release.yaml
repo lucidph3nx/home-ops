@@ -38,7 +38,6 @@ spec:
     cluster:
       name: ${CLUSTER_NAME}
       id: 1
-    enableRuntimeDeviceDetection: true
     endpointRoutes:
       enabled: true
     envoy:
