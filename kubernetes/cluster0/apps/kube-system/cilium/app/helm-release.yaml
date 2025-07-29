@@ -30,8 +30,6 @@ spec:
     bandwidthManager:
       enabled: true
       # bbr: true needs kernel 5.18 or newer
-    l7:
-      backend: envoy
     bpf:
       masquerade: true
       # datapathMode: netkit # needs kernel 6.7 or newer
