@@ -95,7 +95,6 @@ spec:
     k8sServiceHost: ${CONTROLPLANE_IP}
     k8sServicePort: 6443
     kubeProxyReplacement: true
-    kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     # nodePort:
     #   enabled: true
     l2announcements:
