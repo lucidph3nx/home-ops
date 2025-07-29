@@ -6,7 +6,7 @@ metadata:
   name: default-gateway
   namespace: kube-system
   annotations:
-    external-dns.kubernetes.io/hostname: ipv4.tinfoilforest.nz
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
 spec:
   gatewayClassName: cilium
   addresses:
