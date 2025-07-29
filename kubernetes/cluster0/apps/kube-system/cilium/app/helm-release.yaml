@@ -26,9 +26,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    # bandwidthManager:
-    #   enabled: true
-      # bbr: true needs kernel 5.18 or newer
     bpf:
       masquerade: true
       preallocateMaps: true
@@ -38,8 +35,6 @@ spec:
     cluster:
       name: ${CLUSTER_NAME}
       id: 1
-    # endpointRoutes:
-    #   enabled: true
     envoy:
       rollOutPods: true
       prometheus:
@@ -47,16 +42,11 @@ spec:
            enabled: true
     gatewayAPI:
       enabled: true
-      # enableAlpn: true
-      # adjust as needed
-      # xffNumTrustedHops: 1
-      gatewayClass:
-        create: 'true'
     hubble:
       enabled: true
       metrics:
         enabled:
-          - dns:query
+          # - dns:query
           - drop
           - tcp
           - flow
@@ -97,21 +87,11 @@ spec:
     k8sServiceHost: ${CONTROLPLANE_IP}
     k8sServicePort: 6443
     kubeProxyReplacement: true
-    # nodePort:
-    #   enabled: true
     l2announcements:
       enabled: true
       leaseDuration: 120s
       leaseRenewDeadline: 60s
       leaseRetryPeriod: 1s
-    # loadBalancer:
-    #   algorithm: maglev
-    #   mode: snat
-    #   protocolDifferentiation:
-    #     enabled: true
-    # k8sClientRateLimit:
-    #   qps: 80
-    #   burst: 160
     localRedirectPolicy: true
     operator:
       rollOutPods: true
