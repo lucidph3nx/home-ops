@@ -53,7 +53,7 @@ spec:
       # adjust as needed
       # xffNumTrustedHops: 1
       gatewayClass:
-        create: true
+        create: 'true'
     hubble:
       enabled: true
       metrics:
