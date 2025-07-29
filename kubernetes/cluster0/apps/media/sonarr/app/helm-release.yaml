@@ -46,27 +46,27 @@ spec:
         ports:
           http:
             port: 8989
-    route:
-      app:
-        hostnames: ["{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"]
-        parentRefs:
-          - name: default-gateway
-            namespace: kube-system
-            sectionName: https
-    # ingress:
-    #   main:
-    #     annotations:
-    #       traefik.ingress.kubernetes.io/router.middlewares: auth-chain-authelia-auth@kubernetescrd #,sonarr-theme@file
-    #       traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    #       external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-    #     hosts:
-    #       - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
-    #         paths:
-    #           - path: /
-    #             pathType: Prefix
-    #             service:
-    #               identifier: app
-    #               port: http
+    # route:
+    #   app:
+    #     hostnames: ["{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"]
+    #     parentRefs:
+    #       - name: default-gateway
+    #         namespace: kube-system
+    #         sectionName: https
+    ingress:
+      main:
+        annotations:
+          traefik.ingress.kubernetes.io/router.middlewares: auth-chain-authelia-auth@kubernetescrd #,sonarr-theme@file
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
     persistence:
       config:
         existingClaim: pvc-sonarr
