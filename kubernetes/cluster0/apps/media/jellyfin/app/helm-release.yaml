@@ -37,6 +37,24 @@ spec:
             env:
               TZ: "${TIMEZONE}"
               JELLYFIN_CACHE_DIR: /config/cache
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: &port 8096
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
             resources:
               requests:
                 gpu.intel.com/i915: 1
@@ -49,7 +67,7 @@ spec:
         controller: main
         ports:
           http:
-            port: 8096
+            port: *port
     route:
       app:
         hostnames: ["{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"]
