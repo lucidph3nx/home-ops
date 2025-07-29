@@ -32,10 +32,8 @@ spec:
       # bbr: true needs kernel 5.18 or newer
     bpf:
       masquerade: true
-    bgp:
-      enabled: false # unifi gateway does not support this
-      announce:
-        loadbalancerIP: true
+    bgpControlPlane:
+      enabled: true
     cluster:
       name: ${CLUSTER_NAME}
       id: 1
