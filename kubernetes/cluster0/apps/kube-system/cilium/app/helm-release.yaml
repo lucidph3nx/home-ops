@@ -32,6 +32,7 @@ spec:
       # bbr: true needs kernel 5.18 or newer
     bpf:
       masquerade: true
+      preallocateMaps: true
       # datapathMode: netkit # needs kernel 6.7 or newer
     bgpControlPlane:
       enabled: true
@@ -48,9 +49,11 @@ spec:
            enabled: true
     gatewayAPI:
       enabled: true
-      enableAlpn: true
+      # enableAlpn: true
       # adjust as needed
-      xffNumTrustedHops: 1
+      # xffNumTrustedHops: 1
+      gatewayClass:
+        create: true
     hubble:
       enabled: true
       metrics:
