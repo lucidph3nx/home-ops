@@ -6,12 +6,15 @@ metadata:
   name: default-gateway
   namespace: kube-system
   annotations:
-    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: &hostname "ipv4.${SECRET_PUBLIC_DOMAIN}"
 spec:
   gatewayClassName: cilium
   addresses:
     - type: IPAddress
       value: ${GATEWAY_IP}
+  infrastructure:
+    annotations:
+        external-dns.alpha.kubernetes.io/hostname: *hostname
   listeners:
     - name: http
       protocol: HTTP
