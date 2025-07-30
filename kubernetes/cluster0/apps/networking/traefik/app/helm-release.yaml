@@ -69,9 +69,11 @@ spec:
       listeners:
         web:
           port: 8080
+          protocol: HTTP
           namespacePolicy: All
         websecure:
           port: 8443
+          protocol: HTTPS
           namespacePolicy: All
     globalArguments:
       - "--api.insecure=true"
