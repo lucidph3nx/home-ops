@@ -68,11 +68,11 @@ spec:
     gateway:
       listeners:
         web:
-          port: 8080
+          port: 80
           protocol: HTTP
           namespacePolicy: All
         websecure:
-          port: 8443
+          port: 443
           protocol: HTTPS
           namespacePolicy: All
           certificateRefs:
