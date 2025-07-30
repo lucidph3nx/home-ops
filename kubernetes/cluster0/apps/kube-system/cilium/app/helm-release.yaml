@@ -36,14 +36,12 @@ spec:
       name: ${CLUSTER_NAME}
       id: 1
     envoy:
-      dnsPolicy: "ClusterFirstWithHostNet"
       rollOutPods: true
       prometheus:
          serviceMonitor:
            enabled: true
     gatewayAPI:
       enabled: true
-    dnsPolicy: "ClusterFirstWithHostNet"
     hubble:
       enabled: true
       metrics:
@@ -93,7 +91,6 @@ spec:
       enabled: true
     localRedirectPolicy: true
     operator:
-      dnsPolicy: "ClusterFirstWithHostNet"
       rollOutPods: true
       prometheus:
         enabled: true
