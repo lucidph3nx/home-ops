@@ -75,6 +75,9 @@ spec:
           port: 8443
           protocol: HTTPS
           namespacePolicy: All
+          certificateRefs:
+            - kind: Secret
+              name: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
     globalArguments:
       - "--api.insecure=true"
       - "--serversTransport.insecureSkipVerify=true"
