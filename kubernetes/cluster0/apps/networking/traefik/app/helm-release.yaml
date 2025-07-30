@@ -71,9 +71,6 @@ spec:
           namespacePolicy: All
         websecure:
           namespacePolicy: All
-          certificateRefs:
-            - kind: Secret
-              name: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
     globalArguments:
       - "--api.insecure=true"
       - "--serversTransport.insecureSkipVerify=true"
