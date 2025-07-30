@@ -26,6 +26,9 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    bandwidthManager:
+      enabled: true
+      # bbr: true needs kernel 5.18 or newer
     bpf:
       masquerade: true
       preallocateMaps: true
@@ -35,6 +38,8 @@ spec:
     cluster:
       name: ${CLUSTER_NAME}
       id: 1
+    endpointRoutes:
+      enabled: true
     envoy:
       rollOutPods: true
       prometheus:
@@ -89,6 +94,17 @@ spec:
     kubeProxyReplacement: true
     l2announcements:
       enabled: true
+      leaseDuration: 120s
+      leaseRenewDeadline: 60s
+      leaseRetryPeriod: 1s
+    loadBalancer:
+      algorithm: maglev
+      mode: dsr
+      protocolDifferentiation:
+        enabled: true
+    k8sClientRateLimit:
+      qps: 80
+      burst: 160
     localRedirectPolicy: true
     operator:
       rollOutPods: true
@@ -111,7 +127,7 @@ spec:
         grafana_folder: Cilium
     rollOutCiliumPods: true
     routingMode: "native"
-    autoDirectNodeRoutes: true # incompatible with tunnel routing mode, works with native
+    autoDirectNodeRoutes: true
     securityContext:
       capabilities:
         ciliumAgent:
