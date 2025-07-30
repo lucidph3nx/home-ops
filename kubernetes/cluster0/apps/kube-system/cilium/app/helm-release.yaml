@@ -46,7 +46,7 @@ spec:
       enabled: true
       metrics:
         enabled:
-          # - dns:query
+          - dns:query
           - drop
           - tcp
           - flow
