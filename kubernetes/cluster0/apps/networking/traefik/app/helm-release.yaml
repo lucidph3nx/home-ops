@@ -68,8 +68,10 @@ spec:
     gateway:
       listeners:
         web:
+          port: 8080
           namespacePolicy: All
         websecure:
+          port: 8443
           namespacePolicy: All
     globalArguments:
       - "--api.insecure=true"
