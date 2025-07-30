@@ -50,7 +50,7 @@ spec:
       app:
         hostnames: ["{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"]
         parentRefs:
-          - name: default-gateway
+          - name: traefik-gateway
             namespace: kube-system
             sectionName: https
     # ingress:
