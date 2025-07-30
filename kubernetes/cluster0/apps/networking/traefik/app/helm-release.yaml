@@ -63,6 +63,8 @@ spec:
         ingressClass: traefik
         ingressEndpoint:
           ip: ${TRAEFIK_IP}
+      kubernetesGateway:
+        enabled: true
     globalArguments:
       - "--api.insecure=true"
       - "--serversTransport.insecureSkipVerify=true"
