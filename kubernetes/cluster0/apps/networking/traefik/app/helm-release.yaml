@@ -65,6 +65,15 @@ spec:
           ip: ${TRAEFIK_IP}
       kubernetesGateway:
         enabled: true
+    gateway:
+      listeners:
+        web:
+          namespacePolicy: All
+        websecure:
+          namespacePolicy: All
+          certificateRefs:
+            - kind: Secret
+              name: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
     globalArguments:
       - "--api.insecure=true"
       - "--serversTransport.insecureSkipVerify=true"
