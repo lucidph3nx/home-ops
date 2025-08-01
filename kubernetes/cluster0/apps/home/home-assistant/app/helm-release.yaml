@@ -49,7 +49,18 @@ spec:
         controller: main
         ports:
           http:
-            port: 8123
+            port: &port 8123
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"]
+        parentRefs:
+          - name: traefik-gateway
+            namespace: networking
+            sectionName: websecure
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
     ingress:
       app:
         enabled: true
