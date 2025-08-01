@@ -63,21 +63,21 @@ spec:
         ingressClass: traefik
         ingressEndpoint:
           ip: ${TRAEFIK_IP}
-      # kubernetesGateway:
-      #   enabled: true
-    # gateway:
-    #   listeners:
-    #     web:
-    #       port: 80
-    #       protocol: HTTP
-    #       namespacePolicy: All
-    #     websecure:
-    #       port: 443
-    #       protocol: HTTPS
-    #       namespacePolicy: All
-    #       certificateRefs:
-    #         - kind: Secret
-    #           name: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+      kubernetesGateway:
+        enabled: true
+    gateway:
+      listeners:
+        web:
+          port: 80
+          protocol: HTTP
+          namespacePolicy: All
+        websecure:
+          port: 443
+          protocol: HTTPS
+          namespacePolicy: All
+          certificateRefs:
+            - kind: Secret
+              name: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
     globalArguments:
       - "--api.insecure=true"
       - "--serversTransport.insecureSkipVerify=true"
@@ -87,12 +87,14 @@ spec:
       - "--providers.kubernetescrd.allowexternalnameservices=true"
     ports:
       web:
+        port: 80
         redirections:
           entryPoint:
             to: websecure
             scheme: https
             permanent: true
       websecure:
+        port: 443
         exposedPort: 443  
         tls:
           enabled: true
