@@ -66,6 +66,11 @@ spec:
       kubernetesGateway:
         enabled: true
     gateway:
+      annotations:
+        external-dns.alpha.kubernetes.io/target: &hostname "ipv4.${SECRET_PUBLIC_DOMAIN}"
+      infrastructure:
+        annotations:
+            external-dns.alpha.kubernetes.io/hostname: *hostname
       listeners:
         web:
           port: 80
