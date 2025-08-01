@@ -63,8 +63,8 @@ spec:
         ingressClass: traefik
         ingressEndpoint:
           ip: ${TRAEFIK_IP}
-      kubernetesGateway:
-        enabled: true
+      # kubernetesGateway:
+      #   enabled: true
     # gateway:
     #   listeners:
     #     web:
