@@ -28,7 +28,7 @@ spec:
   values:
     bandwidthManager:
       enabled: true
-      # bbr: true needs kernel 5.18 or newer
+      bbr: true
     bpf:
       masquerade: true
       preallocateMaps: true
