@@ -32,7 +32,7 @@ spec:
     bpf:
       masquerade: true
       preallocateMaps: true
-      # datapathMode: netkit # needs kernel 6.7 or newer
+      datapathMode: netkit
     bgpControlPlane:
       enabled: true
     cluster:
