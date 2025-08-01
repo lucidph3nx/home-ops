@@ -74,7 +74,7 @@ spec:
         parentRefs:
           - name: traefik-gateway
             namespace: networking
-            sectionName: https
+            sectionName: websecure
     # ingress:
     #   main:
     #     annotations:
