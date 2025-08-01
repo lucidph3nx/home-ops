@@ -75,19 +75,6 @@ spec:
           - name: traefik-gateway
             namespace: networking
             sectionName: websecure
-    # ingress:
-    #   main:
-    #     annotations:
-    #       traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    #       external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-    #     hosts:
-    #       - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
-    #         paths:
-    #           - path: /
-    #             pathType: Prefix
-    #             service:
-    #               identifier: app
-    #               port: http
     persistence:
       config:
         existingClaim: pvc-jellyfin
