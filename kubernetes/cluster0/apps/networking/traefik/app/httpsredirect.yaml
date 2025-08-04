@@ -8,7 +8,7 @@ metadata:
 spec:
   parentRefs:
     - name: traefik-gateway
-      namespace: kube-system
+      namespace: networking
       sectionName: http
   rules:
     - filters:
