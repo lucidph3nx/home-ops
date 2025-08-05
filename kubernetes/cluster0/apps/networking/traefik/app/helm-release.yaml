@@ -83,11 +83,10 @@ spec:
           certificateRefs:
             - kind: Secret
               name: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
-    globalArguments:
+    additionalArguments:
       - "--api.insecure=true"
       - "--serversTransport.insecureSkipVerify=true"
       - "--providers.kubernetesingress.ingressclass=traefik"
-    additionalArguments:
       - "--providers.kubernetesingress.ingressendpoint.ip=${TRAEFIK_IP}"
       - "--providers.kubernetescrd.allowexternalnameservices=true"
     ports:
