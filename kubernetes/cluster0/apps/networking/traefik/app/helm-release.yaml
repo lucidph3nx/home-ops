@@ -75,11 +75,13 @@ spec:
         web:
           port: 80
           protocol: HTTP
-          namespacePolicy: All
+          namespacePolicy: 
+            from: All
         websecure:
           port: 443
           protocol: HTTPS
-          namespacePolicy: All
+          namespacePolicy:
+            from: All
           certificateRefs:
             - kind: Secret
               name: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
