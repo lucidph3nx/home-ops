@@ -15,6 +15,7 @@ search:
     - json
 
 server:
+  secret_key: "i-dont-understand-why-this-is-needed"
   public_instance: false
   image_proxy: true
   method: GET
