@@ -7,6 +7,5 @@ configMapGenerator:
     namespace: home
     files:
       - settings.yml=./settings.yml
-      - limiter.toml=./limiter.toml
 generatorOptions:
   disableNameSuffixHash: true

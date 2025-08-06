@@ -23,12 +23,12 @@ spec:
   values:
     controllers:
       searxng:
-        strategy: Recreate
+        strategy: RollingUpdate
         containers:
           app:
             image:
-              repository: docker.io/searxng/searxng
-              tag: 2024.8.2-c151683a0
+              repository: ghcr.io/searxng/searxng
+              tag: 2025.8.3-2e62eb5
             env:
               SEARXNG_BASE_URL: https://search.${SECRET_PUBLIC_DOMAIN}
               SEARXNG_URL: https://search.${SECRET_PUBLIC_DOMAIN}
