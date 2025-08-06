@@ -33,7 +33,7 @@ spec:
               SEARXNG_BASE_URL: https://search.${SECRET_PUBLIC_DOMAIN}
               SEARXNG_URL: https://search.${SECRET_PUBLIC_DOMAIN}
               INSTANCE_NAME: tinfoilforest
-              SEARXNG_REDIS_URL: redis://searxng-redis-master.home.svc.cluster.local:6379
+              SEARXNG_VALKEY_URL: redis://searxng-redis-master.home.svc.cluster.local:6379
     service:
       searxng:
         controller: searxng
@@ -64,8 +64,5 @@ spec:
             app:
               - path: /etc/searxng/settings.yml
                 subPath: settings.yml
-                readOnly: true
-              - path: /etc/searxng/limiter.toml
-                subPath: limiter.toml
                 readOnly: true
 
