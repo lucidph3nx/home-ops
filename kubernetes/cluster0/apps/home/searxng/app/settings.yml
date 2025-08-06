@@ -26,7 +26,6 @@ ui:
   default_theme: simple
   infinite_scroll: false
   query_in_title: true
-  default_locale: 'en-NZ'
 
 enabled_plugins:
   - Basic Calculator
