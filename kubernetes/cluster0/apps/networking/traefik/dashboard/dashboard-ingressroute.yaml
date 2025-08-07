@@ -48,13 +48,14 @@ metadata:
   name: traefik-dashboard
   namespace: networking
 spec:
+  hostnames: 
+  - "traefik.${SECRET_PUBLIC_DOMAIN}"
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
       name: traefik-gateway
       namespace: networking
       sectionName: websecure
-  hostnames: ["traefik.${SECRET_PUBLIC_DOMAIN}"]
   rules:
   - matches:
       - path:
@@ -70,7 +71,7 @@ spec:
       - group: ""
         kind: Service
         name: traefik
-        namespace: traefik
+        namespace: networking
         port: 9000
   - matches:
       - path:
@@ -91,5 +92,5 @@ spec:
       - group: ""
         kind: Service
         name: traefik
-        namespace: traefik
+        namespace: networking
         port: 9000
