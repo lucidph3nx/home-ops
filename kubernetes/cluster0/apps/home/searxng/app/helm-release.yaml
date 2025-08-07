@@ -41,7 +41,7 @@ spec:
           http:
             port: &port 8080
     route:
-      app:
+      searxng:
         hostnames: ["search.${SECRET_PUBLIC_DOMAIN}"]
         parentRefs:
           - name: traefik-gateway
@@ -49,7 +49,7 @@ spec:
             sectionName: websecure
         rules:
           - backendRefs:
-              - identifier: app
+              - identifier: searxng
                 port: *port
             filters:
               - type: 'ExtensionRef'
