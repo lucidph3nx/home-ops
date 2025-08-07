@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./home.yaml
   - ./media.yaml
+  - ./monitoring.yaml

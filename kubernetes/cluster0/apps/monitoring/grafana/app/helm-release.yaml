@@ -26,18 +26,23 @@ spec:
     image:
       repository: grafana/grafana
       tag: 12.1.0
-    ingress:
-      enabled: true
-      ingressClassName: "traefik"
-      annotations:
-        hajimari.io/enable: "true"
-        hajimari.io/icon: "chart-bell-curve"
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
-        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-        external-dns/is-public: "true"
-      hosts:
-        - "grafana.${SECRET_PUBLIC_DOMAIN}"
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"]
+        parentRefs:
+          - name: traefik-gateway
+            namespace: networking
+            sectionName: websecure
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: 80
+            filters:
+              - type: 'ExtensionRef'
+                extensionRef:
+                  group: 'traefik.io'
+                  kind: 'Middleware'
+                  name: 'forwardauth-authelia'
     persistence:
       enabled: true
       storageClass: longhorn
