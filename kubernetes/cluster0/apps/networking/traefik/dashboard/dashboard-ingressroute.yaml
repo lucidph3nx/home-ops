@@ -1,44 +1,44 @@
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: traefik-dashboard-addprefix
-  namespace: networking
-spec:
-  addPrefix:
-    prefix: /dashboard
-
----
-
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: traefik-dash-ingress
-  namespace: networking
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: "(Host(`traefik.${SECRET_PUBLIC_DOMAIN}`) && !PathPrefix(`/api`))"
-      kind: Rule
-      middlewares:
-        - name: forwardauth-authelia
-          namespace: auth
-        - name: traefik-dashboard-addprefix
-          namespace: networking
-      services:
-        - name: api@internal
-          kind: TraefikService
-    # separate route for api without dash prefix removed
-    - match: "(Host(`traefik.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/api`))"
-      kind: Rule
-      middlewares:
-        - name: forwardauth-authelia
-          namespace: auth
-      services:
-        - name: api@internal
-          kind: TraefikService
-  tls:
-    secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+# apiVersion: traefik.io/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: traefik-dashboard-addprefix
+#   namespace: networking
+# spec:
+#   addPrefix:
+#     prefix: /dashboard
+#
+# ---
+#
+# apiVersion: traefik.io/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: traefik-dash-ingress
+#   namespace: networking
+# spec:
+#   entryPoints:
+#     - websecure
+#   routes:
+#     - match: "(Host(`traefik.${SECRET_PUBLIC_DOMAIN}`) && !PathPrefix(`/api`))"
+#       kind: Rule
+#       middlewares:
+#         - name: forwardauth-authelia
+#           namespace: auth
+#         - name: traefik-dashboard-addprefix
+#           namespace: networking
+#       services:
+#         - name: api@internal
+#           kind: TraefikService
+#     # separate route for api without dash prefix removed
+#     - match: "(Host(`traefik.${SECRET_PUBLIC_DOMAIN}`) && PathPrefix(`/api`))"
+#       kind: Rule
+#       middlewares:
+#         - name: forwardauth-authelia
+#           namespace: auth
+#       services:
+#         - name: api@internal
+#           kind: TraefikService
+#   tls:
+#     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
 
 ---
 # switch to httproute
@@ -56,5 +56,36 @@ spec:
       sectionName: websecure
   hostnames: ["traefik.${SECRET_PUBLIC_DOMAIN}"]
   rules:
-    - matches:
-      
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /api
+    filters:
+    - type: ExtensionRef
+      extensionRef:
+        group: traefik.io
+        kind: Middleware
+        name: forwardauth-authelia
+    backendRefs:
+    - name: traefik
+      namespace: traefik
+      port: 9000
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    filters:
+    - type: URLRewrite
+      urlRewrite:
+        path:
+          type: ReplacePrefixMatch
+          replacePrefixMatch: /dashboard/
+    - type: ExtensionRef
+      extensionRef:
+        group: traefik.io
+        kind: Middleware
+        name: forwardauth-authelia
+    backendRefs:
+    - name: traefik
+      namespace: traefik
+      port: 9000
