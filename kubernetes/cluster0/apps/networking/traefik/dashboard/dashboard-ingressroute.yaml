@@ -57,35 +57,39 @@ spec:
   hostnames: ["traefik.${SECRET_PUBLIC_DOMAIN}"]
   rules:
   - matches:
-    - path:
-        type: PathPrefix
-        value: /api
+      - path:
+          type: PathPrefix
+          value: /api
     filters:
-    - type: ExtensionRef
-      extensionRef:
-        group: traefik.io
-        kind: Middleware
-        name: forwardauth-authelia
+      - type: ExtensionRef
+        extensionRef:
+          group: traefik.io
+          kind: Middleware
+          name: forwardauth-authelia
     backendRefs:
-    - name: traefik
-      namespace: traefik
-      port: 9000
+      - group: ""
+        kind: Service
+        name: traefik
+        namespace: traefik
+        port: 9000
   - matches:
-    - path:
-        type: PathPrefix
-        value: /
+      - path:
+          type: PathPrefix
+          value: /
     filters:
-    - type: URLRewrite
-      urlRewrite:
-        path:
-          type: ReplacePrefixMatch
-          replacePrefixMatch: /dashboard/
-    - type: ExtensionRef
-      extensionRef:
-        group: traefik.io
-        kind: Middleware
-        name: forwardauth-authelia
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /dashboard/
+      - type: ExtensionRef
+        extensionRef:
+          group: traefik.io
+          kind: Middleware
+          name: forwardauth-authelia
     backendRefs:
-    - name: traefik
-      namespace: traefik
-      port: 9000
+      - group: ""
+        kind: Service
+        name: traefik
+        namespace: traefik
+        port: 9000
