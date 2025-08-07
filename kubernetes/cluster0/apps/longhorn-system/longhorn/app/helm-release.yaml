@@ -26,14 +26,3 @@ spec:
       defaultReplicaCount: 3
     longhornUI:
       replicas: 3
-    ingress:
-      enabled: false
-      # ingressClassName: "traefik"
-      # host: longhorn.${SECRET_PUBLIC_DOMAIN}
-      # path: /
-      # annotations:
-      #   traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      #   traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
-      #   external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-      #   external-dns/is-public: "true"
-
