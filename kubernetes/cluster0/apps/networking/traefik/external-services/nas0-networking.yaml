@@ -51,8 +51,11 @@ spec:
   hostnames: ["nas0.${SECRET_PUBLIC_DOMAIN}"]
   rules:
   - backendRefs:
-    - name: nas0-externalname
-      port: 5000
+      - group: ""
+        kind: Service
+        name: nas0-externalname
+        namespace: networking
+        port: 5000
     matches:
     - path:
         type: PathPrefix
