@@ -41,6 +41,22 @@
 #     secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
 
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-dashboard
+  namespace: networking
+spec:
+  selector:
+    app.kubernetes.io/instance: traefik-networking
+    app.kubernetes.io/name: traefik
+  type: ClusterIP
+  ports:
+  - name: dashboard
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+---
 # switch to httproute
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -70,9 +86,9 @@ spec:
     backendRefs:
       - group: ""
         kind: Service
-        name: traefik
+        name: traefik-dashboard
         namespace: networking
-        port: 8080
+        port: 80
   - matches:
       - path:
           type: PathPrefix
@@ -91,6 +107,6 @@ spec:
     backendRefs:
       - group: ""
         kind: Service
-        name: traefik
+        name: traefik-dashboard
         namespace: networking
-        port: 8080
+        port: 80
