@@ -13,7 +13,7 @@ spec:
 apiVersion: discovery.k8s.io/v1
 kind: EndpointSlice
 metadata:
-  name: nas0
+  name: octoprint
   namespace: networking
   labels:
     kubernetes.io/service-name: octoprint
