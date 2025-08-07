@@ -61,20 +61,6 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
-    ingress:
-      app:
-        enabled: true
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-        hosts:
-          - host: home-assistant.${SECRET_PUBLIC_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
     persistence:
       config:
         existingClaim: pvc-home-assistant
