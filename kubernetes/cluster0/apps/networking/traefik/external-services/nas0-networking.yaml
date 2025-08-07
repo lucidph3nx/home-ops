@@ -5,13 +5,10 @@ metadata:
   name: nas0
   namespace: networking
 spec:
-  # type: ExternalName
   ports:
   - name: http
     port: 80
     targetPort: 5000
-  # externalName: "${NAS0_IP}"
-
 ---
 apiVersion: discovery.k8s.io/v1
 kind: EndpointSlice
@@ -30,36 +27,11 @@ endpoints:
 ports:
 - name: http
   port: 5000
-
----
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: nas0-externalroute
-#   namespace: networking
-#   annotations:
-#     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-#     external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-#     external-dns/is-public: "true"
-# spec:
-#   ingressClassName: traefik
-#   rules:
-#     - host: nas0.${SECRET_PUBLIC_DOMAIN}
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: nas0-externalname
-#                 port:
-#                   number: 5000
-#
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: nas0-httproute
+  name: nas0
   namespace: networking
 spec:
   parentRefs:

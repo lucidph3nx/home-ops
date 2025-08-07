@@ -2,46 +2,53 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: &app octoprint-externalname
+  name: octoprint
   namespace: networking
-  labels:
-    app.kubernetes.io/name: *app
-    app.kubernetes.io/instance: *app
 spec:
-  type: ExternalName
-  externalName: "${OCTOPRINT_IP}"
   ports:
     - name: http
       port: 80
-      protocol: TCP
       targetPort: 80
-
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
 metadata:
-  name: &app octoprint-externalroute
+  name: nas0
   namespace: networking
   labels:
-    app.kubernetes.io/name: *app
-    app.kubernetes.io/instance: *app
-  annotations:
-    hajimari.io/enable: "true"
-    hajimari.io/icon: "printer-3d"
-    hajimari.io/appName: "octoprint"
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-    external-dns/is-public: "true"
+    kubernetes.io/service-name: octoprint
+    endpointslice.kubernetes.io/managed-by: cluster-admins
+addressType: IPv4
+endpoints:
+- addresses:
+  - "${OCTOPRINT_IP}"
+  conditions:
+    ready: true
+ports:
+- name: http
+  port: 80
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: octoprint
+  namespace: networking
 spec:
-  ingressClassName: traefik
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: traefik-gateway
+      namespace: networking
+      sectionName: websecure
+  hostnames: ["octoprint.${SECRET_PUBLIC_DOMAIN}"]
   rules:
-    - host: octoprint.${SECRET_PUBLIC_DOMAIN}
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: octoprint-externalname
-                port:
-                  number: 80
+  - backendRefs:
+      - group: ""
+        kind: Service
+        name: octoprint
+        namespace: networking
+        port: 80
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
