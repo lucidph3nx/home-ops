@@ -44,21 +44,24 @@ spec:
         controller: main
         ports:
           http:
-            port: 8080
-    ingress:
-      main:
-        annotations:
-          traefik.ingress.kubernetes.io/router.middlewares: auth-chain-authelia-auth@kubernetescrd #,sabnzbd-theme@file
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          external-dns.alpha.kubernetes.io/target: "tun.${SECRET_PUBLIC_DOMAIN}"
-        hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
+            port: &port 8080
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"]
+        parentRefs:
+          - name: traefik-gateway
+            namespace: networking
+            sectionName: websecure
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+            filters:
+              - type: 'ExtensionRef'
+                extensionRef:
+                  group: 'traefik.io'
+                  kind: 'Middleware'
+                  name: 'forwardauth-authelia'
     persistence:
       config:
         existingClaim: pvc-sabnzbd
