@@ -30,7 +30,6 @@ spec:
       type: LoadBalancer
       annotations:
         io.cilium/lb-ipam-ips: ${TRAEFIK_IP}
-        # metallb.universe.tf/loadBalancerIPs: ${TRAEFIK_IP}
     tlsStore:
       default:
         defaultCertificate:
@@ -92,6 +91,10 @@ spec:
       - "--providers.kubernetesingress.ingressendpoint.ip=${TRAEFIK_IP}"
       - "--providers.kubernetescrd.allowexternalnameservices=true"
     ports:
+      traefik:
+        port: 8080
+        exposedPort: 8080
+        exposed: true
       web:
         port: 80
         redirections:
