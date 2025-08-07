@@ -74,18 +74,18 @@ spec:
         enabled: true
         rollOutPods: true
         ingress:
-          enabled: true
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
-            external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-            external-dns/is-public: "true"
-          className: "traefik"
-          hosts:
-            - &host hubble.${SECRET_PUBLIC_DOMAIN}
-          tls:
-            - hosts:
-                - *host
+          enabled: false
+    #       annotations:
+    #         traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    #         traefik.ingress.kubernetes.io/router.middlewares: "auth-chain-authelia-auth@kubernetescrd"
+    #         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+    #         external-dns/is-public: "true"
+    #       className: "traefik"
+    #       hosts:
+    #         - &host hubble.${SECRET_PUBLIC_DOMAIN}
+    #       tls:
+    #         - hosts:
+    #             - *host
     ipam:
       mode: kubernetes
     ipv4NativeRoutingCIDR: 10.42.0.0/16
