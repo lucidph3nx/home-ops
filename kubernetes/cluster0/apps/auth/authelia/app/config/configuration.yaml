@@ -64,7 +64,7 @@ regulation:
   ban_time: 5m
 storage:
   postgres:
-    address: "tcp://authelia-postgresql.auth.svc.cluster.local:5432"
+    address: "tcp://authelia-postgres-v17-rw.databases.svc.cluster.local:5432"
     timeout: 5s
     database: authelia
     schema: public
