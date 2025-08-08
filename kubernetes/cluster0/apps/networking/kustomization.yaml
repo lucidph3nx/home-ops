@@ -9,5 +9,4 @@ resources:
   - ./blocky/ks.yaml
   - ./external-dns/ks.yaml
   - ./traefik/ks.yaml
-  - ./error-pages/ks.yaml
   - ./cloudflared/ks.yaml
