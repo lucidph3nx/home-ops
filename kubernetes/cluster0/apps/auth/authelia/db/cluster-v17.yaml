@@ -3,7 +3,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: authelia-postgres-v17
-  namespace: auth
+  namespace: databases
 spec:
   instances: 2
   imageName: ghcr.io/cloudnative-pg/postgresql:17.5-21
@@ -50,11 +50,11 @@ spec:
     - name: authelia
       connectionParameters:
         host: authelia-postgresql.auth.svc.cluster.local
-        user: authelia
-        dbname: authelia
+        user: postgres
+        dbname: postgres
         sslmode: disable
       password:
-        name: auth-postgresql-secrets
+        name: cloudnative-pg-secret
         key: password
 
 
