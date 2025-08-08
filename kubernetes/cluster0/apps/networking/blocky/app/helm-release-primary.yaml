@@ -87,28 +87,6 @@ spec:
           dns-udp:
             port: *port
             protocol: UDP
-    route:
-      tcp-dns:
-        kind: TCPRoute
-        parentRefs:
-          - name: default-gateway
-            namespace: networking
-            sectionName: dns
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
-      udp-dns:
-        kind: UDPRoute
-        parentRefs:
-          - name: default-gateway
-            namespace: networking
-            sectionName: dns
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
-
     serviceMonitor:
       main:
         serviceName: *app
