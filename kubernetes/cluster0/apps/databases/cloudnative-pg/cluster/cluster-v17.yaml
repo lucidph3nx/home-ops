@@ -52,7 +52,7 @@ spec:
         user: authelia
         dbname: authelia
       password:
-        name: authelia-postgresql-secrets
+        name: auth-postgresql-secrets
         key: password
 
 
