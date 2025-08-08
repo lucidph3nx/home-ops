@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - ./helm-release.yaml
   - ./secret.sops.yaml
-  - ./phpldapadmin-ingressroute.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: openldap
