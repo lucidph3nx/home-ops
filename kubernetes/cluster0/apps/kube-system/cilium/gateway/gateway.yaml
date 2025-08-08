@@ -34,3 +34,9 @@ spec:
         certificateRefs:
           - kind: Secret
             name: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+    - name: dns
+      protocol: DNS
+      port: 53
+      allowedRoutes:
+        namespaces:
+          from: All
