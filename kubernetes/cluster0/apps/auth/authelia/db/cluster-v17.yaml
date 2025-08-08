@@ -28,6 +28,7 @@ spec:
       cpu: "250m"
     limits:
       memory: "4Gi"
+  # TODO: Implement backup strategy
 
   # bootstrap:
   # use this to recover a net-new cluster from a backup
@@ -35,33 +36,21 @@ spec:
   #     source: postgres-backup # TODO: fix this to the real name of the backup when on the new cluster
 
     # # use this to 'migrate' from an existing cnpg cluster (e.g. "postgres-v15") to the new cluster
-  bootstrap:
-    initdb:
-      database: authelia
-      owner: authelia
-      import:
-        type: microservice
-        databases:
-          - authelia
-        source:
-          externalCluster: authelia
-
-  externalClusters:
-    - name: authelia
-      connectionParameters:
-        host: authelia-postgresql.auth.svc.cluster.local
-        user: postgres
-        dbname: postgres
-        sslmode: disable
-      password:
-        name: auth-postgresql-secrets
-        key: postgres-password
-
+  # bootstrap:
+  #   initdb:
+  #     database: authelia
+  #     owner: authelia
+  #     import:
+  #       type: microservice
+  #       databases:
+  #         - authelia
+  #       source:
+  #         externalCluster: authelia-postgres-v17
 
   #   # this represents an existing cnpg cluster to migrate from (e.g. upgrading from postgres v14 to postgres v15)
-  #   - name: postgres-v15
+  #   - name: authelia-postgres-v17
   #     connectionParameters:
-  #       host: postgres-v15-rw.default.svc.cluster.local
+  #       host: authelia-postgres-v17-rw.databases.svc.cluster.local
   #       user: postgres
   #       dbname: postgres
   #       sslmode: require
