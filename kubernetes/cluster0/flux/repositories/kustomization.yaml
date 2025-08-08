@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ./helm
   - ./git
-
+  - ./oci
