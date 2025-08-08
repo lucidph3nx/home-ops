@@ -9,7 +9,6 @@ spec:
   dependsOn:
     - name: cluster-apps-traefik
     - name: cluster-apps-openldap
-    - name: cluster-apps-authelia-postgresql
     - name: cluster-apps-authelia-db
     - name: cluster-apps-authelia-redis
   path: ./kubernetes/cluster0/apps/auth/authelia/app
