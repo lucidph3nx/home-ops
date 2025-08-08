@@ -1,90 +1,54 @@
 ---
-# externally pointing server
 apiVersion: v1
 kind: Service
 metadata:
-  name: unifi-externalname
+  name: unifi
   namespace: networking
 spec:
-  type: ExternalName
   ports:
-  - name: https
-    port: 443 
-  externalName: "${UNIFI_IP}"
-
+    - name: http
+      port: 443
+      targetPort: 443
 ---
-# Redirect to https
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
 metadata:
-  name: unifi-redirectscheme
+  name: unifi
+  namespace: networking
+  labels:
+    kubernetes.io/service-name: unifi
+    endpointslice.kubernetes.io/managed-by: cluster-admins
+addressType: IPv4
+endpoints:
+- addresses:
+  - "${UNIFI_IP}"
+  conditions:
+    ready: true
+ports:
+- name: http
+  port: 443
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: unifi
   namespace: networking
 spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
----
-# headers specific to unifi cloud key
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: unifi-headers
-  namespace: networking
-spec:
-  headers:
-    frameDeny: true
-    browserXssFilter: true
-    contentTypeNosniff: true
-    forceSTSHeader: true
-    stsIncludeSubdomains: true
-    stsPreload: true
-    stsSeconds: 15552000
-    customFrameOptionsValue: SAMEORIGIN
-    customRequestHeaders:
-      X-Forwarded-Proto: https
----
-# the equivelant of insecureskipverify for just this ingress
-apiVersion: traefik.io/v1alpha1
-kind: ServersTransport
-metadata:
-  name: unifi-skip-verify-transport
-  namespace: networking
-spec:
-  serverName: "unifi.${SECRET_PUBLIC_DOMAIN}"
-  insecureSkipVerify: true
-
-
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: unifi-externalroute
-  namespace: networking
-  annotations:
-    kubernetes.io/ingress.class: traefik 
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: "Host(`unifi.${SECRET_PUBLIC_DOMAIN}`)"
-      kind: Rule
-      middlewares:
-        - name: unifi-headers
-          namespace: networking
-        - name: unifi-redirectscheme
-          namespace: networking
-        - name: chain-authelia-auth
-          namespace: auth
-      services:
-        - name: unifi-externalname
-          namespace: networking
-          kind: Service
-          port: 443
-          passHostHeader: true
-          scheme: https
-          serversTransport: unifi-skip-verify-transport
-          sticky:
-            cookie:
-              sameSite: none
-  tls:
-    secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: traefik-gateway
+      namespace: networking
+      sectionName: websecure
+  hostnames: ["unifi.${SECRET_PUBLIC_DOMAIN}"]
+  rules:
+  - backendRefs:
+      - group: ""
+        kind: Service
+        name: unifi
+        namespace: networking
+        port: 443
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
