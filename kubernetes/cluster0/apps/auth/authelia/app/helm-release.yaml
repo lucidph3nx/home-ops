@@ -27,8 +27,6 @@ spec:
       namespace: auth
     - name: authelia-redis
       namespace: auth
-    - name: authelia-postgresql
-      namespace: auth
     - name: traefik
       namespace: networking
   values:
