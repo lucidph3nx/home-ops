@@ -77,7 +77,7 @@ spec:
       dns:
         controller: *app
         type: LoadBalancer
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Local # Important for UDP to preserve source IP
         annotations:
           io.cilium/lb-ipam-ips: ${PRIMARY_DNS_IP}
         ports:

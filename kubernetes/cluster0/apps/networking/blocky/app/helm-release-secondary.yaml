@@ -73,7 +73,7 @@ spec:
       dns:
         controller: *app
         type: LoadBalancer
-        externalTrafficPolicy: Cluster
+        externalTrafficPolicy: Local # Important for UDP to preserve source IP
         annotations:
           io.cilium/lb-ipam-ips: ${SECONDARY_DNS_IP}
         ports:
