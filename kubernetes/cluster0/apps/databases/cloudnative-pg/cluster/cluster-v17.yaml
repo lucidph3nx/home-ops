@@ -45,7 +45,17 @@ spec:
     #     source:
     #       externalCluster: postgres-v15
 
-  # externalClusters:
+  externalClusters:
+    - name: authelia
+      connectionParameters:
+        host: authelia-postgres.auth.svc.cluster.local
+        user: authelia
+        dbname: authelia
+      password:
+        name: authelia-postgresql-secrets
+        key: password
+
+
   #   # this represents an existing cnpg cluster to migrate from (e.g. upgrading from postgres v14 to postgres v15)
   #   - name: postgres-v15
   #     connectionParameters:
