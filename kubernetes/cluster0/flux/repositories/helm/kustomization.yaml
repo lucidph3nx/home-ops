@@ -1,23 +1,18 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ananace-charts.yaml
-  - authelia-charts.yaml
   - bitnami-charts.yaml
   - bjw-s-charts.yaml
   - cilium-charts.yaml
   - cloudnative-pg-charts.yaml
   - coredns-charts.yaml
-  - emberstack-charts.yaml
   - external-dns-charts.yaml
   - grafana-charts.yaml
-  - hajimari-charts.yaml
   - helm-openldap-charts.yaml
   - intel.yaml
   - jetstack-charts.yaml
   - kubernetes-dashboard-charts.yaml
   - longhorn-charts.yaml
-  - metallb-charts.yaml
   - metrics-server.yaml
   - node-feature-discovery.yaml
   - prometheus-community-charts.yaml
