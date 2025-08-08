@@ -53,6 +53,9 @@ spec:
           - name: traefik-gateway
             namespace: networking
             sectionName: websecure
+          - name: default-gateway
+            namespace: kube-system
+            sectionName: https
         rules:
           - backendRefs:
               - identifier: app
