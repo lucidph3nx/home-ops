@@ -48,7 +48,7 @@ spec:
   externalClusters:
     - name: authelia
       connectionParameters:
-        host: authelia-postgres.auth.svc.cluster.local
+        host: authelia-postgresql.auth.svc.cluster.local
         user: authelia
         dbname: authelia
       password:
