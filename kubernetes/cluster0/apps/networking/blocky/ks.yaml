@@ -14,7 +14,7 @@ spec:
   dependsOn:
     - name: cluster-apps-longhorn
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: blocky-redis
       namespace: networking
@@ -38,7 +38,7 @@ spec:
   dependsOn:
     - name: cluster-apps-blocky-redis
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: blocky-primary
       namespace: networking

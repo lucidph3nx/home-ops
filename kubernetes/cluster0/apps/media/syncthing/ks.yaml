@@ -15,7 +15,7 @@ spec:
     kind: GitRepository
     name: home-ops-cluster0
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: syncthing
       namespace: media

@@ -31,7 +31,7 @@ spec:
     kind: GitRepository
     name: home-ops-cluster0
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: immich-db
       namespace: home
@@ -56,7 +56,7 @@ spec:
     kind: GitRepository
     name: home-ops-cluster0
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: immich-redis
       namespace: home
@@ -81,7 +81,7 @@ spec:
     kind: GitRepository
     name: home-ops-cluster0
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: immich-microservices
       namespace: home
@@ -106,7 +106,7 @@ spec:
     kind: GitRepository
     name: home-ops-cluster0
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: immich-machine-learning
       namespace: home
@@ -131,7 +131,7 @@ spec:
     kind: GitRepository
     name: home-ops-cluster0
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: immich-server
       namespace: home
