@@ -90,7 +90,7 @@ spec:
     route:
       tcp-dns:
         kind: TCPRoute
-        hostnames: ["dns01.${SECRET_PUBLIC_DOMAIN}"]
+        hostnames: ["10.87.42.16"]
         parentRefs:
           - name: default-gateway
             namespace: networking
@@ -101,7 +101,7 @@ spec:
                 port: *port
       udp-dns:
         kind: UDPRoute
-        hostnames: ["dns01.${SECRET_PUBLIC_DOMAIN}"]
+        hostnames: ["10.87.42.16"]
         parentRefs:
           - name: default-gateway
             namespace: networking
