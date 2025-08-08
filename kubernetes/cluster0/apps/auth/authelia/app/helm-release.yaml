@@ -106,19 +106,6 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
-    # ingress:
-    #   app:
-    #     annotations:
-    #       traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    #       external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-    #       traefik.ingress.kubernetes.io/router.middlewares: auth-chain-authelia@kubernetescrd
-    #     hosts:
-    #       - host: "auth.${SECRET_PUBLIC_DOMAIN}"
-    #         paths:
-    #           - path: /
-    #             service:
-    #               identifier: app
-    #               port: http
     persistence:
       config:
         type: configMap

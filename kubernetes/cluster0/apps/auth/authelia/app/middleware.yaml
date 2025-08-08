@@ -1,14 +1,14 @@
----
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: chain-authelia-auth
-  namespace: auth
-spec:
-  chain:
-    middlewares:
-      - name: forwardauth-authelia
-        namespace: auth
+# ---
+# apiVersion: traefik.io/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: chain-authelia-auth
+#   namespace: auth
+# spec:
+#   chain:
+#     middlewares:
+#       - name: forwardauth-authelia
+#         namespace: auth
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
@@ -24,28 +24,28 @@ spec:
       - Remote-Name
       - Remote-Email
       - Remote-Groups
----
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: chain-authelia
-  namespace: auth
-spec:
-  chain:
-    middlewares:
-      - name: headers-authelia
-        namespace: auth
----
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: headers-authelia
-  namespace: auth
-spec:
-  headers:
-    browserXssFilter: true
-    customFrameOptionsValue: "SAMEORIGIN"
-    customResponseHeaders:
-      Cache-Control: "no-store"
-      Pragma: "no-cache"
----
+# ---
+# apiVersion: traefik.io/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: chain-authelia
+#   namespace: auth
+# spec:
+#   chain:
+#     middlewares:
+#       - name: headers-authelia
+#         namespace: auth
+# ---
+# apiVersion: traefik.io/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: headers-authelia
+#   namespace: auth
+# spec:
+#   headers:
+#     browserXssFilter: true
+#     customFrameOptionsValue: "SAMEORIGIN"
+#     customResponseHeaders:
+#       Cache-Control: "no-store"
+#       Pragma: "no-cache"
+# ---
