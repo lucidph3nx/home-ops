@@ -35,15 +35,16 @@ spec:
   #     source: postgres-backup # TODO: fix this to the real name of the backup when on the new cluster
 
     # # use this to 'migrate' from an existing cnpg cluster (e.g. "postgres-v15") to the new cluster
-  initdb:
-    import:
-      type: monolith
-      databases:
-        - "*"
-      roles:
-        - "*"
-      source:
-        externalCluster: authelia
+  bootstrap:
+    initdb:
+      import:
+        type: monolith
+        databases:
+          - "*"
+        roles:
+          - "*"
+        source:
+          externalCluster: authelia
 
   externalClusters:
     - name: authelia
