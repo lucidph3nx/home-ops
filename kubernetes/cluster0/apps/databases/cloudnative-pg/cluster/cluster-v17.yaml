@@ -51,6 +51,7 @@ spec:
         host: authelia-postgresql.auth.svc.cluster.local
         user: authelia
         dbname: authelia
+        sslmode: disable
       password:
         name: auth-postgresql-secrets
         key: password
