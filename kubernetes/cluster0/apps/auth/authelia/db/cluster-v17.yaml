@@ -54,8 +54,8 @@ spec:
         dbname: postgres
         sslmode: disable
       password:
-        name: cloudnative-pg-secret
-        key: password
+        name: auth-postgresql-secrets
+        key: postgres-password
 
 
   #   # this represents an existing cnpg cluster to migrate from (e.g. upgrading from postgres v14 to postgres v15)
