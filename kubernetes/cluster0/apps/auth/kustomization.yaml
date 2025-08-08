@@ -8,5 +8,4 @@ resources:
   # Flux-Kustomizations
   - ./authelia/ks.yaml
   - ./openldap/ks.yaml
-  - ./postgresql/ks.yaml
   - ./redis/ks.yaml
