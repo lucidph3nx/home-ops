@@ -38,11 +38,9 @@ spec:
   bootstrap:
     initdb:
       import:
-        type: monolith
+        type: microservice
         databases:
-          - "*"
-        roles:
-          - "*"
+          - authelia
         source:
           externalCluster: authelia
 
