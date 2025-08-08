@@ -34,7 +34,7 @@ spec:
             image:
               # renovate: datasource=docker image=docker.io/plexinc/pms-docker
               repository: docker.io/plexinc/pms-docker
-              tag: 1.41.7.9799-5bce000f7
+              tag: 1.41.9.9961-46083195d
             env:
               TZ: "${TIMEZONE}"
               PLEX_UID: 0
