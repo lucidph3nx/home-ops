@@ -25,10 +25,10 @@ spec:
     remediation:
       retries: 3
   values:
-    image:
-      registry: docker.io
-      repository: bitnami/postgresql
-      tag: 16.6.0-debian-12-r2
+    # image:
+    #   registry: docker.io
+    #   repository: bitnami/postgresql
+    #   tag: 16.6.0-debian-12-r2
     auth:
       database: authelia
       username: authelia
