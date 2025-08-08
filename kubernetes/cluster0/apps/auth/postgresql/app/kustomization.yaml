@@ -4,8 +4,6 @@ kind: Kustomization
 resources:
   - ./helm-release.yaml
   - ./secret.sops.yaml
-  # copy of secrets in database namespace for migration
-  - ./secret-dbs.sops.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: postgresql
