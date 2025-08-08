@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: lscr.io/linuxserver/prowlarr
-              tag: "1.9.4.4039-ls38"
+              tag: "1.37.0.5076-ls124"
             env:
               TZ: "${TIMEZONE}"
               PUID: 0
