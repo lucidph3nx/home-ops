@@ -36,10 +36,6 @@ spec:
     service:
       app:
         controller: main
-        type: LoadBalancer
-        annotations:
-          io.cilium/lb-ipam-ips: ${MOSQUITTO_IP}
-        externalTrafficPolicy: Cluster
         ports:
           http:
             port: 1883
