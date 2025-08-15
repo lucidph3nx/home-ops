@@ -39,10 +39,10 @@ spec:
       serverName: authelia-postgres-v17
       s3Credentials:
         accessKeyId:
-          name: cloudnative-pg
+          name: cloudnative-pg-secret
           key: MINIO_ACCESS_KEY
         secretAccessKey:
-          name: cloudnative-pg
+          name: cloudnative-pg-secret
           key: MINIO_SECRET_KEY
 
   # bootstrap:
