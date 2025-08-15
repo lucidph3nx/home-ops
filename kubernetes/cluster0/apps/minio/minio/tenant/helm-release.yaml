@@ -32,3 +32,6 @@ spec:
           volumesPerServer: 4
           size: 10Gi
           storageClassName: longhorn
+      configSecret:
+        name: minio-env-configuration
+        existingSecret: true
