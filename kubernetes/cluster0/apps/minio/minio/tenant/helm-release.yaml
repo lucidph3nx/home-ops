@@ -32,3 +32,8 @@ spec:
           volumesPerServer: 4
           size: 10Gi
           storageClassName: longhorn
+      configSecret:
+        name: minio-tenant-secret
+        accessKey: rootUser
+        secretKey: rootPass
+        existingSecret: true
