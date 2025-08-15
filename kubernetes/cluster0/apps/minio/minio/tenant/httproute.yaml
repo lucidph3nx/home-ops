@@ -17,7 +17,7 @@ spec:
       - group: ""
         kind: Service
         name: minio-tenant-console
-        namespace: longhorn-system
+        namespace: minio
         port: 9443
       matches:                                                                                                                                                                                                                                                  
       - path:                                                                                                                                                                                                                                                   
