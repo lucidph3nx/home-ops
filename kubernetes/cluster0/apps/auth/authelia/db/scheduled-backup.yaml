@@ -2,6 +2,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
   name: authelia-db-backup-v17
+  namespace: databases
 spec:
   schedule: "0 0 0 * * *"  # At midnight every day
   backupOwnerReference: self
