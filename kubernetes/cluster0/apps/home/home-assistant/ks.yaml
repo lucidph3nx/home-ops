@@ -13,11 +13,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-ops-cluster0
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: home-assistant-db
-      namespace: home
   interval: 30m
   retryInterval: 1m
   timeout: 3m
