@@ -55,7 +55,7 @@ session:
       domain: "${SECRET_PUBLIC_DOMAIN}"
       authelia_url: "https://auth.${SECRET_PUBLIC_DOMAIN}"
   redis:
-    host: authelia-redis-master.auth.svc.cluster.local
+    host: valkey
     port: 6379
     database_index: 0
 regulation:

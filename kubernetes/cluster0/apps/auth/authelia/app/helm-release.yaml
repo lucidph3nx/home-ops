@@ -22,13 +22,6 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: openldap
-      namespace: auth
-    - name: authelia-redis
-      namespace: auth
-    - name: traefik
-      namespace: networking
   values:
     controllers:
       authelia:
