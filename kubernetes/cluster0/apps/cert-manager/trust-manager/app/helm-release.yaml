@@ -24,12 +24,8 @@ spec:
   values:
     crds:
       enabled: true
-    app:
-      trust:
-        namespace: cert-manager
     secretTargets:
       enabled: true
       authorizedSecrets:
-        - name: internal-root-ca-secret
-          namespace: cert-manager
+        - internal-root-ca-secret
 
