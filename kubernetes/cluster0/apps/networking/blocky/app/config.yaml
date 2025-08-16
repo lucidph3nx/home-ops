@@ -93,7 +93,7 @@ data:
       required: true
       address: blocky-valkey:6379
       username: default
-      password: ${BLOCKY_REDIS_PASSWORD}
+      password: ${BLOCKY_VALKEY_PASSWORD}
 
     prometheus:
       enable: true
