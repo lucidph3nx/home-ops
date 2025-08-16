@@ -21,6 +21,9 @@ server:
   # behind authelia, no need for bot protection
   limiter: false
 
+valkey:
+  url: "http://searxng-valkey:6379"
+
 ui:
   default_theme: simple
   infinite_scroll: false
