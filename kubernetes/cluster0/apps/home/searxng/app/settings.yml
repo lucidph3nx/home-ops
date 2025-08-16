@@ -22,7 +22,7 @@ server:
   limiter: false
 
 valkey:
-  url: "http://searxng-valkey:6379"
+  url: "valkey://searxng-valkey:6379"
 
 ui:
   default_theme: simple
