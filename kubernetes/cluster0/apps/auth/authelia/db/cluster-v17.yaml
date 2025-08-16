@@ -37,8 +37,8 @@ spec:
       destinationPath: s3://postgresql/
       endpointURL: https://minio-tenant-hl.minio.svc:9000
       endpointCA:
-        name: minio-tenant-tls
-        key: public.crt
+        name: internal-ca-bundle
+        key: ca.crt
       serverName: authelia-postgres-v17
       s3Credentials:
         accessKeyId:
