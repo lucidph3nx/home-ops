@@ -38,4 +38,5 @@ spec:
       certificate:
         externalCertSecret:
           - name: minio-tenant-tls
+            key: ca.crt
         requestAutoCert: false
