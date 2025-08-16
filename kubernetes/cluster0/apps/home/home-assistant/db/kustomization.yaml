@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ./helm-release.yaml
   - ./secret.sops.yaml
+  - ./cluster-v17.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: home-assistant

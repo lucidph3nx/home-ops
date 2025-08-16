@@ -1,0 +1,73 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: home-assistant-postgres-v17
+  namespace: databases
+spec:
+  instances: 2
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5-21
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 100Gi
+    storageClass: longhorn
+  enableSuperuserAccess: true
+  superuserSecret:
+    name: cloudnative-pg-secret
+  postgresql:
+    parameters:
+      max_connections: "300"
+      shared_buffers: 512MB
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all
+  monitoring:
+    enablePodMonitor: true
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "4Gi"
+  backup:
+    retentionPolicy: 14d
+    barmanObjectStore:
+      data:
+        compression: bzip2
+      wal:
+        compression: bzip2
+        maxParallel: 4
+      destinationPath: s3://postgresql/
+      endpointURL: https://minio-tenant-hl.minio.svc:9000
+      endpointCA:
+        name: internal-ca-bundle
+        key: ca.crt
+      serverName: home-assistant-postgres-v17
+      s3Credentials:
+        accessKeyId:
+          name: cloudnative-pg-secret
+          key: MINIO_ACCESS_KEY
+        secretAccessKey:
+          name: cloudnative-pg-secret
+          key: MINIO_SECRET_KEY
+
+# use this to 'migrate' from an existing cnpg cluster (e.g. "postgres-v15") to the new cluster
+  bootstrap:
+    initdb:
+      database: hass
+      owner: hass
+      import:
+        type: microservice
+        databases:
+          - hass
+        source:
+          externalCluster: hass
+  externalClusters:
+    - name: hass
+      connectionParameters:
+        host: home-assistant-db-postgresql.home.svc.cluster.local
+        user: postgres
+        dbname: postgres
+        sslmode: disable
+      password:
+        name: home-assistant-db-secrets
+        key: postgres-password
