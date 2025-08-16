@@ -85,7 +85,7 @@ caching:
 
 redis:
   required: true
-  address: blocky-redis-master:6379
+  address: blocky-valkey:6379
   password: ${BLOCKY_REDIS_PASSWORD}
 
 prometheus:
