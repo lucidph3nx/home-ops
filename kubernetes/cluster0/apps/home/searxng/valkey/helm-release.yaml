@@ -32,4 +32,4 @@ spec:
         controller: valkey
         ports:
           valkey:
-            port: *port
+            port: 6379
