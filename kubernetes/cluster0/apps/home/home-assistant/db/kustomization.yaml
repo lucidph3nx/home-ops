@@ -5,6 +5,7 @@ resources:
   - ./helm-release.yaml
   - ./secret.sops.yaml
   - ./secret-2.sops.yaml
+  - ./scheduled-backup.yaml
   - ./cluster-v17.yaml
 labels:
   - pairs:
