@@ -10,7 +10,7 @@ resources:
   # I manged to with cilium, but when there is no coredns, things fall apart
   # - ./coredns/ks.yaml
   - ./intel-device-plugin/ks.yaml
-  - ./local-path-provisioner/ks.yaml
+  # - ./local-path-provisioner/ks.yaml
   - ./node-feature-discovery/ks.yaml
   - ./metrics-server/ks.yaml
   - ./reloader/ks.yaml
