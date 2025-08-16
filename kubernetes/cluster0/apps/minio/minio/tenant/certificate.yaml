@@ -11,3 +11,4 @@ spec:
   dnsNames:
   - minio-tenant-hl.minio.svc
   - minio-tenant-hl.minio.svc.cluster.local
+  - "*.minio-tenant-hl.minio.svc.cluster.local"
