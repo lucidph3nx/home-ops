@@ -21,3 +21,9 @@ spec:
   upgrade:
     remediation:
       retries: 3
+  values:
+    crds:
+      enabled: true
+    app:
+      trust:
+        namespace: cert-manager
