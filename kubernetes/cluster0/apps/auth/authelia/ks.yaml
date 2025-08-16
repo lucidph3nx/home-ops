@@ -32,8 +32,6 @@ metadata:
   name: cluster-apps-authelia-db
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-longhorn
   path: ./kubernetes/cluster0/apps/auth/authelia/db
   prune: true
   sourceRef:
@@ -50,8 +48,6 @@ metadata:
   name: cluster-apps-authelia-valkey
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-longhorn
   path: ./kubernetes/cluster0/apps/auth/authelia/valkey
   prune: true
   sourceRef:

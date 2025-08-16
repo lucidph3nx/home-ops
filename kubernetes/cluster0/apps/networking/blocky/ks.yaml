@@ -6,8 +6,6 @@ metadata:
   name: cluster-apps-blocky-valkey
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-longhorn
   path: ./kubernetes/cluster0/apps/networking/blocky/valkey
   prune: true
   sourceRef:

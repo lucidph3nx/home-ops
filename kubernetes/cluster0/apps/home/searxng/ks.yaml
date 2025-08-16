@@ -6,8 +6,6 @@ metadata:
   name: cluster-apps-searxng-valkey
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-longhorn
   path: ./kubernetes/cluster0/apps/home/searxng/valkey
   prune: true
   sourceRef:
