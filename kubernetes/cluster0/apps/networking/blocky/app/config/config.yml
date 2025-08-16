@@ -5,7 +5,7 @@ ports:
   http: 0.0.0.0:4000
 
 log:
-  level: info
+  level: debug
 
 bootstrapDns:
   - tcp-tls:1.1.1.1:853
