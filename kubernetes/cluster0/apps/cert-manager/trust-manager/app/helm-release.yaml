@@ -27,3 +27,5 @@ spec:
     app:
       trust:
         namespace: cert-manager
+    secretTargets:
+      enabled: true
