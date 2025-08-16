@@ -29,7 +29,7 @@ spec:
               VALKEY_PORT: &port 6379
     persistence:
       data:
-        size: 100Mi
+        type: emptyDir
       secret:
         type: secret
         name: valkey
