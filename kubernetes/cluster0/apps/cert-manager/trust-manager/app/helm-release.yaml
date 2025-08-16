@@ -27,5 +27,5 @@ spec:
     secretTargets:
       enabled: true
       authorizedSecrets:
-        - internal-root-ca-secret
+        - internal-ca-bundle
 
