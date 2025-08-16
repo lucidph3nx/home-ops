@@ -38,4 +38,5 @@ spec:
       certificate:
         externalCertSecret:
           - name: minio-tenant-tls
+            type: kubernetes.io/tls
         requestAutoCert: false
