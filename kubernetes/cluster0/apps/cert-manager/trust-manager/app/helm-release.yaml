@@ -29,3 +29,7 @@ spec:
         namespace: cert-manager
     secretTargets:
       enabled: true
+      authorizedSecrets:
+        - name: internal-root-ca-secret
+          namespace: cert-manager
+
