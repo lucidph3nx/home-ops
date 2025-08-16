@@ -35,3 +35,7 @@ spec:
       configSecret:
         name: minio-env-configuration
         existingSecret: true
+      certificate:
+        externalCertSecret:
+          - name: minio-tenant-tls
+        requestAutoCert: false
