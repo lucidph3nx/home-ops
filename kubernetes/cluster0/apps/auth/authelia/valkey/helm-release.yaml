@@ -1,0 +1,47 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: valkey
+  namespace: auth
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 4.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  interval: 1h
+  driftDetection:
+    mode: enabled
+  values:
+    controllers:
+      valkey:
+        type: statefulset
+        containers:
+          valkey:
+            image:
+              repository: valkey/valkey
+              tag: 8.1.3-alpine@sha256:e5e6cbd527c9848b263b956872184df549af888112823cca71812d787cd06d60
+            env:
+              VALKEY_PASSWORD_FILE: /secret/valkey-password
+              VALKEY_PORT: &port 6379
+    persistence:
+      data:
+        size: 100Mi
+      secret:
+        type: secret
+        name: valkey
+        advancedMounts:
+          valkey:
+            valkey:
+              - path: /secret/valkey-password
+                subPath: valkey-password
+                readOnly: true
+    service:
+      valkey:
+        controller: valkey
+        ports:
+          valkey:
+            port: *port
