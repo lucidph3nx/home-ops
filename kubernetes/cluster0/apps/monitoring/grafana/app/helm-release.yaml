@@ -27,22 +27,19 @@ spec:
       repository: grafana/grafana
       tag: 12.1.1
     route:
-      app:
+      main:
+        enabled: true
         hostnames: ["{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"]
         parentRefs:
           - name: traefik-gateway
             namespace: networking
             sectionName: websecure
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: 80
-            filters:
-              - type: 'ExtensionRef'
-                extensionRef:
-                  group: 'traefik.io'
-                  kind: 'Middleware'
-                  name: 'forwardauth-authelia'
+        filters:
+          - type: 'ExtensionRef'
+            extensionRef:
+              group: 'traefik.io'
+              kind: 'Middleware'
+              name: 'forwardauth-authelia'
     persistence:
       enabled: true
       storageClass: longhorn
