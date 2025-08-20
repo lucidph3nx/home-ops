@@ -29,7 +29,7 @@ spec:
     limits:
       memory: "4Gi"
   backup:
-    retentionPolicy: 14d
+    retentionPolicy: 8d
     barmanObjectStore:
       data:
         compression: bzip2
