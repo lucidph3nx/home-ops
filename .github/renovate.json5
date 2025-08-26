@@ -2,7 +2,6 @@
   extends: [
     'github>lucidph3nx/home-ops//.github/renovate/labels.json5',
   ],
-  platform: 'github',
   enabled: true,
   semanticCommits: 'enabled',
   dependencyDashboard: true,
