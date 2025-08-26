@@ -14,25 +14,7 @@ data:
       log_level: warn
       log_output:
         - console
-      network_key:
-        - 31
-        - 251
-        - 167
-        - 123
-        - 72
-        - 80
-        - 170
-        - 250
-        - 31
-        - 110
-        - 188
-        - 49
-        - 227
-        - 208
-        - 42
-        - 16
-    experimental:
-      new_api: true
+      network_key: '!secret.yaml network_key'
     frontend:
       port: 8080
     homeassistant: true
@@ -106,7 +88,8 @@ data:
       - fan_controller.js
       - lilygo_light.js
     availability:
+      enabled: true
       active:
-        timeout: 15
+        timeout: 5
       passive:
-        timeout: 1500
+        timeout: 60
