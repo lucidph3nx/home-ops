@@ -18,5 +18,5 @@ data:
   # external service IPs
   NAS0_IP:          "10.87.42.200"
   UNIFI_IP:         "10.87.1.1"
-  OCTOPRINT_IP:     "10.93.149.56"
+  OCTOPRINT_IP:     "10.87.1.74"
   BGP_IP:           "10.87.42.1"
