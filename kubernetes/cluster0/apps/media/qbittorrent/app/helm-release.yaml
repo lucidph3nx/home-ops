@@ -33,8 +33,8 @@ spec:
           app:
             nameOverride: qbittorrent
             image:
-              repository: ghcr.io/onedr0p/qbittorrent
-              tag: 4.6.7@sha256:5391f94b321d563c3b44136a5e799b7e4e4888926c1c31d3081a1cf3e74a9aec
+              repository: ghcr.io/home-operations/qbittorrent
+              tag: 5.1.2@sha256:31ac39705e31f7cdcc04dc46c1c0b0cdf8dc6f9865d4894efc097a33adc41524
             env:
               TZ: "${TIMEZONE}"
               QBITTORRENT__PORT: &port 8080
