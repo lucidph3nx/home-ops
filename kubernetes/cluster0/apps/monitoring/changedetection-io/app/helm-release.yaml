@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: ghcr.io/dgtlmoon/changedetection.io
-              tag: "0.50.29"
+              tag: "0.50.39"
             env:
               TZ: "${TIMEZONE}"
               USE_X_SETTINGS: 1
