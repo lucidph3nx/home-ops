@@ -33,7 +33,7 @@ spec:
           app:
             image:
               repository: jellyfin/jellyfin
-              tag: 10.11.0
+              tag: 10.11.2
             env:
               TZ: "${TIMEZONE}"
               JELLYFIN_CACHE_DIR: /config/cache
