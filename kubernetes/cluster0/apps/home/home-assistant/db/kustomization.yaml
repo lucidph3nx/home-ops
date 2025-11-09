@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - ./scheduled-backup.yaml
   - ./cluster-v17.yaml
-  - ./cluster-v17-restore.yaml
+  # - ./cluster-v17-restore.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: home-assistant
