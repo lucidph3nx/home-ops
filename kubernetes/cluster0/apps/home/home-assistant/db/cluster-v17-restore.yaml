@@ -31,27 +31,27 @@ spec:
       cpu: "250m"
     limits:
       memory: "4Gi"
-  backup:
-    retentionPolicy: 8d
-    barmanObjectStore:
-      data:
-        compression: bzip2
-      wal:
-        compression: bzip2
-        maxParallel: 4
-      destinationPath: s3://postgresql/
-      endpointURL: https://minio-tenant-hl.minio.svc:9000
-      endpointCA:
-        name: internal-ca-bundle
-        key: ca.crt
-      serverName: clusterBackup
-      s3Credentials:
-        accessKeyId:
-          name: cloudnative-pg-secret
-          key: MINIO_ACCESS_KEY
-        secretAccessKey:
-          name: cloudnative-pg-secret
-          key: MINIO_SECRET_KEY
+  # backup:
+  #   retentionPolicy: 8d
+  #   barmanObjectStore:
+  #     data:
+  #       compression: bzip2
+  #     wal:
+  #       compression: bzip2
+  #       maxParallel: 4
+  #     destinationPath: s3://postgresql/
+  #     endpointURL: https://minio-tenant-hl.minio.svc:9000
+  #     endpointCA:
+  #       name: internal-ca-bundle
+  #       key: ca.crt
+  #     serverName: clusterBackup
+  #     s3Credentials:
+  #       accessKeyId:
+  #         name: cloudnative-pg-secret
+  #         key: MINIO_ACCESS_KEY
+  #       secretAccessKey:
+  #         name: cloudnative-pg-secret
+  #         key: MINIO_SECRET_KEY
 # for restoring from backup
   bootstrap:
     recovery:
