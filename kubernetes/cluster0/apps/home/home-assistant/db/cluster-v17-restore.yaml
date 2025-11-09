@@ -55,16 +55,16 @@ spec:
 # for restoring from backup
   bootstrap:
     recovery:
-      source: clusterBackup
+      source: home-assistant-postgres-v17
   externalClusters:
-    - name: clusterBackup
+    - name: home-assistant-postgres-v17
       barmanObjectStore:
         destinationPath: s3://postgresql/
         endpointURL: https://minio-tenant-hl.minio.svc:9000
         endpointCA:
           name: internal-ca-bundle
           key: ca.crt
-        serverName: clusterBackup
+        serverName: home-assistant-postgres-v17
         s3Credentials:
           accessKeyId:
             name: cloudnative-pg-secret
