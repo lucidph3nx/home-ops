@@ -14,6 +14,7 @@ spec:
   isCA: true
   commonName: internal-root-ca
   secretName: internal-root-ca-secret
+  duration: 87600h # 10 years
   privateKey:
     algorithm: ECDSA
     size: 256
