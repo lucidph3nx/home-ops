@@ -44,7 +44,7 @@ spec:
       endpointCA:
         name: internal-ca-bundle
         key: ca.crt
-      serverName: home-assistant-postgres-v17-ii
+      serverName: home-assistant-postgres-v17-restore
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
