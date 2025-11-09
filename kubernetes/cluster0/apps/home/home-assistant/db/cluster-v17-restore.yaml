@@ -59,6 +59,7 @@ spec:
   externalClusters:
     - name: clusterBackup
       barmanObjectStore:
+        destinationPath: s3://postgresql/
         endpointURL: https://minio-tenant-hl.minio.svc:9000
         endpointCA:
           name: internal-ca-bundle
