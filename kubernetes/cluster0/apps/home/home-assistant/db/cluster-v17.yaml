@@ -56,8 +56,6 @@ spec:
     initdb:
       database: hass
       owner: hass
-      secret:
-        name: home-assistant-db-secrets
 
 # use this to 'migrate' from an existing cnpg cluster (e.g. "postgres-v15") to the new cluster
   # bootstrap:
