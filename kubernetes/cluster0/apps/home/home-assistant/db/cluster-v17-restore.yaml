@@ -61,7 +61,6 @@ spec:
       barmanObjectStore:
         destinationPath: s3://postgresql/
         endpointURL: https://minio-tenant-hl.minio.svc:9000
-        sslmode: disable
         endpointCA:
           name: internal-ca-bundle
           key: ca.crt
