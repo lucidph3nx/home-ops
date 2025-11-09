@@ -52,10 +52,6 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: MINIO_SECRET_KEY
-  bootstrap:
-    initdb:
-      database: hass
-      owner: hass
 
 # use this to 'migrate' from an existing cnpg cluster (e.g. "postgres-v15") to the new cluster
   # bootstrap:
