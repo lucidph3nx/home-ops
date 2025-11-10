@@ -3,7 +3,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./scheduled-backup.yaml
-  - ./secret.sops.yaml
   - ./cluster-v17.yaml
   - ./cluster-v18.yaml
   # - ./cluster-v17-restore.yaml
