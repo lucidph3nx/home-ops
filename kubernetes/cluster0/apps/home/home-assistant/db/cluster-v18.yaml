@@ -70,7 +70,7 @@ spec:
   externalClusters:
     - name: hass
       connectionParameters:
-        host: home-assistant-postgres-v17.databases.svc.cluster.local
+        host: home-assistant-postgres-v17-rw.databases.svc.cluster.local
         user: postgres
         dbname: postgres
         sslmode: disable
