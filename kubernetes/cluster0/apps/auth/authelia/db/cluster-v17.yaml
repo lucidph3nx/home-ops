@@ -12,7 +12,7 @@ spec:
     # Workaround for CloudNativePG endpointCA SSL validation issue
     # The endpointCA feature mounts the CA cert but doesn't set SSL env vars
     # See: https://github.com/cloudnative-pg/cloudnative-pg/issues/7946
-    - name: SSL_CERT_FILE
+    - name: CURL_CA_BUNDLE
       value: /run/certificates/backup-barman-ca.crt
     - name: REQUESTS_CA_BUNDLE
       value: /run/certificates/backup-barman-ca.crt
