@@ -71,8 +71,8 @@ spec:
     - name: hass
       connectionParameters:
         host: home-assistant-postgres-v17-rw.databases.svc.cluster.local
-        user: postgres
-        dbname: postgres
+        user: hass
+        dbname: hass
         sslmode: disable
       password:
         name: home-assistant-db-secrets
