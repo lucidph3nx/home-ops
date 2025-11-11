@@ -26,3 +26,17 @@ spec:
   values:
     operator:
       replicaCount: 2
+      env:
+        - name: SSL_CERT_DIR
+          value: /etc/ssl/certs:/etc/pki/ca-trust/extracted/pem
+      volumes:
+        - name: internal-ca-bundle
+          secret:
+            secretName: internal-ca-bundle
+            items:
+              - key: ca-bundle.crt
+                path: internal-ca.pem
+      volumeMounts:
+        - name: internal-ca-bundle
+          mountPath: /etc/pki/ca-trust/extracted/pem
+          readOnly: true
