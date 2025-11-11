@@ -34,7 +34,7 @@ spec:
           secret:
             secretName: internal-ca-bundle
             items:
-              - key: ca-bundle.crt
+              - key: ca.crt
                 path: internal-ca.pem
       volumeMounts:
         - name: internal-ca-bundle
