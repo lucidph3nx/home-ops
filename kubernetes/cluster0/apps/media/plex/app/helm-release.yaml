@@ -32,7 +32,7 @@ spec:
         containers:
           app:
             image:
-              # renovate: datasource=docker image=docker.io/plexinc/pms-docker
+              # renovate: datasource=docker depName=plexinc/pms-docker
               repository: docker.io/plexinc/pms-docker
               tag: 1.42.2.10156-f737b826c
             env:
