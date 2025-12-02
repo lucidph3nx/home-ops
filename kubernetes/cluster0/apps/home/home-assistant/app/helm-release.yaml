@@ -23,6 +23,24 @@ spec:
   values:
     controllers:
       main:
+        initContainers:
+          git-sync:
+            image:
+              repository: alpine/git
+              tag: latest
+            command:
+              - sh
+              - -c
+              - |
+                if [ -d /config/.git ]; then
+                  echo "Git repository found, pulling latest changes..."
+                  cd /config
+                  git config --global --add safe.directory /config
+                  git pull
+                else
+                  echo "No git repository found in /config"
+                  echo "Please initialize your git repository first"
+                fi
         containers:
           app:
             image:
@@ -61,5 +79,7 @@ spec:
         existingClaim: pvc-home-assistant
         advancedMounts:
           main:
+            git-sync:
+              - path: /config
             app:
               - path: /config
