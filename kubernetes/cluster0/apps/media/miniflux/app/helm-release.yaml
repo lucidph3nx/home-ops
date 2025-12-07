@@ -1,0 +1,93 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app miniflux
+  namespace: media
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: app-template
+      version: 4.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controllers:
+      miniflux:
+        strategy: RollingUpdate
+        pod:
+          annotations:
+            reloader.stakater.com/auto: "true"
+          enableServiceLinks: false
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+            supplementalGroups:
+              - 65541
+
+        containers:
+          app:
+            image:
+              repository: ghcr.io/miniflux/miniflux
+              tag: 2.2.14
+
+            env:
+              BASE_URL: https://feed.${SECRET_PUBLIC_DOMAIN}
+              CREATE_ADMIN: "1"
+              RUN_MIGRATIONS: "1"
+
+            envFrom:
+              - secretRef:
+                  name: miniflux-secret
+
+            resources:
+              requests:
+                cpu: 10m
+                memory: 100Mi
+              limits:
+                memory: 400Mi
+
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthcheck
+                    port: &port 8080
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+
+    route:
+      app:
+        hostnames: ["feed.${SECRET_PUBLIC_DOMAIN}"]
+        parentRefs:
+          - name: traefik-gateway
+            namespace: networking
+            sectionName: websecure
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port

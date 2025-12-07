@@ -1,0 +1,98 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: miniflux-postgres-v17
+  namespace: databases
+spec:
+  instances: 2
+  env:
+    - name: TZ
+      value: Pacific/Auckland
+    # Workaround for CloudNativePG endpointCA SSL validation issue
+    # The endpointCA feature mounts the CA cert but doesn't set SSL env vars
+    # See: https://github.com/cloudnative-pg/cloudnative-pg/issues/7946
+    - name: CURL_CA_BUNDLE
+      value: /run/certificates/backup-barman-ca.crt
+    - name: REQUESTS_CA_BUNDLE
+      value: /run/certificates/backup-barman-ca.crt
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5-21
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 1Gi
+    storageClass: longhorn
+  enableSuperuserAccess: true
+  superuserSecret:
+    name: cloudnative-pg-secret
+  postgresql:
+    parameters:
+      max_connections: "300"
+      shared_buffers: 512MB
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all
+  replicationSlots:
+    highAvailability:
+      enabled: true
+  monitoring:
+    enablePodMonitor: true
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "4Gi"
+  backup:
+    retentionPolicy: 14d
+    barmanObjectStore:
+      data:
+        compression: bzip2
+      wal:
+        compression: bzip2
+        maxParallel: 4
+      destinationPath: s3://postgresql/
+      endpointURL: https://minio-tenant-hl.minio.svc:9000
+      endpointCA:
+        name: internal-ca-bundle
+        key: ca.crt
+      serverName: miniflux-postgres-v17
+      s3Credentials:
+        accessKeyId:
+          name: cloudnative-pg-secret
+          key: MINIO_ACCESS_KEY
+        secretAccessKey:
+          name: cloudnative-pg-secret
+          key: MINIO_SECRET_KEY
+  bootstrap:
+    initdb:
+      database: miniflux
+      owner: miniflux
+      secret:
+        name: miniflux-db-secrets
+
+# use this to recover a net-new cluster from a backup
+  # bootstrap:
+  #   recovery:
+  #     source: miniflux-db-backup-v17
+
+# use this to 'migrate' from an existing cnpg cluster (e.g. "postgres-v15") to the new cluster
+  # bootstrap:
+  #   initdb:
+  #     database: miniflux
+  #     owner: miniflux
+  #     import:
+  #       type: microservice
+  #       databases:
+  #         - miniflux
+  #       source:
+  #         externalCluster: miniflux-postgres-v17
+
+  # this represents an existing cnpg cluster to migrate from (e.g. upgrading from postgres v14 to postgres v15)
+  #   - name: miniflux-postgres-v17
+  #     connectionParameters:
+  #       host: miniflux-postgres-v17-rw.databases.svc.cluster.local
+  #       user: postgres
+  #       dbname: postgres
+  #       sslmode: require
+  #     password:
+  #       name: cloudnative-pg-secret
+  #       key: password

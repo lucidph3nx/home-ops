@@ -8,6 +8,7 @@ resources:
   # Flux-Kustomizations
   - ./jellyfin/ks.yaml
   - ./lidarr/ks.yaml
+  - ./miniflux/ks.yaml
   - ./overseerr/ks.yaml
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
