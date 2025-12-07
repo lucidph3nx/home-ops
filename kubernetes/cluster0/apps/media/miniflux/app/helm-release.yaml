@@ -88,6 +88,12 @@ spec:
             namespace: networking
             sectionName: websecure
         rules:
-          - backendRefs:
+          - filters:
+              - type: ResponseHeaderModifier
+                responseHeaderModifier:
+                  set:
+                    - name: Content-Security-Policy
+                      value: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src * data:; media-src *; frame-src *; font-src 'self' data:"
+            backendRefs:
               - identifier: app
                 port: *port
