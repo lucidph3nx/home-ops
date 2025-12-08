@@ -44,14 +44,12 @@ spec:
               BASE_URL: http://ig2rss.media.svc.cluster.local:8080
               HOST: 0.0.0.0
               PORT: &port 8080
-              POLL_INTERVAL: "600"
               RSS_FEED_LIMIT: "50"
               RSS_FEED_DAYS: "30"
               DATABASE_PATH: /data/ig2rss.db
               MEDIA_CACHE_PATH: /data/media
               SESSION_FILE: /data/instagram_session.json
               LOG_LEVEL: INFO
-              FETCH_COUNT: 50
 
             envFrom:
               - secretRef:
