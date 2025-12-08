@@ -38,8 +38,8 @@ spec:
           app:
             image:
               repository: ghcr.io/lucidph3nx/ig2rss
-              tag: main-87de860
-
+              tag: latest
+              pullPolicy: Always
             env:
               BASE_URL: http://ig2rss.media.svc.cluster.local:8080
               HOST: 0.0.0.0
