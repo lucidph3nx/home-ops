@@ -46,6 +46,8 @@ spec:
               BASE_URL: https://feed.${SECRET_PUBLIC_DOMAIN}
               CREATE_ADMIN: "1"
               RUN_MIGRATIONS: "1"
+              MEDIA_PROXY_MODE: "all"
+              MEDIA_PROXY_RESOURCE_TYPES: "image,video"
 
             envFrom:
               - secretRef:
