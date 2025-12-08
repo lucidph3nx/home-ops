@@ -23,7 +23,7 @@ spec:
   values:
     controllers:
       ig2rss:
-        strategy: RollingUpdate
+        strategy: Recreate
         pod:
           annotations:
             reloader.stakater.com/auto: "true"
