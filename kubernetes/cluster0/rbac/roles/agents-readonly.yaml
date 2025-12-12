@@ -15,6 +15,17 @@ rules:
   verbs: ["get", "list", "watch"]
 - nonResourceURLs: ["*"]
   verbs: ["get"]
+# Allow patching Flux resources to enable 'flux reconcile' commands
+# These commands work by adding/updating a reconcile annotation to trigger immediate sync
+- apiGroups: ["source.toolkit.fluxcd.io"]
+  resources: ["gitrepositories", "helmrepositories", "buckets", "ocirepositories"]
+  verbs: ["patch"]
+- apiGroups: ["kustomize.toolkit.fluxcd.io"]
+  resources: ["kustomizations"]
+  verbs: ["patch"]
+- apiGroups: ["helm.toolkit.fluxcd.io"]
+  resources: ["helmreleases"]
+  verbs: ["patch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
