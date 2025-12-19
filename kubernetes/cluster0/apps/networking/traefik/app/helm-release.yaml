@@ -58,10 +58,6 @@ spec:
       kubernetesIngress:
         enabled: true
         allowExternalNameServices: true
-        allowCrossNamespace: true
-        ingressClass: traefik
-        ingressEndpoint:
-          ip: ${TRAEFIK_IP}
       kubernetesGateway:
         enabled: true
     gateway:
