@@ -49,6 +49,15 @@ spec:
             namespace: networking
             sectionName: websecure
         rules:
+          # Browser steps API endpoints - no auth required (internal use)
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /browser-steps
+            backendRefs:
+              - identifier: app
+                port: *port
+          # All other endpoints - require authentication
           - backendRefs:
               - identifier: app
                 port: *port
