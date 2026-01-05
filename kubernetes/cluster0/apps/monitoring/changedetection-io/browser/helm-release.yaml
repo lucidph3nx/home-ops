@@ -38,6 +38,13 @@ spec:
               CHROME_REFRESH_TIME: 600000
               DEFAULT_BLOCK_ADS: true
               DEFAULT_STEALTH: true
+    persistence:
+      cache:
+        type: emptyDir
+        advancedMounts:
+          main:
+            app:
+              - path: /home/blessuser
     service:
       app:
         controller: main
