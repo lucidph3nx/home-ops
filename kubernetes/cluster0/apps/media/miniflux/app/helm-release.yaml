@@ -48,7 +48,7 @@ spec:
               RUN_MIGRATIONS: "1"
               MEDIA_PROXY_MODE: "all"
               MEDIA_PROXY_RESOURCE_TYPES: "image,video"
-
+              MEDIA_PROXY_ALLOW_PRIVATE_NETWORKS: 1
             envFrom:
               - secretRef:
                   name: miniflux-secret
