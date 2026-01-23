@@ -97,10 +97,11 @@ spec:
               permanent: true
       websecure:
         port: 443
-        exposedPort: 443  
-        tls:
-          enabled: true
-          options: "default"
+        exposedPort: 443
+        http:
+          tls:
+            enabled: true
+            options: "default"
     logs:
       general:
         level: "INFO"
