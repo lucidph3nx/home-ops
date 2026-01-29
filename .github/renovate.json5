@@ -1,6 +1,6 @@
 {
   extends: [
-    'github>lucidph3nx/home-ops//.github/renovate/labels.json5',
+    'github>prismatic-koi/home-ops//.github/renovate/labels.json5',
   ],
   enabled: true,
   semanticCommits: 'enabled',

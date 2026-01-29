@@ -37,7 +37,7 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/lucidph3nx/ig2rss
+              repository: ghcr.io/prismatic-koi/ig2rss
               tag: latest
               pullPolicy: Always
             env:
