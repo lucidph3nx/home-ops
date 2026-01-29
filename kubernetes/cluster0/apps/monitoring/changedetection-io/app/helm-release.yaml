@@ -35,6 +35,9 @@ spec:
               TZ: "${TIMEZONE}"
               USE_X_SETTINGS: 1
               PLAYWRIGHT_DRIVER_URL: ws://changedetection-browser.monitoring.svc.cluster.local:3000/?stealth=1&--disable-web-security=true
+              # Socket.io configuration for reverse proxy / Cloudflare
+              FLASK_SERVER_NAME: "changedetection-io.${SECRET_PUBLIC_DOMAIN}"
+              BASE_URL: "https://changedetection-io.${SECRET_PUBLIC_DOMAIN}"
     service:
       app:
         controller: main
@@ -49,6 +52,15 @@ spec:
             namespace: networking
             sectionName: websecure
         rules:
+          # Rule 1: socket.io path WITHOUT authentication for WebSocket support
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /socket.io/
+            backendRefs:
+              - identifier: app
+                port: *port
+          # Rule 2: everything else WITH authentication
           - backendRefs:
               - identifier: app
                 port: *port
