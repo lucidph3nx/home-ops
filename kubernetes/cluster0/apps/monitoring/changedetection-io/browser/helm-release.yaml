@@ -22,6 +22,7 @@ spec:
   values:
     controllers:
       main:
+        replicas: 3
         containers:
           app:
             image:
@@ -39,6 +40,12 @@ spec:
               DEFAULT_BLOCK_ADS: true
               DEFAULT_STEALTH: true
               DEFAULT_LAUNCH_ARGS: "[\"--no-sandbox\",\"--disable-dev-shm-usage\"]"
+            resources:
+              requests:
+                cpu: 100m
+                memory: 512Mi
+              limits:
+                memory: 2Gi
     persistence:
       cache:
         type: emptyDir
@@ -56,6 +63,7 @@ spec:
     service:
       app:
         controller: main
+        sessionAffinity: None
         ports:
           http:
             port: 3000
