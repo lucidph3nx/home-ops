@@ -38,7 +38,7 @@ spec:
               # Socket.io configuration for reverse proxy / Cloudflare
               FLASK_SERVER_NAME: "changedetection-io.${SECRET_PUBLIC_DOMAIN}"
               BASE_URL: "https://changedetection-io.${SECRET_PUBLIC_DOMAIN}"
-              SOCKETIO_LOGGING: "True"
+              SOCKETIO_CORS_ALLOWED_ORIGINS: "https://changedetection-io.${SECRET_PUBLIC_DOMAIN}"
     service:
       app:
         controller: main
