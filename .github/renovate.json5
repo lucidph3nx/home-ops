@@ -1,19 +1,24 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   extends: [
+    'config:recommended',
+    ':disableRateLimiting',
+    ':dependencyDashboard',
+    ':semanticCommits',
+    ':automergeDigest',
     'github>prismatic-koi/home-ops//.github/renovate/labels.json5',
+    'github>prismatic-koi/home-ops//.github/renovate/automerge.json5',
   ],
   enabled: true,
-  semanticCommits: 'enabled',
-  dependencyDashboard: true,
-  dependencyDashboardTitle: 'Renovate Dashboard',
+  timezone: 'Pacific/Auckland',
+  dependencyDashboardTitle: 'Renovate Dashboard 🤖',
   suppressNotifications: [
     'prIgnoreNotification',
   ],
   rebaseWhen: 'conflicted',
-  timezone: 'Pacific/Auckland',
-  schedule: [
-    'every weekend',
-  ],
+  branchPrefix: 'prismatic-bot/',
+  gitAuthor: 'prismatic-bot[bot] <prismatic-bot[bot]@users.noreply.github.com>',
+  platformCommit: true,
   'pre-commit': {
     enabled: true,
   },

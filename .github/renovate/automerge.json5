@@ -1,0 +1,75 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    // Enable automerge for patch updates (all packages)
+    {
+      "description": "Auto-merge patch updates",
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": false
+    },
+    // Enable automerge for minor updates to Docker images
+    {
+      "description": "Auto-merge minor updates for Docker images",
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": false
+    },
+    // Enable automerge for minor updates to Helm charts
+    {
+      "description": "Auto-merge minor updates for Helm charts",
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": false
+    },
+    // Enable automerge for GitHub Actions
+    {
+      "description": "Auto-merge GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": false
+    },
+    // Disable automerge for major updates (require manual review)
+    {
+      "description": "Disable auto-merge for major updates",
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
+    // Disable automerge for critical infrastructure
+    {
+      "description": "Disable auto-merge for critical infrastructure",
+      "matchPackageNames": [
+        "cert-manager",
+        "trust-manager",
+        "cilium",
+        "cloudnative-pg",
+        "coredns",
+        "external-dns",
+        "traefik",
+        "kube-prometheus-stack",
+        "longhorn"
+      ],
+      "matchUpdateTypes": ["major", "minor"],
+      "automerge": false
+    },
+    // Disable automerge for databases
+    {
+      "description": "Disable auto-merge for databases",
+      "matchPackagePatterns": [
+        "postgres",
+        "postgresql",
+        "valkey",
+        "redis"
+      ],
+      "matchUpdateTypes": ["major", "minor"],
+      "automerge": false
+    }
+  ]
+}
