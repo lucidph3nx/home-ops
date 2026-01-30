@@ -6,7 +6,7 @@
       "description": "Auto-merge patch updates",
       "matchUpdateTypes": ["patch"],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "ignoreTests": false
     },
     // Enable automerge for minor updates to Docker images
@@ -15,7 +15,7 @@
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["minor"],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "ignoreTests": false
     },
     // Enable automerge for minor updates to Helm charts
@@ -24,7 +24,7 @@
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["minor"],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "ignoreTests": false
     },
     // Enable automerge for GitHub Actions
@@ -33,7 +33,7 @@
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "ignoreTests": false
     },
     // Disable automerge for major updates (require manual review)
