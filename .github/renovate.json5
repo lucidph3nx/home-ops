@@ -19,7 +19,6 @@
   rebaseWhen: 'conflicted',
   branchPrefix: 'prismatic-bot/',
   gitAuthor: 'prismatic-bot[bot] <prismatic-bot[bot]@users.noreply.github.com>',
-  platformCommit: true,
   'pre-commit': {
     enabled: true,
   },
