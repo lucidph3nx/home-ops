@@ -1,0 +1,16 @@
+---
+area/github:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/**/*
+
+area/kubernetes:
+  - changed-files:
+      - any-glob-to-any-file:
+          - kubernetes/**/*
+
+area/renovate:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/renovate/**/*
+          - .github/renovate.json5
