@@ -108,7 +108,7 @@ jobs:
             --strip-attrs "helm.sh/chart,checksum/config,app.kubernetes.io/version,chart"
             --limit-bytes 10000
             --all-namespaces
-            --sources "flux-system"
+            --sources "home-ops-cluster0"
             --output-file diff.patch
 
       - name: Generate Diff
@@ -118,9 +118,20 @@ jobs:
           cat diff.patch 2>/dev/null >> $GITHUB_OUTPUT || true
           echo 'EOF' >> $GITHUB_OUTPUT
           
-          # Check if diff contains actual changes (not just "no ... objects found" message)
+          # Check if diff contains actual changes (ignoring "no objects found" messages)
           if [ -f diff.patch ] && [ -s diff.patch ]; then
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+            # grep returns 0 if match found, 1 if not
+            if grep -q "no .* objects found" diff.patch; then
+              # Check if the file contains ANYTHING ELSE besides the "no ... objects found" line (ignoring whitespace)
+              # If it has other lines, treat as real changes
+              if [ $(grep -v "no .* objects found" diff.patch | grep -v "^[[:space:]]*$" | wc -l) -gt 0 ]; then
+                 echo "has_changes=true" >> $GITHUB_OUTPUT
+              else
+                 echo "has_changes=false" >> $GITHUB_OUTPUT
+              fi
+            else
+              echo "has_changes=true" >> $GITHUB_OUTPUT
+            fi
           else
             echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
