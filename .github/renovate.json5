@@ -14,11 +14,11 @@
   timezone: 'Pacific/Auckland',
   dependencyDashboardTitle: 'Renovate Dashboard 🤖',
   suppressNotifications: [
+    'prEditedNotification',
     'prIgnoreNotification',
   ],
   rebaseWhen: 'conflicted',
   branchPrefix: 'prismatic-bot/',
-  gitAuthor: 'prismatic-bot[bot] <prismatic-bot[bot]@users.noreply.github.com>',
   'pre-commit': {
     enabled: true,
   },
