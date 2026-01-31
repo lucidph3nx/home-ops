@@ -46,7 +46,7 @@
       matchPackageNames: [
         '/plexinc/pms-docker/',
       ],
-      allowedVersions: '!/-(armhf|arm64|armv7)$/',
+      allowedVersions: '!/-(armhf|arm64|armv7|amd64|linux)$/',
     },
   ],
   customManagers: [
