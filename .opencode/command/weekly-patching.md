@@ -1,6 +1,6 @@
 ---
 description: Weekly Patching Tasks
-agent: general
+agent: plan
 ---
 
 # Weekly Server Patching
