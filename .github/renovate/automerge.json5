@@ -42,9 +42,23 @@
       "matchUpdateTypes": ["major"],
       "automerge": false
     },
-    // Disable automerge for critical infrastructure
+    // Tier 1: Never automerge critical cluster infrastructure (any update type)
     {
-      "description": "Disable auto-merge for critical infrastructure",
+      "description": "Never auto-merge Tier 1 critical infrastructure",
+      "matchPackageNames": [
+        "k3s-io/k3s",
+        "system-upgrade-controller",
+        "rancher/k3s-upgrade",
+        "cilium",
+        "coredns",
+        "traefik"
+      ],
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "automerge": false
+    },
+    // Tier 2: Disable automerge for major/minor updates to critical infrastructure (patches allowed)
+    {
+      "description": "Tier 2: Disable auto-merge for major/minor updates (patches allowed)",
       "matchPackageNames": [
         "cert-manager",
         "trust-manager",
@@ -69,6 +83,14 @@
         "redis"
       ],
       "matchUpdateTypes": ["major", "minor"],
+      "automerge": false
+    },
+    // Special handling for home-assistant (calendar versioning)
+    {
+      "description": "Disable auto-merge for home-assistant (calendar versioning)",
+      "matchPackagePatterns": [
+        "home-assistant/home-assistant"
+      ],
       "automerge": false
     }
   ]
