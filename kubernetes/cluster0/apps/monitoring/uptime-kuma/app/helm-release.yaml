@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: louislam/uptime-kuma
-              tag: "2.0.2"
+              tag: "2.1.0"
             env:
               TZ: "${TIMEZONE}"
               UPTIME_KUMA_PORT: 3001
