@@ -34,12 +34,24 @@ spec:
               SCREEN_DEPTH: 16
               ENABLE_DEBUGGER: false
               PREBOOT_CHROME: true
-              CONNECTION_TIMEOUT: -1
-              MAX_CONCURRENT_SESSIONS: 10
+              CONNECTION_TIMEOUT: 300000
+              MAX_CONCURRENT_SESSIONS: 5
               CHROME_REFRESH_TIME: 600000
               DEFAULT_BLOCK_ADS: true
               DEFAULT_STEALTH: true
               DEFAULT_LAUNCH_ARGS: "[\"--no-sandbox\",\"--disable-dev-shm-usage\"]"
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /pressure
+                    port: 3000
+                  initialDelaySeconds: 30
+                  periodSeconds: 60
+                  timeoutSeconds: 10
+                  failureThreshold: 3
             resources:
               requests:
                 cpu: 100m
