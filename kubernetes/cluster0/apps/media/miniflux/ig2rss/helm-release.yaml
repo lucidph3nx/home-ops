@@ -44,7 +44,7 @@ spec:
               BASE_URL: http://ig2rss.media.svc.cluster.local:8080
               HOST: 0.0.0.0
               PORT: &port 8080
-              RSS_FEED_LIMIT: "50"
+              RSS_FEED_LIMIT: "100"
               RSS_FEED_DAYS: "30"
               DATABASE_PATH: /data/ig2rss.db
               MEDIA_CACHE_PATH: /data/media
