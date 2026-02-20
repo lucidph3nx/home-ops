@@ -46,6 +46,7 @@ spec:
               PORT: &port 8080
               RSS_FEED_LIMIT: "100"
               RSS_FEED_DAYS: "30"
+              POLL_INTERVAL: "3600" # 1 hour
               DATABASE_PATH: /data/ig2rss.db
               MEDIA_CACHE_PATH: /data/media
               SESSION_FILE: /data/instagram_session.json
