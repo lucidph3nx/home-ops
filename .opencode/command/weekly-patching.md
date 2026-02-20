@@ -24,9 +24,9 @@ This task reviews and merges Renovate PRs for weekly server patching.
 
 Renovate rate-limits major version updates. To create all pending rate-limited PRs:
 
-1. View issue #1 (Renovate Dependency Dashboard):
+1. View issue #2603 (Renovate Dependency Dashboard):
    ```bash
-   gh issue view 1
+   gh issue view 2603
    ```
 
 2. Look for the checkbox with text: `🔐 **Create all rate-limited PRs at once** 🔐`
